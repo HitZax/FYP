@@ -18,4 +18,16 @@ class Student extends BaseController
 
         dd($data);
     }
+
+    public function detail($sid)
+    {
+        $studentmodel = new StudentModel();
+        $student = $studentmodel->find($sid);
+
+        $data=[
+            'student' => $student
+        ];
+
+        dd($data);
+    }
 }
