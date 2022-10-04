@@ -19,6 +19,7 @@ class Student extends BaseController
         dd($data);
     }
 
+    //Lastseen @HitZax 
     public function detail($sid)
     {
         $studentmodel = new StudentModel();
