@@ -13,6 +13,7 @@ class Student extends BaseController
         $student = $studentmodel->findall();
 
         $data=[
+            'title' => 'Student List',
             'student' => $student
         ];
 
