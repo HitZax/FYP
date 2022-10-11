@@ -14,7 +14,6 @@ class Student extends BaseController
 
         $data=[
             'title' => 'Student List',
-            'title' => 'Student | LS',
             'student' => $student
         ];
         d($data);
