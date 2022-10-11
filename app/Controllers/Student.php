@@ -76,7 +76,10 @@ class Student extends BaseController
 
     public function delete($sid)
     {
-        $db = 
+        $db = \Config\Database::connect();
+        $builder = $db->table('event');
+        $builder->where('eventid', $eventid);
+        $builder->delete();
     }
 
 }
