@@ -25,7 +25,7 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav float-end">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="bi bi-person-circle pr-1"></i>  aimanggle21@gmail.com <span class="caret"></span>
