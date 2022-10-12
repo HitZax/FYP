@@ -25,6 +25,21 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
+        <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="bi bi-person-circle pr-1"></i>  aimanggle21@gmail.com <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">  
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="/logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
       </ul>
     </div>
   </div>
