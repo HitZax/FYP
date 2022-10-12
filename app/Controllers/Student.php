@@ -16,7 +16,7 @@ class Student extends BaseController
             'title' => 'Student List',
             'student' => $student
         ];
-        d($data);
+        // d($data);
         return view('Student/show', $data);
     }
 
@@ -30,7 +30,7 @@ class Student extends BaseController
             'student' => $student
         ];
 
-        dd($data);
+        // dd($data);
     }
 
     public function insert()
@@ -44,6 +44,8 @@ class Student extends BaseController
         ];
         // dd($data);
         $studentmodel->insert($data);
+
+        return redirect()->back()->with('message','insert');
     }
 
     public function edit($sid)
@@ -56,7 +58,7 @@ class Student extends BaseController
             'student' => $student
         ];
 
-        d($data);
+        // d($data);
         return view('Student/edit', $data);
     }
 
@@ -72,14 +74,18 @@ class Student extends BaseController
         ];
         // dd($data);
         $studentmodel->replace($data);
+
+        return redirect()->to('/student')->with('message','update');
     }
 
     public function delete($sid)
     {
         $db = \Config\Database::connect();
-        $builder = $db->table('event');
-        $builder->where('eventid', $eventid);
+        $builder = $db->table('student');
+        $builder->where('sid', $sid);
         $builder->delete();
+
+        return redirect()->back()->with('message','Delete');
     }
 
 }

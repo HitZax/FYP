@@ -10,6 +10,17 @@
   New Student
 </button>
 
+<div class="container-fluid">
+<?php if(session()->get('message')):?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+   Data has been  <strong></strong> <?=session()->getFlashdata('message');?> </strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+<?php endif;?>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -68,7 +79,10 @@
       <td><?=$s['sprogram'];?></td>
       <td>
         <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-        <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-danger"><i class="bi bi-trash"></i></a>
+        <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wanted to delete this student?')"><i class="bi bi-trash"></i></button>
+        </form>
     </td>
 
     </tr>

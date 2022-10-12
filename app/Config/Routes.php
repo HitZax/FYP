@@ -39,6 +39,7 @@ $routes->get('/student', 'Student::show');
 $routes->post('/student', 'Student::insert');
 $routes->get('/student/edit/(:num)', 'Student::edit/$1');
 $routes->post('/student/edit/(:num)', 'Student::update/$1');
+$routes->delete('/student/delete/(:num)', 'Student::delete/$1');
 
 /*
  * --------------------------------------------------------------------
