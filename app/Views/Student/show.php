@@ -19,7 +19,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom">
           <!-- Button trigger modal -->
           <h1 class="h2">Student</h1>
           <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -78,6 +78,11 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
+    <?php if(empty($student)):?>
+      <tr>
+        <td colspan= "5" class="text-center">Data is unavailable</td>
+      </tr>
+      <?php endif;?>
     <?php $bil=1;?>
 <?php foreach($student as $s):?>
     <tr>
