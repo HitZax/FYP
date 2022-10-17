@@ -120,7 +120,7 @@
                 <?php endif;?>
                 <form action="<?php echo base_url(); ?>/SigninController/loginAuth" method="post">
                     <div class="form-group mb-3">
-                        <input type="email" name="email" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
+                        <input type="text" name="auth" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
                     </div>
                     <div class="form-group mb-3">
                         <input type="password" name="password" placeholder="Password" class="form-control" >

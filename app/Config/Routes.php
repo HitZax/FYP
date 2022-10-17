@@ -60,7 +60,7 @@ $routes->match(['get', 'post'], 'SignupController/store', 'SignUp::store');
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SignIn::loginAuth');
 $routes->get('/signin', 'SignIn::index');
 $routes->get('/logout', 'SignIn::logout');
-$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+$routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
 // $routes->get('/register/student', 'User::showregform');
 

@@ -1,3 +1,5 @@
+<?php $this->session = \Config\Services::session(); ?>
+
 <nav class="navbar navbar-expand-lg navbar-light sticky-top px-5" style="background-color: #ffffff; padding-top:1%; padding-bottom:1%; box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.2);">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +23,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="bi bi-person-circle pr-1"><?=user()->email;?></i><span class="caret"></span>
+                        <i class="bi bi-person-circle pr-1"><?=$this->session->get('email')?></i><span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">  

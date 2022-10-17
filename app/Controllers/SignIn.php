@@ -15,10 +15,10 @@ class SignIn extends Controller
     {
         $session = session();
         $userModel = new UserModel();
-        $email = $this->request->getVar('email');
+        $auth = $this->request->getVar('auth');
         $password = $this->request->getVar('password');
         
-        $data = $userModel->where('email', $email)->first();
+        $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
         
         if($data){
             $pass = $data['password'];
@@ -28,10 +28,11 @@ class SignIn extends Controller
                     'id' => $data['id'],
                     'name' => $data['name'],
                     'email' => $data['email'],
+                    'studentid' => $data['studentid'],
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($ses_data);
-                return redirect()->to('/student');
+                return redirect()->to('/profile');
             
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');
