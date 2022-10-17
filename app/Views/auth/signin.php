@@ -11,7 +11,7 @@
   <style>
     body{
       /* background-color:#F5F5F5; */
-      background-image: url("public\asset\bgloginimg.jpg");
+      /* background-image: url("/asset/bgloginimg.jpg"); */
 
     }
 
@@ -118,7 +118,7 @@
                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif;?>
-                <form action="<?php echo base_url(); ?>/SigninController/loginAuth" method="post">
+                <form action="<?php echo base_url(); ?>/login" method="post">
                     <div class="form-group mb-3">
                         <input type="text" name="auth" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
                     </div>
