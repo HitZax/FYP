@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ProgramModel;
 use App\Models\StudentModel;
 use App\Controllers\BaseController;
 
@@ -17,9 +18,13 @@ class Student extends BaseController
         $studentmodel = new StudentModel();
         $student = $studentmodel->findall();
 
+        $programmodel = new ProgramModel();
+        $program = $programmodel->findall();
+
         $data=[
             'title' => 'Student List',
-            'student' => $student
+            'student' => $student,
+            'program' => $program
         ];
         // d($data);
         return view('Student/show', $data);

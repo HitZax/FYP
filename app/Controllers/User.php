@@ -13,6 +13,8 @@ class User extends BaseController
 
     public function showregform()
     {
-        $data['title'] = 'Register student | LS';
+        // $data['title'] = 'Register student | LS';
+
+        // return view('auth/register', $data);
     }
 }

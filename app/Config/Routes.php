@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\Student;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -41,6 +43,14 @@ $routes->post('/student', 'Student::insert');
 $routes->get('/student/edit/(:num)', 'Student::edit/$1');
 $routes->post('/student/edit/(:num)', 'Student::update/$1');
 $routes->delete('/student/delete/(:num)', 'Student::delete/$1');
+
+/*
+*----------------------------------------------------------------------
+*Routes for User
+*----------------------------------------------------------------------
+*/
+
+// $routes->get('/register/student', 'User::showregform');
 
 /*
  * --------------------------------------------------------------------

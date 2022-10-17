@@ -48,8 +48,12 @@
                     <input type="text" class="form-control" id="name" placeholder="Your Name" name="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="program" class="form-label">Programme</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your Course" name="program" required>
+                  <label for="program" class="form-label float-start">Programme</label>
+                    <select class="form-select" aria-label="Default select example" name="program" required>
+                      <?php foreach($program as $p):?>
+                        <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
+                      <?php endforeach;?>
+                    </select>
                 </div>
             </div>
             <div class="modal-footer">
