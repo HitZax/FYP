@@ -50,7 +50,7 @@ $routes->delete('/student/delete/(:num)', 'Student::delete/$1');
 *----------------------------------------------------------------------
 */
 
-// $routes->get('/register/student', 'User::showregform');
+$routes->post('/register', 'User::inserttodb');
 
 /*
  * --------------------------------------------------------------------
