@@ -34,7 +34,7 @@
         <form action="/register" method="post">
           <div class="mb-3">
             <label class="form-label float-start">Full Name</label>
-              <input type="text" name="name" placeholder="Name" value="<?= set_value('name') ?>" class="form-control" >
+              <input type="text" name="name" placeholder="name"  class="form-control" >
               <div class="invalid-feedback">Please enter your Full Name.</div>
           </div>
           <div class="mb-3">
@@ -58,7 +58,7 @@
      
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
               <div class="invalid-feedback">Please enter your Password</div>
           </div>
           <div class="mb-3">
