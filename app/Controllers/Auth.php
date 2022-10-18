@@ -57,7 +57,7 @@ class Auth extends Controller
         $data = [
             'sprogram'=> $program
         ];
-        d($data);
+        // d($data);
 
         return view('auth/signup', $data);
     }
@@ -70,6 +70,7 @@ class Auth extends Controller
             'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
             'password'      => 'required|min_length[4]|max_length[50]',
             'confirmpassword'  => 'matches[password]',
+            'sprogram'      => 'required',
             'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
         ];
           
