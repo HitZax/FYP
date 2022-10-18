@@ -20,8 +20,7 @@ class Auth extends Controller
         $userModel = new UserModel();
         $auth = $this->request->getVar('auth');
         $password = $this->request->getVar('password');
-        // dd($auth);
-        // dd($password);
+        
         $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
         
         if($data)
