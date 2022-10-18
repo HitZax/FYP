@@ -49,6 +49,17 @@ $routes->delete('/student/delete/(:num)', 'Student::delete/$1');
 *Routes for User
 *----------------------------------------------------------------------
 */
+/*
+ * --------------------------------------------------------------------
+ * Route Definitions
+ * --------------------------------------------------------------------
+ */
+$routes->get('/login', 'Auth::index');
+$routes->post('/login', 'Auth::attemptLogin');
+$routes->get('/register', 'Auth::register');
+$routes->post('/register', 'Auth::attemptRegister');
+$routes->get('/logout', 'Auth::logout');
+$routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
 $routes->post('/register', 'User::inserttodb');
 
