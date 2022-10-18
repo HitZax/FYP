@@ -1,8 +1,9 @@
 <?php 
 namespace App\Controllers;  
-use CodeIgniter\Controller;
-use App\Models\UserModel;
 use Config\Services;
+use App\Models\UserModel;
+use CodeIgniter\Controller;
+use App\Models\StudentModel;
   
 class Auth extends Controller
 {
@@ -78,6 +79,16 @@ class Auth extends Controller
             $data['validation'] = $this->validator;
             return view('auth/signup', $data);
         }
+
+        $studentmodel = new StudentModel();
+
+        $data1=[
+            'sname' => $this->request->getVar('name'),
+            'studentid' => $this->request->getVar('studentid'),
+            'sprogram' => $this->request->getVar('program'),
+        ];
+        // dd($data);
+        $studentmodel->insert($data1);
           
     }
 
