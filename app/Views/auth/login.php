@@ -22,22 +22,24 @@
                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif;?>
-          <img src="/asset\uniten logo.png" alt="" class="img">
-          <h2 class="float-start">Good Morning!</h2> 
-          <h6 class="text-muted">Sign Back to your account</h6>
+                <div class="text-center"> <img src="/asset\uni10.png" alt="" class="img"></div>
+         
+          <h2 class="float-start text-white">Welcome to Online Logbook System</h2> 
+          <h2 class="float-start text-white">Good Morning!</h2> 
+          <h6 class="text-white">Login into your account</h6>
         </div>
         <form action="/login" method="POST">
           <?=csrf_field()?>
           
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label float-start">Student ID / Email</label>
+            <label for="exampleInputEmail1" class="form-label float-start text-white">Student ID / Email</label>
             <input type="text" name="auth" placeholder="Student ID / Email" value="" class="form-control" >
               <div class="invalid-feedback">Please enter your Student ID / email.</div> 
           </div>
 
         
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label float-start">Password</label>
+            <label for="exampleInputPassword1" class="form-label float-start text-white">Password</label>
               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
                <div class="invalid-feedback">Please enter your Password</div> 
           </div>
@@ -47,7 +49,7 @@
         </form>
 
         <div class="row mt-2 mb-4">
-          <h6>Need an account? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register Here</a></span></h6>
+          <h6 class="text-white">Need an account? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register Here</a></span></h6>
               
         </div>
           
