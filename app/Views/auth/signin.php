@@ -11,7 +11,7 @@
   <style>
     body{
       /* background-color:#F5F5F5; */
-      /* background-image: url("/asset/bgloginimg.jpg"); */
+      background-image: url("public\asset\bgloginimg.jpg");
 
     }
 
@@ -29,15 +29,20 @@
           <h2 class="float-start">Good Morning!</h2> 
           <h6 class="text-muted">Create your account to login to the system</h6>
         </div>
-        <form class="needs-validation" novalidate>
+        <form action="/register" method="POST" class="needs-validation" novalidate>
+          <?=csrf_field()?>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label float-start">Full Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Full Name" required>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Full Name" name="fullname" required>
               <div class="invalid-feedback">Please enter your Full Name.</div>
+          </div><div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label float-start">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email" required>
+              <div class="invalid-feedback">Please enter your email.</div>
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label float-start">Student ID</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Student ID" required>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Student ID" name="studentid" required>
               <div class="invalid-feedback">Please enter your Student ID.</div>
           </div>
           <div class="mb-3">
@@ -51,7 +56,7 @@
           <div class="invalid-feedback">Please your Program.</div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
               <div class="invalid-feedback">Please enter your Password</div>
           </div>
           <div class="d-grid mb-3">

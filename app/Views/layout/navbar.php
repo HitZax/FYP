@@ -23,7 +23,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="bi bi-person-circle pr-1"><?=$this->session->get('email')?></i><span class="caret"></span>
+                        <i class="bi bi-person-circle pr-1"><?=user()->email;?></i><span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">  

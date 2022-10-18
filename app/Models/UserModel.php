@@ -2,7 +2,7 @@
 namespace App\Models;  
 use CodeIgniter\Model;
   
-class UseModel extends Model
+class UserModel extends Model
 {
     protected $table = 'users';
     

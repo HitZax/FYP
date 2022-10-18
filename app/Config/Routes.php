@@ -61,7 +61,7 @@ $routes->post('/register', 'Auth::attemptRegister');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
-// $routes->get('/register/student', 'User::showregform');
+$routes->post('/register', 'User::inserttodb');
 
 /*
  * --------------------------------------------------------------------
