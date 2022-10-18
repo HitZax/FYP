@@ -72,45 +72,19 @@ class Auth extends Controller
 
     public function attemptRegister()
     {
-        // helper(['form']);
-        // $rules = [
-        //     'fullname'          => 'required|min_length[2]|max_length[50]',
-        //     'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
-        //     'password'      => 'required|min_length[4]|max_length[50]',
-        //     'confirmpassword'  => 'matches[password]',
-        //     'program'      => 'required',
-        //     'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
-        // ];
+        helper(['form']);
+        $rules = [
+            'name'          => 'required|min_length[2]|max_length[50]',
+            'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
+            'password'      => 'required|min_length[4]|max_length[50]',
+            'confirmpassword'  => 'matches[password]',
+            'sprogram'      => 'required',
+            'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
+        ];
           
-        // if($this->validate($rules))
-        // {
-        //     $userModel = new UserModel();
-        //     $data = [
-        //         'fullname'     => $this->request->getVar('fullname'),
-        //         'email'    => $this->request->getVar('email'),
-        //         'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-        //         'studentid' => $this->request->getVar('studentid'),
-        //     ];
-        //     // dd($data);
-        //     $userModel->save($data);
-
-        //     $studentmodel = new StudentModel();
-        //     $data1=[
-        //         'sname' => $this->request->getVar('name'),
-        //         'studentid' => $this->request->getVar('studentid'),
-        //         'sprogram' => $this->request->getVar('program'),
-        //     ];
-
-        //     $studentmodel->insert($data1);
-        //     return redirect()->to('/login');
-        // }
-        // else
-        // {
-        //     $data['validation'] = $this->validator;
-        //     return view('auth/register', $data);
-        // }
-
-        $userModel = new UserModel();
+        if($this->validate($rules))
+        {
+            $userModel = new UserModel();
             $data = [
                 'fullname'     => $this->request->getVar('fullname'),
                 'studentid' => $this->request->getVar('studentid'),
@@ -119,7 +93,7 @@ class Auth extends Controller
                 'program' => $this->request->getVar('program'),
             ];
             // dd($data);
-            $userModel->insert($data);
+            $userModel->save($data);
 
             $studentmodel = new StudentModel();
             $data1=[
@@ -127,9 +101,15 @@ class Auth extends Controller
                 'studentid' => $this->request->getVar('studentid'),
                 'sprogram' => $this->request->getVar('program'),
             ];
-            // dd($data1);
+
             $studentmodel->insert($data1);
             return redirect()->to('/login');
+        }
+        else
+        {
+            $data['validation'] = $this->validator;
+            return view('auth/signup', $data);
+        }
 
         
           

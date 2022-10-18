@@ -31,10 +31,10 @@
           <h2 class="float-start">Good Morning!</h2> 
           <h6 class="text-muted">Create your account to login to the system</h6>
         </div>
-        <form action="/register" method="post" class="needs-validation" novalidate autocomplete="off">
+        <form action="/register" method="post">
           <div class="mb-3">
             <label class="form-label float-start">Full Name</label>
-              <input type="text" name="fullname" placeholder="fullame" value="" class="form-control" >
+              <input type="text" name="name" placeholder="Name" value="<?= set_value('name') ?>" class="form-control" >
               <div class="invalid-feedback">Please enter your Full Name.</div>
           </div>
           <div class="mb-3">
@@ -47,14 +47,14 @@
               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
               <div class="invalid-feedback">Please enter your Email.</div>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="program" class="form-label float-start">Programme</label>
             <select class="form-select" aria-label="Default select example" name="program" required>
-                      <?php foreach($program as $p):?>
+                      <?php foreach($sprogram as $p):?>
                         <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
-                      <?php endforeach;?>
+                      <?php endforeach8;*/?>
                     </select>
-          </div>
+          </div> -->
      
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
