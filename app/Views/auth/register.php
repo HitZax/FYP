@@ -47,14 +47,14 @@
               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
               <div class="invalid-feedback">Please enter your Email.</div>
           </div>
-          <!-- <div class="mb-3">
+          <div class="mb-3">
             <label for="program" class="form-label float-start">Programme</label>
             <select class="form-select" aria-label="Default select example" name="program" required>
                       <?php foreach($sprogram as $p):?>
                         <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
-                      <?php endforeach8;*/?>
+                      <?php endforeach;?>
                     </select>
-          </div> -->
+          </div>
      
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
@@ -109,4 +109,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </body>
-</htm>
+</html>
