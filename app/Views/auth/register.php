@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,7 +13,7 @@
   <style>
     body{
       /* background-color:#F5F5F5; */
-      background-image: url("public\asset\bgloginimg.jpg");
+      /* background-image: url("/asset/bgloginimg.jpg"); */
 
     }
 
@@ -29,28 +31,49 @@
           <h2 class="float-start">Good Morning!</h2> 
           <h6 class="text-muted">Create your account to login to the system</h6>
         </div>
-        <form action="/login" method="POST" class="needs-validation" novalidate>
-          <?=csrf_field()?>
-          
-          </div><div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label float-start">Email</label>
-            <input type="text" name="auth" placeholder="Email" value="" class="form-control" >
-              <div class="invalid-feedback">Please enter your email.</div>
+        <form action="/register" method="post">
+          <div class="mb-3">
+            <label class="form-label float-start">Full Name</label>
+              <input type="text" name="name" placeholder="Name" value="<?= set_value('name') ?>" class="form-control" >
+              <div class="invalid-feedback">Please enter your Full Name.</div>
           </div>
-
-        
+          <div class="mb-3">
+            <label class="form-label float-start">Student ID</label>
+              <input type="text" class="form-control" name="studentid" placeholder="Student ID" required>
+              <div class="invalid-feedback">Please enter your Student ID.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label float-start">Email</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
+              <div class="invalid-feedback">Please enter your Email.</div>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="program" class="form-label float-start">Programme</label>
+            <select class="form-select" aria-label="Default select example" name="program" required>
+                      <?php foreach($sprogram as $p):?>
+                        <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
+                      <?php endforeach8;*/?>
+                    </select>
+          </div> -->
+     
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
               <div class="invalid-feedback">Please enter your Password</div>
           </div>
+          <div class="mb-3">
+          <div class="form-group mb-3">
+          <label for="exampleInputPassword1" class="form-label float-start">Confirm Password</label>
+                        <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control" >
+                    
+          </div>
           <div class="d-grid mb-3">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
           </div>
         </form>
 
         <div class="row mt-2 mb-4">
-          <h6>Need an account? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register Here</a></span></h6>
+          <h6>Already own an account? <span><a href="/login" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Login</a></span></h6>
               
         </div>
           
@@ -87,42 +110,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </body>
 </html>
-
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Codeigniter Login with Email/Password Example</title>
-  </head>
-  <body>
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-5">
-                
-                <h2>Login in</h2>
-                
-                <?php if(session()->getFlashdata('msg')):?>
-                    <div class="alert alert-warning">
-                       <?= session()->getFlashdata('msg') ?>
-                    </div>
-                <?php endif;?>
-                <form action="<?php echo base_url(); ?>/login" method="post">
-                    <div class="form-group mb-3">
-                        <input type="text" name="auth" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="password" name="password" placeholder="Password" class="form-control" >
-                    </div>
-                    
-                    <div class="d-grid">
-                         <button type="submit" class="btn btn-success">Signin</button>
-                    </div>     
-                </form>
-            </div>
-              
-        </div>
-    </div>
-  </body>
-</html> -->
