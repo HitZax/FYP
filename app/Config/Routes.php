@@ -37,7 +37,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Student:index');
+// $routes->get('/', 'Student:index');
 $routes->get('/student', 'Student::show',['filter' => 'authGuard']);
 $routes->post('/student', 'Student::insert',['filter' => 'authGuard']);
 $routes->get('/student/edit/(:num)', 'Student::edit/$1',['filter' => 'authGuard']);

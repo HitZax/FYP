@@ -1,8 +1,8 @@
 <?php 
 namespace App\Controllers;  
 use Config\Services;
-use App\Models\UserModel;
 use CodeIgniter\Controller;
+use App\Models\UserModel;
 use App\Models\ProgramModel;
 use App\Models\StudentModel;
   
@@ -10,8 +10,8 @@ class Auth extends Controller
 {
     public function index()
     {
-        helper(['form']);
-        return view('auth/signin');
+        // helper(['form']);
+        return view('auth/login');
     } 
   
     public function attemptLogin()
@@ -20,31 +20,43 @@ class Auth extends Controller
         $userModel = new UserModel();
         $auth = $this->request->getVar('auth');
         $password = $this->request->getVar('password');
-        
+        // dd($auth);
+        // dd($password);
         $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
         
-        if($data){
+        if($data)
+        {
             $pass = $data['password'];
-            $authenticatePassword = password_verify($password, $pass);
-            if($authenticatePassword){
-                $ses_data = [
+            // $data=[
+            //     'pass' => $pass,
+            //     'password' => $password,
+            // ];
+        //    dd($data);
+            // $authenticatePassword = password_verify($password, $pass);
+            if($pass == $password)
+            {
+                $session_data = [
                     'id' => $data['id'],
-                    'name' => $data['fullname'],
-                    'email' => $data['email'],
+                    'fullname' => $data['fullname'],
                     'studentid' => $data['studentid'],
-                    'isLoggedIn' => TRUE
+                    'email' => $data['email'],
+                    'logged_in' => TRUE
                 ];
-                $session->set($ses_data);
+                $session->set($session_data);
                 return redirect()->to('/student');
-            
-            }else{
-                $session->setFlashdata('msg', 'Password is incorrect.');
-                return redirect()->to('/login');
             }
-        }else{
-            $session->setFlashdata('msg', 'Email does not exist.');
-            return redirect()->to('/login');
+            else
+            {
+                $session->setFlashdata('msg', 'Wrong Password');
+                return redirect()->to('/');
+            }
         }
+        else
+        {
+            $session->setFlashdata('msg', 'Email or Student ID not Found');
+            return redirect()->to('/');
+        }
+           
     }
 
     public function register()
@@ -55,52 +67,73 @@ class Auth extends Controller
         $program = $programmodel->findall();
         
         $data = [
-            'sprogram'=> $program
+            'program'=> $program
         ];
-        // d($data);
+        d($data);
 
-        return view('auth/signup', $data);
+        return view('auth/register', $data);
     }
 
     public function attemptRegister()
     {
-        helper(['form']);
-        $rules = [
-            'name'          => 'required|min_length[2]|max_length[50]',
-            'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
-            'password'      => 'required|min_length[4]|max_length[50]',
-            'confirmpassword'  => 'matches[password]',
-            'sprogram'      => 'required',
-            'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
-        ];
+        // helper(['form']);
+        // $rules = [
+        //     'fullname'          => 'required|min_length[2]|max_length[50]',
+        //     'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
+        //     'password'      => 'required|min_length[4]|max_length[50]',
+        //     'confirmpassword'  => 'matches[password]',
+        //     'program'      => 'required',
+        //     'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
+        // ];
           
-        if($this->validate($rules))
-        {
-            $userModel = new UserModel();
+        // if($this->validate($rules))
+        // {
+        //     $userModel = new UserModel();
+        //     $data = [
+        //         'fullname'     => $this->request->getVar('fullname'),
+        //         'email'    => $this->request->getVar('email'),
+        //         'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+        //         'studentid' => $this->request->getVar('studentid'),
+        //     ];
+        //     // dd($data);
+        //     $userModel->save($data);
+
+        //     $studentmodel = new StudentModel();
+        //     $data1=[
+        //         'sname' => $this->request->getVar('name'),
+        //         'studentid' => $this->request->getVar('studentid'),
+        //         'sprogram' => $this->request->getVar('program'),
+        //     ];
+
+        //     $studentmodel->insert($data1);
+        //     return redirect()->to('/login');
+        // }
+        // else
+        // {
+        //     $data['validation'] = $this->validator;
+        //     return view('auth/register', $data);
+        // }
+
+        $userModel = new UserModel();
             $data = [
-                'fullname'     => $this->request->getVar('name'),
+                'fullname'     => $this->request->getVar('fullname'),
+                'studentid' => $this->request->getVar('studentid'),
                 'email'    => $this->request->getVar('email'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-                'studentid' => $this->request->getVar('studentid'),
+                'program' => $this->request->getVar('program'),
             ];
             // dd($data);
-            $userModel->save($data);
+            $userModel->insert($data);
 
             $studentmodel = new StudentModel();
             $data1=[
-                'sname' => $this->request->getVar('name'),
+                'sname' => $this->request->getVar('fullname'),
                 'studentid' => $this->request->getVar('studentid'),
                 'sprogram' => $this->request->getVar('program'),
             ];
-
+            // dd($data1);
             $studentmodel->insert($data1);
             return redirect()->to('/login');
-        }
-        else
-        {
-            $data['validation'] = $this->validator;
-            return view('auth/signup', $data);
-        }
 
         
           
