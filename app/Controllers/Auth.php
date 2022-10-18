@@ -99,9 +99,8 @@ class Auth extends Controller
         }
         else
         {
-            $session = session();
-            $session->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            return redirect()->to('/register');
+            $data['validation'] = $this->validator;
+            return view('auth/register', $data);
         }
            
     }
