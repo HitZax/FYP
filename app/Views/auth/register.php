@@ -50,7 +50,7 @@
           <div class="mb-3">
             <label for="program" class="form-label float-start">Programme</label>
             <select class="form-select" aria-label="Default select example" name="program" required>
-                      <?php foreach($sprogram as $p):?>
+                      <?php foreach($program as $p):?>
                         <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
                       <?php endforeach;?>
                     </select>

@@ -108,7 +108,7 @@ class Auth extends Controller
         else
         {
             $data['validation'] = $this->validator;
-            return view('auth/signup', $data);
+            return view('auth/register', $data);
         }
 
         
