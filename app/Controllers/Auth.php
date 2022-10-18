@@ -27,13 +27,9 @@ class Auth extends Controller
         if($data)
         {
             $pass = $data['password'];
-            // $data=[
-            //     'pass' => $pass,
-            //     'password' => $password,
-            // ];
-        //    dd($data);
+          
             // $authenticatePassword = password_verify($password, $pass);
-            if($pass == $password)
+            if($password == $pass)
             {
                 $session_data = [
                     'id' => $data['id'],

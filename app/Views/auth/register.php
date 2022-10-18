@@ -47,14 +47,14 @@
               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
               <div class="invalid-feedback">Please enter your Email.</div>
           </div>
-           <div class="mb-3">
+          <div class="mb-3">
             <label for="program" class="form-label float-start">Programme</label>
             <select class="form-select" aria-label="Default select example" name="program" required>
                       <?php foreach($sprogram as $p):?>
                         <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
                       <?php endforeach;?>
                     </select>
-          </div> 
+          </div>
      
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
