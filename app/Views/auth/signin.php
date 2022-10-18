@@ -1,4 +1,4 @@
-<!-- <!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -29,43 +29,28 @@
           <h2 class="float-start">Good Morning!</h2> 
           <h6 class="text-muted">Create your account to login to the system</h6>
         </div>
-        <form action="/register" method="POST" class="needs-validation" novalidate>
+        <form action="/login" method="POST" class="needs-validation" novalidate>
           <?=csrf_field()?>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label float-start">Full Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Full Name" name="fullname" required>
-              <div class="invalid-feedback">Please enter your Full Name.</div>
+          
           </div><div class="mb-3">
             <label for="exampleInputEmail1" class="form-label float-start">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email" required>
+            <input type="text" name="auth" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
               <div class="invalid-feedback">Please enter your email.</div>
           </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label float-start">Student ID</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Student ID" name="studentid" required>
-              <div class="invalid-feedback">Please enter your Student ID.</div>
-          </div>
-          <div class="mb-3">
-            <label for="program" class="form-label float-start">Programme</label>
-            <select class="form-select" aria-label="Default select example" name="program" required>
-                      <?php /*foreach($program as $p):?>
-                        <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
-                      <?php endforeach;*/?>
-                    </select>
-          </div>
-          <div class="invalid-feedback">Please your Program.</div>
+
+        
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>
               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
               <div class="invalid-feedback">Please enter your Password</div>
           </div>
           <div class="d-grid mb-3">
-            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
         </form>
 
         <div class="row mt-2 mb-4">
-          <h6>Do You Have an account? <span><a href="/login" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Login</a></span></h6>
+          <h6>Need an account? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register Here</a></span></h6>
               
         </div>
           
@@ -101,9 +86,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </body>
-</html> -->
+</html>
 
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -140,4 +125,4 @@
         </div>
     </div>
   </body>
-</html>
+</html> -->

@@ -3,6 +3,7 @@ namespace App\Controllers;
 use Config\Services;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
+use App\Models\ProgramModel;
 use App\Models\StudentModel;
   
 class Auth extends Controller
@@ -49,7 +50,15 @@ class Auth extends Controller
     public function register()
     {
         helper(['form']);
-        $data = [];
+
+        $programmodel = new ProgramModel();
+        $program = $programmodel->findall();
+        
+        $data = [
+            'sprogram'=> $program
+        ];
+        d($data);
+
         return view('auth/signup', $data);
     }
 
@@ -80,7 +89,7 @@ class Auth extends Controller
             $data1=[
                 'sname' => $this->request->getVar('name'),
                 'studentid' => $this->request->getVar('studentid'),
-                // 'sprogram' => $this->request->getVar('program'),
+                'sprogram' => $this->request->getVar('program'),
             ];
 
             $studentmodel->insert($data1);
