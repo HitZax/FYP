@@ -1,47 +1,3 @@
-<!-- <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Codeigniter Auth User Registration Example</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-md-center">
-            <div class="col-5">
-                <h2>Register User</h2>
-                <?php if(isset($validation)):?>
-                <div class="alert alert-warning">
-                   <?= $validation->listErrors() ?>
-                </div>
-                <?php endif;?>
-                <form action="<?php echo base_url(); ?>/register" method="post">
-                    <div class="form-group mb-3">
-                        <input type="text" name="name" placeholder="Name" value="<?= set_value('name') ?>" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="email" name="email" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="password" name="password" placeholder="Password" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="text" name="studentid" placeholder="studentid" class="form-control" >
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-dark">Signup</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html> -->
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -73,10 +29,10 @@
           <h2 class="float-start">Good Morning!</h2> 
           <h6 class="text-muted">Create your account to login to the system</h6>
         </div>
-        <form action="/register" method="post" class="needs-validation" novalidate autocomplete="off">
+        <form action="/register" method="post">
           <div class="mb-3">
             <label class="form-label float-start">Full Name</label>
-              <input type="text" name="name" placeholder="Name" value="<?= set_value('name') ?>" class="form-control" >
+              <input type="text" name="name" placeholder="Name" value="" class="form-control" >
               <div class="invalid-feedback">Please enter your Full Name.</div>
           </div>
           <div class="mb-3">
@@ -89,14 +45,14 @@
               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
               <div class="invalid-feedback">Please enter your Email.</div>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="program" class="form-label float-start">Programme</label>
             <select class="form-select" aria-label="Default select example" name="program" required>
-                      <?php foreach($sprogram as $p):?>
+                      <?php /*foreach($program as $p):?>
                         <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
-                      <?php endforeach;?>
+                      <?php endforeach8;*/?>
                     </select>
-          </div>
+          </div> -->
      
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start">Password</label>

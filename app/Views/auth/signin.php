@@ -34,7 +34,7 @@
           
           </div><div class="mb-3">
             <label for="exampleInputEmail1" class="form-label float-start">Email</label>
-            <input type="text" name="auth" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
+            <input type="text" name="auth" placeholder="Email" value="" class="form-control" >
               <div class="invalid-feedback">Please enter your email.</div>
           </div>
 
