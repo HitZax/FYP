@@ -88,6 +88,7 @@ class Auth extends Controller
             'sprogram' => $this->request->getVar('program'),
         ];
         dd($data);
+        dd($data1);
         $studentmodel->insert($data1);
           
     }
