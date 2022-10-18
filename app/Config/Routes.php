@@ -54,13 +54,10 @@ $routes->delete('/student/delete/(:num)', 'Student::delete/$1');
  * Route Definitions
  * --------------------------------------------------------------------
  */
-$routes->get('/', 'SignUp::index');
-$routes->get('/register', 'Auth::register');
-$routes->post('/register', 'Auth::attemptRegister');
-// $routes->match(['get', 'post'], 'SignupController/store', 'SignUp::store');
-// $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SignIn::loginAuth');
 $routes->get('/login', 'Auth::index');
 $routes->post('/login', 'Auth::attemptLogin');
+$routes->get('/register', 'Auth::register');
+$routes->post('/register', 'Auth::attemptRegister');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
