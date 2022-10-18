@@ -89,7 +89,7 @@ class Auth extends Controller
                 'fullname'     => $this->request->getVar('fullname'),
                 'studentid' => $this->request->getVar('studentid'),
                 'email'    => $this->request->getVar('email'),
-                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'password' => $this->request->getVar('password'),
                 'program' => $this->request->getVar('program'),
             ];
             // dd($data);
