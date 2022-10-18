@@ -64,7 +64,8 @@ class Auth extends Controller
             'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
         ];
           
-        if($this->validate($rules)){
+        if($this->validate($rules))
+        {
             $userModel = new UserModel();
             $data = [
                 'fullname'     => $this->request->getVar('name'),
@@ -74,22 +75,24 @@ class Auth extends Controller
             ];
             // dd($data);
             $userModel->save($data);
+
+            $studentmodel = new StudentModel();
+            $data1=[
+                'sname' => $this->request->getVar('name'),
+                'studentid' => $this->request->getVar('studentid'),
+                // 'sprogram' => $this->request->getVar('program'),
+            ];
+
+            $studentmodel->insert($data1);
             return redirect()->to('/login');
-        }else{
+        }
+        else
+        {
             $data['validation'] = $this->validator;
             return view('auth/signup', $data);
         }
 
-        $studentmodel = new StudentModel();
-
-        $data1=[
-            'sname' => $this->request->getVar('name'),
-            'studentid' => $this->request->getVar('studentid'),
-            'sprogram' => $this->request->getVar('program'),
-        ];
-        dd($data);
-        dd($data1);
-        $studentmodel->insert($data1);
+        
           
     }
 
