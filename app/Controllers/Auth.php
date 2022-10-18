@@ -57,7 +57,7 @@ class Auth extends Controller
         $data = [
             'sprogram'=> $program
         ];
-        d($data);
+        // d($data);
 
         return view('auth/signup', $data);
     }
