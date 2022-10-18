@@ -63,9 +63,9 @@ class Auth extends Controller
         $program = $programmodel->findall();
         
         $data = [
-            'program'=> $program
+            'sprogram'=> $program
         ];
-        d($data);
+        // d($data);
 
         return view('auth/register', $data);
     }
@@ -84,35 +84,26 @@ class Auth extends Controller
           
         if($this->validate($rules))
         {
-            $userModel = new UserModel();
+            $model = new UserModel();
             $data = [
-                'fullname'     => $this->request->getVar('fullname'),
-                'studentid' => $this->request->getVar('studentid'),
-                'email'    => $this->request->getVar('email'),
-                'password' => $this->request->getVar('password'),
-                'program' => $this->request->getVar('program'),
+                'fullname'      => $this->request->getVar('name'),
+                'email'         => $this->request->getVar('email'),
+                'password'      => $this->request->getVar('password'),
+                'studentid'     => $this->request->getVar('studentid'),
+                'program'       => $this->request->getVar('sprogram'),
             ];
-            // dd($data);
-            $userModel->save($data);
-
-            $studentmodel = new StudentModel();
-            $data1=[
-                'sname' => $this->request->getVar('fullname'),
-                'studentid' => $this->request->getVar('studentid'),
-                'sprogram' => $this->request->getVar('program'),
-            ];
-
-            $studentmodel->insert($data1);
-            return redirect()->to('/login');
+            $model->save($data);
+            $session = session();
+            $session->setFlashdata('success', 'Successfully Registered');
+            return redirect()->to('/');
         }
         else
         {
-            $data['validation'] = $this->validator;
-            return view('auth/signup', $data);
+            $session = session();
+            $session->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            return redirect()->to('/register');
         }
-
-        
-          
+           
     }
 
     public function logout()
