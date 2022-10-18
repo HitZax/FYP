@@ -27,13 +27,13 @@ class Auth extends Controller
             if($authenticatePassword){
                 $ses_data = [
                     'id' => $data['id'],
-                    'name' => $data['name'],
+                    'name' => $data['fullname'],
                     'email' => $data['email'],
                     'studentid' => $data['studentid'],
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($ses_data);
-                return redirect()->to('/profile');
+                return redirect()->to('/student');
             
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');
@@ -66,7 +66,7 @@ class Auth extends Controller
         if($this->validate($rules)){
             $userModel = new UserModel();
             $data = [
-                'name'     => $this->request->getVar('name'),
+                'fullname'     => $this->request->getVar('name'),
                 'email'    => $this->request->getVar('email'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'studentid' => $this->request->getVar('studentid'),
