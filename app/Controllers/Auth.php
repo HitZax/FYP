@@ -44,13 +44,13 @@ class Auth extends Controller
             else
             {
                 $session->setFlashdata('msg', 'Wrong Password');
-                return redirect()->to('/');
+                return redirect()->to('/login');
             }
         }
         else
         {
             $session->setFlashdata('msg', 'Email or Student ID not Found');
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }
            
     }
@@ -63,7 +63,7 @@ class Auth extends Controller
         $program = $programmodel->findall();
         
         $data = [
-            'sprogram'=> $program
+            'program'=> $program
         ];
         // d($data);
 
@@ -72,36 +72,26 @@ class Auth extends Controller
 
     public function attemptRegister()
     {
-        helper(['form']);
-        $rules = [
-            'name'          => 'required|min_length[2]|max_length[50]',
-            'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
-            'password'      => 'required|min_length[4]|max_length[50]',
-            'confirmpassword'  => 'matches[password]',
-            'sprogram'      => 'required',
-            'studentid'     => 'required|min_length[6]|max_length[20]|is_unique[users.studentid]',
+        $session = session();
+        $usermodel = new UserModel();
+        $data = [
+            'fullname'      => $this->request->getVar('name'),
+            'email'         => $this->request->getVar('email'),
+            'password'      => $this->request->getVar('password'),
+            'studentid'     => $this->request->getVar('studentid'),
+            'program'       => $this->request->getVar('program'),
         ];
-          
-        if($this->validate($rules))
-        {
-            $model = new UserModel();
-            $data = [
-                'fullname'      => $this->request->getVar('name'),
-                'email'         => $this->request->getVar('email'),
-                'password'      => $this->request->getVar('password'),
-                'studentid'     => $this->request->getVar('studentid'),
-                'program'       => $this->request->getVar('sprogram'),
-            ];
-            $model->save($data);
-            $session = session();
-            $session->setFlashdata('success', 'Successfully Registered');
-            return redirect()->to('/');
-        }
-        else
-        {
-            $data['validation'] = $this->validator;
-            return view('auth/register', $data);
-        }
+        $usermodel->save($data);
+
+        $studentmodel = new StudentModel();
+        $data1=[
+            'studentid' => $this->request->getVar('studentid'),
+            'sname' => $this->request->getVar('name'),
+            'sprogram' => $this->request->getVar('program'),
+        ];
+        $studentmodel->save($data1);
+        $session->setFlashdata('msg', 'Successfully Registered');
+        return redirect()->to('/login');
            
     }
 
