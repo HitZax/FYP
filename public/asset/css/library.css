@@ -1,0 +1,51 @@
+.bg-gradient-1{
+    background: rgb(101,34,195);
+    background: linear-gradient(103deg, rgba(101,34,195,1) 0%, rgba(45,56,253,1) 100%);
+}
+
+.bg-gradient-2{
+    background: rgb(195,50,34);
+    background: linear-gradient(103deg, rgba(195,50,34,1) 0%, rgba(253,111,45,1) 100%);
+}
+
+.bg-gradient-3{
+    background: rgb(78,195,34);
+    background: linear-gradient(103deg, rgba(78,195,34,1) 0%, rgba(45,253,124,1) 100%);
+}
+
+.bg-gradient-4{
+    background: rgb(182,34,195);
+    background: linear-gradient(103deg, rgba(182,34,195,1) 0%, rgba(253,138,45,1) 100%);
+}
+/*
+*---------------------------------------
+* Font Class
+*---------------------------------------
+*/
+.text-magenta{
+    color: #8B008B;
+}
+
+.text-orange{
+    color: #FF8C00;
+}
+
+.text-indian-red{
+    color: #CD5C5C;
+}
+
+.text-blue{
+    color: #191970;
+}
+
+.text-dark-orange{
+    color: #FF4500;
+}
+
+.text-rebecca-purple{
+    color: #663399;
+}
+
+.text-white{
+    color: #fff;
+}
