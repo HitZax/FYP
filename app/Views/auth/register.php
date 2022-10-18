@@ -52,7 +52,7 @@
             <select class="form-select" aria-label="Default select example" name="program" required>
                       <?php foreach($sprogram as $p):?>
                         <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
-                      <?php endforeach8;?>
+                      <?php endforeach;?>
                     </select>
           </div> 
      
