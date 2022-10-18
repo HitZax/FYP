@@ -6,19 +6,10 @@
     <title> Login | LS </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="asset/css/style.css">
   </head>
 
-  <style>
-    body{
-      /* background-color:#F5F5F5; */
-      background-image: url("public\asset\bgloginimg.jpg");
-
-    }
-
-    .img{
-      max-width: 200px;
-    }
-  </style>
+ 
   <body>
 
   <div class="container mx-auto">
@@ -37,10 +28,10 @@
         <form action="/login" method="POST">
           <?=csrf_field()?>
           
-          </div><div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label float-start">Email</label>
-            <input type="text" name="auth" placeholder="Email" value="" class="form-control" >
-              <div class="invalid-feedback">Please enter your email.</div> 
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label float-start">Student ID / Email</label>
+            <input type="text" name="auth" placeholder="Student ID / Email" value="" class="form-control" >
+              <div class="invalid-feedback">Please enter your Student ID / email.</div> 
           </div>
 
         

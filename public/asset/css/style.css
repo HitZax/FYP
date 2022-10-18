@@ -1,0 +1,13 @@
+.btn{
+    background-color: #4CAF50;
+}
+
+body{
+    background: #ff3a24;
+    background: -webkit-linear-gradient(267deg, #ff3a24 0%, #474bff 100%);
+    background: linear-gradient(267deg, #ff3a24 0%, #474bff 100%);
+}
+
+.img{
+    max-width: 200px;
+}
