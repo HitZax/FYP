@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\Lecturer;
 use App\Filters\AuthGuard;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\Honeypot;
@@ -25,6 +26,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'authGuard'     => AuthGuard::class,
+        'Lecturer'      => Lecturer::class
     ];
 
     /**

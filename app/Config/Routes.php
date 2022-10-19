@@ -37,23 +37,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Student::index');
-$routes->get('/student', 'Student::show',['filter' => 'authGuard']);
-$routes->post('/student', 'Student::insert',['filter' => 'authGuard']);
-$routes->get('/student/edit/(:num)', 'Student::edit/$1',['filter' => 'authGuard']);
-$routes->post('/student/edit/(:num)', 'Student::update/$1',['filter' => 'authGuard']);
-$routes->delete('/student/delete/(:num)', 'Student::delete/$1',['filter' => 'authGuard']);
+
+
 
 /*
 *----------------------------------------------------------------------
-*Routes for User
+*Routes for Auth
 *----------------------------------------------------------------------
 */
-/*
- * --------------------------------------------------------------------
- * Route Definitions
- * --------------------------------------------------------------------
- */
 $routes->get('/login', 'Auth::index');
 $routes->post('/login', 'Auth::attemptLogin');
 $routes->get('/register', 'Auth::register');
@@ -61,10 +52,24 @@ $routes->post('/register', 'Auth::attemptRegister');
 $routes->get('/register/lecturer/', 'Auth::invitecode');
 $routes->post('/register/lecturer/', 'Auth::receiveInvCode');
 $routes->get('/register/lecturer/(:any)', 'Auth::registerlect/$1');
+$routes->post('/register/lecturer/(:any)', 'Auth::attemptRegisterlect');
 $routes->get('/logout', 'Auth::logout');
-$routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
-// $routes->post('/register', 'User::inserttodb');
+
+/*
+*----------------------------------------------------------------------
+*Routes for Student
+*----------------------------------------------------------------------
+*/
+$routes->get('/', 'Student::index');
+$routes->get('/student', 'Student::show',['filter' => 'authGuard','Lecturer']);
+$routes->post('/student', 'Student::insert',['filter' => 'authGuard']);
+$routes->get('/student/edit/(:num)', 'Student::edit/$1',['filter' => 'authGuard']);
+$routes->post('/student/edit/(:num)', 'Student::update/$1',['filter' => 'authGuard']);
+$routes->delete('/student/delete/(:num)', 'Student::delete/$1',['filter' => 'authGuard']);
+
+$routes->get('/dashboard', 'Dashboard::index', ['filter'=> 'authGuard'],);
+
 
 
 

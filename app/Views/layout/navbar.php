@@ -10,8 +10,13 @@
             
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="/explore">Dashboard</a>
+                    <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
                 </li>
+                <?php if($this->session->role == "Lecturer"):?>
+                <li class="nav-item ">
+                    <a class="nav-link active" aria-current="page" href="/student">Student</a>
+                </li>
+                <?php endif?>
                 <li class="nav-item ">
                     <a class="nav-link active" aria-current="page" href="/task">Task</a>
                 </li>

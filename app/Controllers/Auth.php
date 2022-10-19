@@ -5,6 +5,7 @@ use App\Models\UserModel;
 use CodeIgniter\Controller;
 use App\Models\ProgramModel;
 use App\Models\StudentModel;
+use App\Models\LecturerModel;
 use App\Models\InviteCodeModel;
   
 class Auth extends Controller
@@ -36,10 +37,11 @@ class Auth extends Controller
                     'fullname' => $data['fullname'],
                     'studentid' => $data['studentid'],
                     'email' => $data['email'],
+                    'role' => $data['role'],
                     'logged_in' => TRUE
                 ];
                 $session->set($session_data);
-                return redirect()->to('/student');
+                return redirect()->to('/dashboard');
             }
             else
             {
@@ -80,6 +82,7 @@ class Auth extends Controller
             'password'      => $this->request->getVar('password'),
             'studentid'     => $this->request->getVar('studentid'),
             'program'       => $this->request->getVar('program'),
+            'role' => "Student"
         ];
         $usermodel->save($data);
 
@@ -105,8 +108,9 @@ class Auth extends Controller
 
     public function receiveInvCode()
     {
-        $invitecode = $this->request->getVar('invitecode');
+        $invitecode = $this->request->getVar('invcode');
 
+        // dd($invitecode);
         $invcodemodel = new InviteCodeModel();
         
 
@@ -135,7 +139,10 @@ class Auth extends Controller
 
         if($checkcode)
         {
-            $data=['title'=>'Register Lecturer'];
+            $data=[
+                'title'=>'Register Lecturer',
+                'invitecode' => $invitecode
+            ];
             return view('auth/registerlect', $data);
         }
         else
@@ -148,16 +155,28 @@ class Auth extends Controller
     //attempt register lecturer
     public function attemptRegisterlect()
     {
-        // $session = session();
-        $lecturermodel = new LecturerModel();
+        $session = session();
+        $usermodel = new UserModel();
         $data = [
             'fullname'      => $this->request->getVar('name'),
             'email'         => $this->request->getVar('email'),
             'password'      => $this->request->getVar('password'),
             'studentid'     => "-",
+            'role' => "Lecturer"
         ];
-        dd($data);
-        $lecturemodel->save($data);
+        $usermodel->save($data);
+
+        $lecturermodel = new LecturerModel();
+        $data1=[
+            'lname' => $this->request->getVar('name'),
+            'lemail' => $this->request->getVar('email'),
+            'lroom' => $this->request->getVar('room'),
+            'invcode' => $this->request->getVar('invcode'),
+        ];
+        // dd($data1);
+        $lecturermodel->save($data1);
+
+        // dd($data,$data1);
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
            

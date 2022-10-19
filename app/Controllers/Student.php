@@ -15,16 +15,19 @@ class Student extends BaseController
     
     public function show()
     {
+        $session = session();
         $studentmodel = new StudentModel();
         $student = $studentmodel->findall();
 
         $programmodel = new ProgramModel();
         $program = $programmodel->findall();
 
+        
         $data=[
             'title' => 'Student List',
             'student' => $student,
-            'program' => $program
+            'program' => $program,
+            'role' => $session->get('role')
         ];
         // d($data);
         return view('Student/show', $data);

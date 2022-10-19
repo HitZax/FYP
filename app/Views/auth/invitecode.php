@@ -28,12 +28,12 @@
           
           <h6 class="text-white">Please contact _______ to receive an invite code</h6>
         </div>
-        <form action="/register/lecturer" method="POST">
+        <form action="/register/lecturer/" method="POST">
           <?=csrf_field()?>
         
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label float-start text-white">Invite Code</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Please enter your Invite Code" name="invitecode" required>
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Please enter your Invite Code" name="invcode" required>
                <div class="invalid-feedback">Please enter your Invite Code</div> 
           </div>
           <div class="d-grid mb-3">

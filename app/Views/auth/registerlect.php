@@ -31,7 +31,7 @@
           <h2 class="float-start">Good Morning!</h2> 
           <h6 class="text-muted">Create your lecturer account to login to the system</h6>
         </div>
-        <form action="/register" method="post">
+        <form action="/register/lecturer/<?=$invitecode?>" method="post" autocomplete='off'>
           <div class="mb-3">
             <label class="form-label float-start">Full Name</label>
               <input type="text" name="name" placeholder="Full name"  class="form-control" required>
@@ -59,6 +59,12 @@
           <div class="form-group mb-3">
           <label for="exampleInputPassword1" class="form-label float-start">Confirm Password</label>
                         <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control" >
+                    
+          </div>
+          <div class="mb-3">
+          <div class="form-group mb-3">
+          <label for="exampleInputPassword1" class="form-label float-start">Invite Code</label>
+                        <input type="text" name="invcode"  class="form-control" value="<?=$invitecode?>"  >
                     
           </div>
           <div class="d-grid mb-3">

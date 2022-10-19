@@ -11,5 +11,6 @@ class UserModel extends Model
         'email',
         'password',
         'studentid',
+        'role'
     ];
 }
