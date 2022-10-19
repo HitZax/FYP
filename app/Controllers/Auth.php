@@ -94,6 +94,29 @@ class Auth extends Controller
            
     }
 
+    public function registerlect()
+    {
+        $data=['title'=>'Register Lecturer'];
+        return view('auth/registerlect', $data);
+    }
+
+    //attempt register lecturer
+    public function attemptRegisterlect()
+    {
+        $session = session();
+        $usermodel = new UserModel();
+        $data = [
+            'fullname'      => $this->request->getVar('name'),
+            'email'         => $this->request->getVar('email'),
+            'password'      => $this->request->getVar('password'),
+            'studentid'     => $this->request->getVar('studentid'),
+            'program'       => $this->request->getVar('program'),
+        ];
+        $usermodel->save($data);
+        $session->setFlashdata('msg', 'Successfully Registered');
+        return redirect()->to('/login');
+           
+    }
     public function logout()
     {
         $session = session();
