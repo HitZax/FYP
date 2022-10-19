@@ -149,16 +149,15 @@ class Auth extends Controller
     public function attemptRegisterlect()
     {
         // $session = session();
-        $usermodel = new UserModel();
+        $lecturermodel = new LecturerModel();
         $data = [
             'fullname'      => $this->request->getVar('name'),
             'email'         => $this->request->getVar('email'),
             'password'      => $this->request->getVar('password'),
-            'studentid'     => $this->request->getVar('studentid'),
-            'program'       => $this->request->getVar('program'),
+            'studentid'     => "-",
         ];
         dd($data);
-        $usermodel->save($data);
+        $lecturemodel->save($data);
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
            

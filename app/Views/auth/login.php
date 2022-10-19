@@ -48,11 +48,12 @@
           </div>
         </form>
 
-        <div class="row mt-2 mb-4">
-          <h6 class="text-white">Need an account? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
-              
+        <div class="row mt-4">
+          <h6 class="text-white">Need an account for student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
         </div>
-          
+          <div class="row mt-2 mb-4">
+          <h6 class="text-white">Need an account for lecturer? <span><a href="/register/lecturer" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
+          </div>
     
       </div>
     </div>
