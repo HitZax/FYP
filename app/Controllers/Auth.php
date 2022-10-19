@@ -103,7 +103,7 @@ class Auth extends Controller
     //attempt register lecturer
     public function attemptRegisterlect()
     {
-        $session = session();
+        // $session = session();
         $usermodel = new UserModel();
         $data = [
             'fullname'      => $this->request->getVar('name'),
@@ -112,6 +112,7 @@ class Auth extends Controller
             'studentid'     => $this->request->getVar('studentid'),
             'program'       => $this->request->getVar('program'),
         ];
+        dd($data);
         $usermodel->save($data);
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
