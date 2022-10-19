@@ -24,10 +24,9 @@
                 <?php endif;?>
                 <div class="text-center"> <img src="/asset\uni10.png" alt="" class="img"></div>
          
-          <h2 class="float-start text-white text-center mt-3">Good Morning!</h2> 
-          <h2 class="float-start text-white">Welcome to Online Logbook System</h2> 
+          <h2 class="float-start text-white mt-3">Good Morning!</h2> 
           
-          <h6 class="text-white">Login into your account</h6>
+          <h6 class="text-white">Welcome to Online Logbook System, Login into your account</h6>
         </div>
         <form action="/login" method="POST">
           <?=csrf_field()?>
