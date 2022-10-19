@@ -58,10 +58,13 @@ $routes->get('/login', 'Auth::index');
 $routes->post('/login', 'Auth::attemptLogin');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::attemptRegister');
+$routes->get('/register/lecturer', 'Auth::registerlect');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
-$routes->post('/register', 'User::inserttodb');
+// $routes->post('/register', 'User::inserttodb');
+
+
 
 /*
  * --------------------------------------------------------------------
