@@ -26,7 +26,7 @@
          
           <h2 class="float-start text-white mt-3">Good Morning!</h2> 
           
-          <h6 class="text-white">Welcome to Online Logbook System, Login into your account</h6>
+          <h6 class="text-white">Welcome to Online Logbook System, login into your account</h6>
         </div>
         <form action="/login" method="POST">
           <?=csrf_field()?>

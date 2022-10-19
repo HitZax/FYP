@@ -31,7 +31,7 @@
         <div class="row mb-3">
           <img src="/asset\uniten logo.png" alt="" class="img">
           <h2 class="float-start">Good Morning!</h2> 
-          <h6 class="text-muted">Create your account to login to the system</h6>
+          <h6 class="text-muted">Create your lecturer account to login to the system</h6>
         </div>
         <form action="/register" method="post">
           <div class="mb-3">
