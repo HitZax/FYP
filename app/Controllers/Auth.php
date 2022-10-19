@@ -1,10 +1,11 @@
 <?php 
 namespace App\Controllers;  
 use Config\Services;
-use CodeIgniter\Controller;
 use App\Models\UserModel;
+use CodeIgniter\Controller;
 use App\Models\ProgramModel;
 use App\Models\StudentModel;
+use App\Models\InviteCodeModel;
   
 class Auth extends Controller
 {
@@ -94,10 +95,54 @@ class Auth extends Controller
            
     }
 
-    public function registerlect()
+    
+
+    public function invitecode()
     {
         $data=['title'=>'Register Lecturer'];
-        return view('auth/registerlect', $data);
+        return view('auth/invitecode', $data);
+    }
+
+    public function receiveInvCode()
+    {
+        $invitecode = $this->request->getVar('invitecode');
+
+        $invcodemodel = new InviteCodeModel();
+        
+
+        $checkcode = $invcodemodel->where('invcode',$invitecode)->first();
+
+        if($checkcode)
+        {
+            return redirect()->to('/register/lecturer/'.$invitecode);
+        }
+        else
+        {
+            return redirect()->to('/login');
+        }
+        
+        // dd($invitecode);
+    }
+
+    public function registerlect($invitecode)
+    {
+        // $invitecode = $this->request->getVar('invitecode');
+
+        $invcodemodel = new InviteCodeModel();
+        
+
+        $checkcode = $invcodemodel->where('invcode',$invitecode)->first();
+
+        if($checkcode)
+        {
+            $data=['title'=>'Register Lecturer'];
+            return view('auth/registerlect', $data);
+        }
+        else
+        {
+            return redirect()->to('/login');
+        }
+        
     }
 
     //attempt register lecturer

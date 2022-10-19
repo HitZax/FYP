@@ -58,7 +58,9 @@ $routes->get('/login', 'Auth::index');
 $routes->post('/login', 'Auth::attemptLogin');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::attemptRegister');
-$routes->get('/register/lecturer', 'Auth::registerlect');
+$routes->get('/register/lecturer/', 'Auth::invitecode');
+$routes->post('/register/lecturer/', 'Auth::receiveInvCode');
+$routes->get('/register/lecturer/(:any)', 'Auth::registerlect/$1');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/profile', 'Profile::index',['filter' => 'authGuard']);
 
