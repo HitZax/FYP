@@ -124,4 +124,6 @@ class Auth extends Controller
         $session->destroy();
         return redirect()->to('/login');
     }
+
+    
 }
