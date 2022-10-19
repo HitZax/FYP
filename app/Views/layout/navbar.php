@@ -34,6 +34,11 @@
 
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">  
                         <li class="nav-item">
+                        <a class="dropdown-item" href="/profile/edit/<?=$this->session->get('id');?>">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Edit Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="dropdown-item" href="/logout">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
                             </a>
@@ -50,7 +55,12 @@
                         <b class="bi bi-person-circle pr-1"> <?= $this->session->get('fullname');  ?></b><span class="caret"></span>
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">  
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu"> 
+                         <li class="nav-item">
+                            <a class="dropdown-item" href="/profile/edit/<?=$this->session->get('id');?>">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Edit Profile
+                            </a>
+                        </li> 
                         <li class="nav-item">
                             <a class="dropdown-item" href="/logout">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout

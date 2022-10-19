@@ -68,6 +68,10 @@ $routes->get('/student/edit/(:num)', 'Student::edit/$1',['filter' => 'authGuard'
 $routes->post('/student/edit/(:num)', 'Student::update/$1',['filter' => 'authGuard']);
 $routes->delete('/student/delete/(:num)', 'Student::delete/$1',['filter' => 'authGuard']);
 
+
+$routes->get('/profile/edit/(:num)', 'Profile::edit/$1',['filter' => 'authGuard']);
+$routes->post('/profile/edit/(:num)', 'Profile::update/$1',['filter' => 'authGuard']);
+
 $routes->get('/dashboard', 'Dashboard::index', ['filter'=> 'authGuard'],);
 
 
