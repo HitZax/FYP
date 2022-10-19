@@ -73,7 +73,7 @@
         </div>
           
         <div class="row mt-2 mb-4">
-          <h6>Need an account for lecturer? <span><a href="/login" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register For Lecturer</a></span></h6>
+          <h6>A student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Click Here</a></span></h6>
         </div>
     
       </div>
