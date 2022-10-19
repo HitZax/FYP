@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,7 +34,7 @@
         <form action="/register" method="post">
           <div class="mb-3">
             <label class="form-label float-start">Full Name</label>
-              <input type="text" name="name" placeholder="Full name"  class="form-control" >
+              <input type="text" name="name" placeholder="Full name"  class="form-control" required>
               <div class="invalid-feedback">Please enter your Full Name.</div>
           </div>
 

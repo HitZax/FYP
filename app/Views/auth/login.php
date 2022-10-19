@@ -33,7 +33,7 @@
           
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label float-start text-white">Student ID / Email</label>
-            <input type="text" name="auth" placeholder="Student ID / Email" value="" class="form-control" >
+            <input type="text" name="auth" placeholder="Student ID / Email" value="" class="form-control" required>
               <div class="invalid-feedback">Please enter your Student ID / email.</div> 
           </div>
 
