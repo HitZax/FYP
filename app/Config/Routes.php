@@ -2,6 +2,7 @@
 
 namespace Config;
 
+
 use App\Controllers\Student;
 
 // Create a new instance of our RouteCollection class.
@@ -62,7 +63,7 @@ $routes->get('/logout', 'Auth::logout');
 *----------------------------------------------------------------------
 */
 $routes->get('/', 'Student::index');
-$routes->get('/student', 'Student::show',['filter' => 'authGuard','Lecturer']);
+$routes->get('/student', 'Student::show', ['filter' => 'authGuard'],);
 $routes->post('/student', 'Student::insert',['filter' => 'authGuard']);
 $routes->get('/student/edit/(:num)', 'Student::edit/$1',['filter' => 'authGuard']);
 $routes->post('/student/edit/(:num)', 'Student::update/$1',['filter' => 'authGuard']);

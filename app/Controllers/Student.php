@@ -8,6 +8,7 @@ use App\Controllers\BaseController;
 
 class Student extends BaseController
 {
+   
     public function index()
     {
         return redirect()->to('/login');
@@ -15,25 +16,35 @@ class Student extends BaseController
     
     public function show()
     {
+        
         $session = session();
-        $studentmodel = new StudentModel();
-        $student = $studentmodel->findall();
 
-        $programmodel = new ProgramModel();
-        $program = $programmodel->findall();
+        //kat sini aq tambah line ni hadi @HitZax
+        if (session()->get('role') == "Lecturer")
+        {
+            $studentmodel = new StudentModel();
+            $student = $studentmodel->findall();
+
+            $programmodel = new ProgramModel();
+            $program = $programmodel->findall();
 
         
-        $data=[
+            $data=[
             'title' => 'Student List',
             'student' => $student,
             'program' => $program,
             'role' => $session->get('role')
-        ];
-        // d($data);
-        return view('Student/show', $data);
+            ];
+            // d($data);
+            return view('Student/show', $data);
+        }
+        else
+        {
+            return redirect()->to('/dashboard');
+        }
+          
     }
 
-    //Lastseen @HitZax 
     public function detail($sid)
     {
         $studentmodel = new StudentModel();

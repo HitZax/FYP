@@ -99,7 +99,6 @@ class Auth extends Controller
     }
 
     
-
     public function invitecode()
     {
         $data=['title'=>'Register Lecturer'];
