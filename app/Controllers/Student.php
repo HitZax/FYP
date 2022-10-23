@@ -17,7 +17,7 @@ class Student extends BaseController
     public function show()
     {
         
-        $session = session();
+        // $session = session();
 
         //kat sini aq tambah line ni hadi @HitZax
         if (session()->get('role') == "Lecturer")
