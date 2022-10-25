@@ -33,7 +33,7 @@ class Student extends BaseController
             'title' => 'Student List',
             'student' => $student,
             'program' => $program,
-            'role' => $session->get('role')
+            // 'role' => $session->get('role')
             ];
             // d($data);
             return view('Student/show', $data);
