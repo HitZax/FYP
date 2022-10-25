@@ -7,12 +7,11 @@
         </button>
 
         <?php if($this->session->role == "Student"):?>
-        <a class="navbar-brand" href="#"><b>Online Logbook System</b></a>
-        <b>Lecturer</b>
+        <a class="navbar-brand" href="#"><b>Online Logbook System (Student)</b></a>
         <?php endif?>
 
         <?php if($this->session->role == "Lecturer"):?>
-        <a class="navbar-brand" href="#"><b>Online Logbook System</b></a>
+        <a class="navbar-brand" href="#"><b>Online Logbook System (Lecturer)</b></a>
         <?php endif?>
 
         <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
