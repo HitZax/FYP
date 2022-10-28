@@ -1,10 +1,16 @@
 .btn{
-    background-color: #4CAF50;
+    
 }
 
 body{
-    background: rgb(96,108,136);
-    background: linear-gradient(90deg, rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%);
+    background:#f6f6f6;
+    /* background: linear-gradient(90deg, rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%); */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.text-outline{
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .img{

@@ -7,7 +7,9 @@ class Dashboard extends BaseController
 {
     public function index()
     {
-        
+        if(session()->get('role')=="Student")
+
+        {
         $internmodel = new InternModel();
         $intern = $internmodel->detail(session()->get('id'));
 
@@ -19,7 +21,7 @@ class Dashboard extends BaseController
         $origin = date_create($now);
         $target = date_create($enddate);
         $interval = date_diff($origin, $target);
-        $days = $interval->format('%a days');
+        $days = $interval->format('%a');
         
         //count weeks
         $daytoint = (int)$days/7;
@@ -39,6 +41,20 @@ class Dashboard extends BaseController
         ];
         // d($data);
         return view('dashboard/dashboard', $data);
+        }
+
+        else
+
+        {
+            $data=[
+                'title' => 'Dashboard Lecturer',
+            ];
+
+
+
+            return view('dashboard/dashboardlect', $data);
+        }
+        
     }
     
 }

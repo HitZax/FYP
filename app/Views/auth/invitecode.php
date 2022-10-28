@@ -6,8 +6,8 @@
     <title> Login | LS </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="/asset/css/style.css">
-  <link rel="stylesheet" href="/asset/css/library.css">
+    <link rel="stylesheet" href="/asset/css/login.css">
+    <link rel="stylesheet" href="/asset/css/library.css">
   </head>
 
  
@@ -15,24 +15,26 @@
 
   <div class="container mx-auto">
     <div class="row">
-      <div class="col-md-6 offset-md-3 pt-4 mt-5">  
+      <div class="col-md-6 offset-md-3 pt-4 mt-5">
+      <div class="shadow-lg">
+        <div class="card px-2 py-2 bg-light">
         <div class="row mb-3">
         <?php if(session()->getFlashdata('msg')):?>
                     <div class="alert alert-warning">
                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif;?>
-                <div class="text-center"> <img src="/asset\uni10.png" alt="" class="img"></div>
+                <div class="text-center"> <img src="/asset\uniten.png" alt="" class="img"></div>
          
           <h2 class="float-start text-red mt-3">This page requires an invite code</h2> 
           
-          <h6 class="text-white">Please contact _______ to receive an invite code</h6>
+          <h6 class="text-muted">Please contact to receive an invite code</h6>
         </div>
         <form action="/register/lecturer/" method="POST">
           <?=csrf_field()?>
         
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label float-start text-white">Invite Code</label>
+            <label for="exampleInputPassword1" class="form-label float-start text-center">Invite Code</label>
               <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Please enter your Invite Code" name="invcode" required>
                <div class="invalid-feedback">Please enter your Invite Code</div> 
           </div>
@@ -42,8 +44,10 @@
         </form>
 
         <div class="row mt-2 mb-4">
-          <h6 class="text-white">Not a lecturer? <span><a href="/login" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Back to login</a></span></h6>
+          <h6 class="">Not a lecturer? <span><a href="/login" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Back to login</a></span></h6>
               
+        </div>
+        </div>
         </div>
           
     

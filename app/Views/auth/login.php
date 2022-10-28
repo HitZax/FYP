@@ -6,8 +6,9 @@
     <title> Login | LS </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="asset/css/style.css">
-  <link rel="stylesheet" href="asset/css/library.css">
+    <link rel="stylesheet" href="asset/css/login.css">
+    <link rel="stylesheet" href="asset/css/library.css">
+
   </head>
 
  
@@ -15,47 +16,55 @@
 
   <div class="container mx-auto">
     <div class="row">
-      <div class="col-md-6 offset-md-3 pt-4 mt-5">  
-        <div class="row mb-3">
-        <?php if(session()->getFlashdata('msg')):?>
-                    <div class="alert alert-warning">
-                       <?= session()->getFlashdata('msg') ?>
-                    </div>
-                <?php endif;?>
-                <div class="text-center"> <img src="/asset\uni10.png" alt="" class="img"></div>
-         
-          <h2 class="float-start text-white mt-3">Good Morning!</h2> 
-          
-          <h6 class="text-white">Welcome to Online Logbook System, login into your account</h6>
+      <div class="col-md-6 offset-md-3 mt-5">  
+        <div class="shadow-lg">
+        <div class="card px-2 py-2 bg-light">
+        <div class="row mb-3 px-2 py-2">
+          <div class="text-center"> <img src="/asset\uniten.png" alt="" class="img"></div>
+          <h2 class="float-start mt-3 text-center">Online Logbook System (OLS)</h2> 
+          <h6 class="text-center text-muted">Login into your account</h6>
+                  
+          <?php if(session()->getFlashdata('msg')):?>
+              <div class="alert alert-warning">
+                 <?= session()->getFlashdata('msg') ?>
+              </div>
+          <?php endif;?>
+
         </div>
+        <div class="card-body">
+  
         <form action="/login" method="POST">
           <?=csrf_field()?>
           
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label float-start text-white">Student ID / Email</label>
+          <div class="">
+            <!-- <label for="exampleInputEmail1" class="form-label float-start">Student ID / Email</label> -->
             <input type="text" name="auth" placeholder="Student ID / Email" value="" class="form-control" required>
               <div class="invalid-feedback">Please enter your Student ID / email.</div> 
           </div>
-
         
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label float-start text-white">Password</label>
+          <div class="mt-3 mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label float-start">Password</label> -->
               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
                <div class="invalid-feedback">Please enter your Password</div> 
           </div>
+
           <div class="d-grid mb-3">
             <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
+
         </form>
 
-        <div class="row mt-4">
-          <h6 class="text-white">Need an account for student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
+        <div class="row mt-2">
+          <h6 class="">Need an account for student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
         </div>
-          <div class="row mt-2 mb-4">
-          <h6 class="text-white">Need an account for lecturer? <span><a href="/register/lecturer" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
+          <div class="row mt-2 mb-2">
+          <h6 class="">Need an account for lecturer? <span><a href="/register/lecturer" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
           </div>
     
       </div>
+          </div>
+          </div>
+          </div>
     </div>
   </div>
 

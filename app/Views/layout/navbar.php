@@ -6,37 +6,39 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <div class="text-center"> <img src="/asset\uni10.png" alt="" class="pe-2" style="max-width:50px"></div>
+
         <?php if($this->session->role == "Student"):?>
-        <a class="navbar-brand" href="#"><b>Online Logbook System (Student)</b></a>
+        <a class="navbar-brand text-white"><b>Student OLS</b></a>
         <?php endif?>
 
         <?php if($this->session->role == "Lecturer"):?>
-        <a class="navbar-brand" href="#"><b>Online Logbook System (Lecturer)</b></a>
+        <a class="navbar-brand text-white"><b>Lecturer OLS</b></a>
         <?php endif?>
 
-        <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/dashboard">Dashboard</a>
                 </li>
                 <?php if($this->session->role == "Lecturer"):?>
                 <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="/student">Student</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/student">Student</a>
                 </li>
                 <?php endif?>
                 <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="/task">Task</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/task">Task</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="/com">Communicate</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/com">Communicate</a>
                 </li>
             </ul>
 
             <?php if($this->session->role == "Student"):?>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle nav-link active text-white" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <b class="bi bi-person-circle pr-1"> <?= $this->session->get('fullname');  ?> (<?= $this->session->get('studentid');  ?>)</b><span class="caret"></span>
                     </a>
 
@@ -59,7 +61,7 @@
             <?php if($this->session->role == "Lecturer"):?>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle nav-link active text-white" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <b class="bi bi-person-circle pr-1"> <?= $this->session->get('fullname');  ?></b><span class="caret"></span>
                     </a>
 

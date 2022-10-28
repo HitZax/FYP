@@ -1,5 +1,10 @@
-.bg-nav{
-    background: rgb(111,106,248);
+body{
+    background: #6f6af8;
     background: linear-gradient(90deg, rgba(111,106,248,1) 19%, rgba(148,181,233,1) 100%);
 }
+
+.img{
+    max-width: 200px;
+}
+
 
