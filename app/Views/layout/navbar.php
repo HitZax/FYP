@@ -28,7 +28,7 @@
                 </li>
                 <?php endif?>
                 <li class="nav-item ">
-                    <a class="nav-link active text-white" aria-current="page" href="/task">Task</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/logbook">Logbook</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/com">Communicate</a>

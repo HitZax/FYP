@@ -33,13 +33,14 @@ class Dashboard extends BaseController
             'name' => session()->get('fullname'),
             'email' => session()->get('email'),
             'studentid' => session()->get('studentid'),
+            'sid' => session()->get('sid'),
             'intern' => $intern,
             'now' => $now,
             // 'endate' => $enddate,
             'days' => $days,
             'week' => $week
         ];
-        // d($data);
+        d($data);
         return view('dashboard/dashboard', $data);
         }
 

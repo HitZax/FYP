@@ -13,4 +13,10 @@ class UserModel extends Model
         'studentid',
         'role'
     ];
+
+    public function login($auth)
+    {
+        $sql = "SELECT * FROM users JOIN student ON users.studentid = student.studentid WHERE email = $auth OR studentid  = $auth ";
+        return $this->db->query($sql)->getRowArray();
+    }
 }

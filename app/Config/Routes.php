@@ -74,7 +74,10 @@ $routes->get('/profile/edit/(:num)', 'Profile::edit/$1',['filter' => 'authGuard'
 $routes->post('/profile/edit/(:num)', 'Profile::update/$1',['filter' => 'authGuard']);
 
 $routes->get('/dashboard', 'Dashboard::index', ['filter'=> 'authGuard'],);
+$routes->get('/logbook', 'logbook::index', ['filter'=> 'authGuard'],);
+$routes->get('/logbook', 'logbook::insert', ['filter'=> 'authGuard'],);
 
+$routes->get('/comms', 'comms::index', ['filter'=> 'authGuard'],);
 
 
 
