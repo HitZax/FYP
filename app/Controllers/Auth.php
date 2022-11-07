@@ -23,13 +23,13 @@ class Auth extends Controller
         $auth = $this->request->getVar('auth');
         $password = $this->request->getVar('password');
         
-        // $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
-        $data = $userModel->login($auth);
+        $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
+        // $data = $userModel->login($auth);
         
         if($data)
         {
-            // $pass = $data['password'];
-            $pass = $data->password;
+            $pass = $data['password'];
+            // $pass = $data->password;
           
             // $authenticatePassword = password_verify($password, $pass);
             if($password == $pass)
@@ -41,7 +41,7 @@ class Auth extends Controller
                     'email' => $data['email'],
                     'role' => $data['role'],
                     'logged_in' => TRUE,
-                    'sid' => $data->sid,
+             
                 ];
                 $session->set($session_data);
                 return redirect()->to('/dashboard');

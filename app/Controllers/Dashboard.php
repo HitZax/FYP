@@ -51,7 +51,7 @@ class Dashboard extends BaseController
                 'title' => 'Dashboard Lecturer',
             ];
 
-
+            
 
             return view('dashboard/dashboardlect', $data);
         }
