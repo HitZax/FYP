@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"> Currently week <?=$week?> </h5>
+                                <h5 class="card-title fw-bold"> Currently On Week <?=$week?> </h5>
                                 <p class="card-text"> Internship Week </p>
                             </div>
                             <div class="align-self-center">
