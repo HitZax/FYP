@@ -3,6 +3,7 @@ namespace App\Controllers;
 use Config\Services;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
+use App\Models\LogbookModel;
 use App\Models\ProgramModel;
 use App\Models\StudentModel;
 use App\Models\LecturerModel;
@@ -10,6 +11,11 @@ use App\Models\InviteCodeModel;
   
 class Auth extends Controller
 {
+    public function __construct()
+    {
+        $this->logbookModel = new LogbookModel();
+    }
+
     public function index()
     {
         // helper(['form']);
@@ -96,6 +102,15 @@ class Auth extends Controller
             'sprogram' => $this->request->getVar('program'),
         ];
         $studentmodel->save($data1);
+
+        $sid = $studentmodel->getInsertID();
+
+        $data2=[
+            'lbcreated' => date('Y-m-d'),
+            'sid'       => $sid
+        ];
+        $this->logbookModel->save($data2);
+
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
            

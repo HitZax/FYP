@@ -3,24 +3,34 @@
 namespace App\Controllers;
 
 use App\Models\LogbookModel;
+use App\Models\StudentModel;
 use App\Controllers\BaseController;
 
 class Logbook extends BaseController
 {
     public function __construct()
     {
-        $this->logbookmodel = new LogbookModel();
+        $this->logbookModel = new LogbookModel();
+        $this->studentModel = new StudentModel();
     }
     
+    /**
+     * ---------------------------------------------
+     * Show Logbook Page
+     * ---------------------------------------------
+     */
+
     public function index()
     {
-
-                $data=[
-                    'title' => 'Student | Logbook',
-
-                ];
-
-                return view('logbook/logbook', $data);
+        $sid = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
+        $lbid = $this->logbookModel->WHERE('sid', $sid['sid'])->first();
+        $data=[
+            'title' => 'Student | Logbook',
+            'sid' => $sid,
+            'lbid' => $lbid
+        ];
+        // dd($data);
+        return view('logbook/logbook', $data);
     }
 
     public function insert()
