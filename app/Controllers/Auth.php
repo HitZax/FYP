@@ -190,7 +190,7 @@ class Auth extends Controller
             'lroom' => $this->request->getVar('room'),
             'invcode' => $this->request->getVar('invcode'),
         ];
-        dd($data1);
+        // dd($data1);
         $lecturermodel->save($data1);
 
         // dd($data,$data1);

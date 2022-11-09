@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"><?=$intern->startdate = date('d-M-Y');?></h5>
+                                <h5 class="card-title fw-bold"><?=$intern->startdate?></h5>
                                 <p class="card-text">Internship Start Date</p>
                             </div>
                             <div class="align-self-center">

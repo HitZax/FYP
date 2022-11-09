@@ -31,7 +31,7 @@
                     <a class="nav-link active text-white" aria-current="page" href="/logbook">Logbook</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active text-white" aria-current="page" href="/com">Communicate</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/chat">Communicate</a>
                 </li>
             </ul>
 
@@ -68,7 +68,7 @@
                     <ul class="dropdown-menu dropdown-menu-right" role="menu"> 
                          <li class="nav-item">
                             <a class="dropdown-item" href="/profile/edit/<?=$this->session->get('id');?>">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Edit Profile
+                            <i class="bi bi-pencil-fill"></i> Edit Profile
                             </a>
                         </li> 
                         <li class="nav-item">

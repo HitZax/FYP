@@ -17,22 +17,22 @@
   <div class="container mx-auto">
     <div class="row">
       <div class="col-md-6 offset-md-3 mt-5">  
-        <div class="shadow-lg">
-        <div class="card px-2 py-2 bg-light">
-        <div class="row mb-3 px-2 py-2">
-          <div class="text-center"> <img src="/asset\uniten.png" alt="" class="img"></div>
-          <h2 class="float-start mt-3 text-center">Online Logbook System (OLS)</h2> 
-          <h6 class="text-center text-muted">Login into your account</h6>
-                  
-          <?php if(session()->getFlashdata('msg')):?>
-              <div class="alert alert-warning">
+          <div class="shadow-lg">
+            <div class="card px-2 py-2 bg-light">
+              <div class="row">
+                <div class="text-center"> <img src="/asset\uniten.png" alt="" class="img"></div>
+                <h2 class="float-start mt-3 text-center">Online Logbook System (OLS)</h2> 
+                <h6 class="text-center text-muted">Login into your account</h6>
+              </div>
+
+        <div class="card-body mt-3">
+<?php if(session()->getFlashdata('msg')):?>
+        <!-- <div class="container-fluid"> -->
+            <div class="alert alert-warning">
                  <?= session()->getFlashdata('msg') ?>
               </div>
-          <?php endif;?>
-
-        </div>
-        <div class="card-body">
-  
+          <!-- </div> -->
+<?php endif;?>
         <form action="/login" method="POST">
           <?=csrf_field()?>
           
