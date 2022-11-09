@@ -37,6 +37,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Insert New Student</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
         <form action="/student" method="post">
             <div class="modal-body">
                 <div class="mb-3">
@@ -60,6 +61,7 @@
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                 <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        
       </div>
     </div>
   </div>

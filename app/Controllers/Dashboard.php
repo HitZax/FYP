@@ -40,7 +40,7 @@ class Dashboard extends BaseController
             'days' => $days,
             'week' => $week
         ];
-        d($data);
+        // d($data);
         return view('dashboard/dashboard', $data);
         }
 
