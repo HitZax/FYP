@@ -13,7 +13,7 @@
           <h2 class="text-center">Task Form</h2> 
           <div class="row">
 
-<form action="/register" method="post">
+<form action="/register" method="post" autocomplete="off">
           <div class="mb-3">
             <label class="form-label float-start">Task Activity</label>
               <input type="text" name="tname" placeholder="Task Activity Name"  class="form-control" required>
@@ -22,21 +22,15 @@
 
           <div class="mb-3">
             <label class="form-label float-start">Task Description</label>
-              <input type="text" name="tdesc" placeholder="Task Description"  class="form-control" required>
+              <input type="text" name="tdesc" placeholder="Task Description"  class="form-control" style="height: 100px" required>
               <div class="invalid-feedback">Please enter your Task Description.</div>
           </div>
-
 
           <div class="mb-3">
             <label class="form-label float-start">Date Of Task</label>
               <input type="date" class="form-control" name="tdate" placeholder="Date" required>
               <div class="invalid-feedback">Please enter your Date.</div>
           </div>
-
-          <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-  <label for="floatingTextarea2">Comments</label>
-</div>
 
           <!-- <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label float-star">Email</label>
