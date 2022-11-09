@@ -4,10 +4,10 @@
 
 <?php $this->session = \Config\Services::session(); ?>
 
-<div class="container mx-auto">
+<div class="container mx-auto mt-5">
     <div class="row">
-      <div class="col-md-6 offset-md-3 mt-5 mb-5">
-      <div class="shadow-lg">
+      <!-- <div class="col-md-6 offset-md-3 mt-5 mb-5"> -->
+      <!-- <div class="shadow-lg"> -->
         <div class="card px-2 py-2 bg-light">
         <div class="row mb-3 class">
 

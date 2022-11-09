@@ -6,14 +6,14 @@
     <div class="row">
       <!-- <div class="col-md-6 offset-md-3 mt-5 mb-5"> -->
       <!-- <div class="shadow-lg"> -->
-        <!-- <div class="card px-2 py-2 bg-light"> -->
+        <div class="card px-2 py-2 bg-light">
         <div class="row class">
 
         <div class="card-body">
           <h2 class="text-center">Task Form</h2> 
           <div class="row">
 
-<form action="/register" method="post" autocomplete="off">
+<form action="" method="post" autocomplete="off">
           <div class="mb-3">
             <label class="form-label float-start">Task Activity</label>
               <input type="text" name="tname" placeholder="Task Activity Name"  class="form-control" required>
@@ -22,7 +22,7 @@
 
           <div class="mb-3">
             <label class="form-label float-start">Task Description</label>
-              <input type="text" name="tdesc" placeholder="Task Description"  class="form-control" style="height: 100px" required>
+              <input type="text" name="tdesc" placeholder="Description of Task"  class="form-control" style="height: 100px" required>
               <div class="invalid-feedback">Please enter your Task Description.</div>
           </div>
 

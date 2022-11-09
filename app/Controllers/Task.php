@@ -23,4 +23,14 @@ class Task extends BaseController
         
         return view('task/task',$data);
     }
+
+    public function store($lbid)
+    {
+        $data=[
+            'student' => $student,
+            'program' => $program,
+        ];
+        
+        return view('task/task',$data);
+    }
 }
