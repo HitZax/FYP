@@ -7,11 +7,13 @@ class UserModel extends Model
     protected $table = 'users';
     
     protected $allowedFields = [
+        'id',
         'fullname',
         'email',
         'password',
         'studentid',
-        'role'
+        'role',
+        'interndet'
     ];
 
     public function login($auth)
