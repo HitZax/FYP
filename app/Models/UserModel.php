@@ -13,7 +13,6 @@ class UserModel extends Model
         'password',
         'studentid',
         'role',
-        'interndet'
     ];
 
     public function login($auth)
