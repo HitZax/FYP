@@ -71,58 +71,6 @@ class Dashboard extends BaseController
         
     }
 
-    public function intern()
-    {
-        // $sid = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
-        
-        $data=[
-            'title' => 'Intership Detail | OLS',
-            // 'student' => $sid
-        ];
-        // dd($data);
-
-        return view('dashboard/interndetail', $data);
-    }
-
-    public function storeintern($id)
-    {
-        $data=[
-            'id' => $id,
-            'startdate' => $this->request->getVar('startddate'),
-            'enddate' => $this->request->getVar('enddate'),
-            'location' => $this->request->getVar('location'),
-            'svname' => $this->request->getVar('svname'),
-            'svnum' => $this->request->getVar('svnum'),
-        ];
-        // dd($data);
-        $this->internModel->insert($data);
-
-        $user = $this->userModel->WHERE('id', $id)->first();
-
-        $data1=[
-            'id' => $id,
-            'fullname' => $user['fullname'],
-            'studentid' => $user['studentid'],
-            'email' => $user['email'],
-            'password' => $user['password'],
-            'role' => $user['role'],
-            'interndet' => '1'
-        ];
-        // dd($data1);
-        $this->userModel->replace($data1);
-
- 
-        $session_data = [
-            'id' => $user['id'],
-            'fullname' => $user['fullname'],
-            'studentid' => $user['studentid'],
-            'email' => $user['email'],
-            'role' => $user['role'],
-            'logged_in' => TRUE,
-     
-        ];
-        $session->set($session_data);
-        return redirect()->to('/dashboard');
-    }
+    
     
 }

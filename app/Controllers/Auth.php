@@ -41,34 +41,18 @@ class Auth extends Controller
             // $authenticatePassword = password_verify($password, $pass);
             if($password == $pass)
             {
-                if($data['interndet']== '0')
-                {
-                    $session_data = [
-                        'id' => $data['id'],
-                        'fullname' => $data['fullname'],
-                        'studentid' => $data['studentid'],
-                        'email' => $data['email'],
-                        'role' => $data['role'],
-                        'logged_in' => TRUE,
-                 
-                    ];
-                    $session->set($session_data);
-                    return redirect()->to('/dashboard/interndetail');
-                }
-                else
-                {
-                    $session_data = [
-                        'id' => $data['id'],
-                        'fullname' => $data['fullname'],
-                        'studentid' => $data['studentid'],
-                        'email' => $data['email'],
-                        'role' => $data['role'],
-                        'logged_in' => TRUE,
-                 
-                    ];
-                    $session->set($session_data);
-                    return redirect()->to('/dashboard');
-                }
+                
+                $session_data = [
+                    'id' => $data['id'],
+                    'fullname' => $data['fullname'],
+                    'studentid' => $data['studentid'],
+                    'email' => $data['email'],
+                    'role' => $data['role'],
+                    'logged_in' => TRUE,
+                
+                ];
+                $session->set($session_data);
+                return redirect()->to('/dashboard');
                 
             }
             else
