@@ -11,7 +11,7 @@ class Dashboard extends BaseController
     public function __construct()
     {
         $this->studentModel = new StudentModel();
-        $this->internModel = new InternModel();
+        // $this->internModel = new InternModel();
         $this->userModel = new UserModel();
     }
     public function index()
@@ -19,26 +19,23 @@ class Dashboard extends BaseController
         if(session()->get('role')=="Student")
 
         {
-        $internmodel = new InternModel();
-        $intern = $internmodel->detail(session()->get('id'));
+        // $internmodel = new InternModel();
+        // $intern = $internmodel->detail(session()->get('id'));
 
         //get current and end time
         $now = date("Y-m-d"); 
-        $enddate = date("Y-m-d",strtotime($intern->enddate));
+        // $enddate = date("Y-m-d",strtotime($intern->enddate));
 
-        if(empty($enddate)){
-
-        }
-
+    
         //count days
         $origin = date_create($now);
-        $target = date_create($enddate);
-        $interval = date_diff($origin, $target);
-        $days = $interval->format('%a');
+        // $target = date_create($enddate);
+        // $interval = date_diff($origin, $target);
+        // $days = $interval->format('%a');
         
         //count weeks
-        $daytoint = (int)$days/7;
-        $week = intval($daytoint);
+        // $daytoint = (int)$days/7;
+        // $week = intval($daytoint);
 
         $data=[
             'title' => 'Dashboard',
@@ -47,11 +44,11 @@ class Dashboard extends BaseController
             'email' => session()->get('email'),
             'studentid' => session()->get('studentid'),
             'sid' => session()->get('sid'),
-            'intern' => $intern,
+            // 'intern' => $intern,
             'now' => $now,
-            'endate' => $enddate,
-            'days' => $days,
-            'week' => $week
+            // 'endate' => $enddate,
+            // 'days' => $days,
+            // 'week' => $week
         ];
         // dd($data);
         return view('dashboard/dashboard', $data);
