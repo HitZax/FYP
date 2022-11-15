@@ -54,7 +54,9 @@
 
         </form>
 
-        <div class="row mt-2">
+        <div class="row float-end">
+        <h6 class=""><span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Forgot Password? </a></span></h6>
+        </div>
           <h6 class="">Need an account for student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
         </div>
           <div class="row mt-2 mb-2">

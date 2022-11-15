@@ -22,12 +22,12 @@
                         <?php if($this->session->role == "Student"):?>
                             <div class="mb-3">
                                 <label for="studentid" class="form-label">Student ID</label>
-                                <input type="text" class="form-control" id="name" placeholder="Your Student ID" name="studentid" value="<?=$user['studentid']?>">
+                                <input type="text" class="form-control" id="name" placeholder="Your Student ID" name="studentid" readonly value="<?=$user['studentid']?>">
                             </div>
                             <?php endif?>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Your Name" name="fullname" value="<?=$user['fullname']?>">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" name="fullname" readonly value="<?=$user['fullname']?>">
                             </div>
                             <div class="mb-3">
                                 <label for="program" class="form-label">Email</label>

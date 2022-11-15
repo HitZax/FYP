@@ -13,7 +13,8 @@
           <h2 class="text-center">Task Form</h2> 
           <div class="row">
 
-<form action="" method="post" autocomplete="off">
+<form action="<?=url_to('task.store', $lbid['lbid'])?>" method="post" autocomplete="off">
+<?=csrf_field()?>
           <div class="mb-3">
             <label class="form-label float-start">Task Activity</label>
               <input type="text" name="tname" placeholder="Task Activity Name"  class="form-control" required>
