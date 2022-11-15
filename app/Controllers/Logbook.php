@@ -24,14 +24,15 @@ class Logbook extends BaseController
 
     public function index()
     {
-        $sid = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
-        $lbid = $this->logbookModel->WHERE('sid', $sid['sid'])->first();
+        $sid = $this->studentModel->WHERE('studentid', session()->get('id'))->first();
+        $lbid = $this->logbookModel->WHERE('sid', $sid)->first();
         $data=[
             'title' => 'Student | Logbook',
-            'sid' => $sid,
-            'lbid' => $lbid
+            'sid' => session()->get('id'),
+            'lbid' => $lbid,
+            'task' => $this->taskModel->find($lbid)
         ];
-        // dd($data);
+        d($data);
         return view('logbook/logbook', $data);
     }
 
@@ -42,7 +43,7 @@ class Logbook extends BaseController
             'lbname' => $this->request->getVar('name'),
             'lbcreated' => $this->request->getVar(''),
         ];
-        dd($data);
+        // dd($data);
         $this->$logbookmodel->insert($data);
 
         return redirect()->back()->with('message','insert');

@@ -1,5 +1,6 @@
 <?php 
 namespace App\Controllers;  
+use App\Models\TaskModel;
 use App\Models\UserModel;
 use App\Models\InternModel;
 use CodeIgniter\Controller;
@@ -13,6 +14,9 @@ class Dashboard extends BaseController
         $this->studentModel = new StudentModel();
         $this->internModel = new InternModel();
         $this->userModel = new UserModel();
+        // $this->taskModel = new TaskModel();
+        // $this->logbookModel = new LogbookModel();
+
     }
     public function index()
     {
@@ -34,7 +38,7 @@ class Dashboard extends BaseController
         $days = $interval->format('%a');
         
         //count weeks
-        $daytoint = (int)$days/7;
+        $daytoint = (int)($days/7-12)*-1;
         $week = intval($daytoint);
 
         $data=[
@@ -48,7 +52,8 @@ class Dashboard extends BaseController
             'now' => $now,
             'endate' => $enddate,
             'days' => $days,
-            'week' => $week
+            'week' => $week,
+            // 'task' => $this->taskModel->find($lbid)
         ];
         d($data);
         return view('dashboard/dashboard', $data);

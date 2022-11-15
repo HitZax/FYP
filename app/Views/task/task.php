@@ -14,7 +14,7 @@
           <div class="row">
 
 
-          <form action="<?=url_to('task.store', $lbid['lbid'])?>" method="post" autocomplete="off">
+          <form action="<?=url_to('task.store', $lbid['lbid'])?>" method="post" autocomplete="off" enctype="multipart/form-data">
           <?=csrf_field()?>
 
           <div class="mb-3">
@@ -35,11 +35,10 @@
               <div class="invalid-feedback">Please enter your Task Description.</div>
           </div>
 
-
           <div class="mb-3">
-            <label class="form-label float-start">Picture Of Task <label class="text-muted">(Not Required)</label></label> 
-              <input type="date" class="form-control" name="tdate" placeholder="Date">
-              <div class="invalid-feedback">Please enter your Date.</div>
+            <label class="form-label float-start">Picture Of Task <label class="text-muted">(If available)</label></label> 
+              <input type="file" class="form-control" name="tpic" placeholder="Picture">
+              <div class="invalid-feedback">Enter if you have one.</div>
           </div>
 
           <!-- <div class="mb-3">

@@ -10,9 +10,7 @@
                 <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="my-2 py-2 mt-2">Logbook</h1>
                     <!-- <hr> -->
-                    <a href="<?=url_to('task.new', $lbid['lbid'])?>" class="btn btn-outline-primary float-end">Add Task
-                        Report</a>
-
+                    <a href="<?=url_to('task.new', $lbid['lbid'])?>" class="btn btn-outline-primary float-end">Add Task Report</a>
                 </div>
             </div>
         </div>
@@ -41,13 +39,13 @@
                             <?php foreach($task as $t):?>
                             <tr>
                                 <th scope="row"><?=$bil++;?></th>
-                                <td><?=$s['tdate'];?></td>
-                                <td><?=$s['tname'];?></td>
-                                <td><?=$s['tdesc'];?></td>
+                                <td><?=$t['tdate'];?></td>
+                                <td><?=$t['tname'];?></td>
+                                <td><?=$t['tdesc'];?></td>
                                 <td>
-                                    <a href="/student/edit/<?=$s['sid']?>" class="btn btn-secondary"><i
+                                    <a href="/student/logbook/<?=$t['lbid']?>" class="btn btn-secondary"><i
                                             class="bi bi-pencil"></i></a>
-                                    <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
+                                    <form action="/student/delete/<?=$t['lbid']?>" method="post" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn btn-danger"
                                             onclick="return confirm('Are you sure you wanted to delete this task?')"><i

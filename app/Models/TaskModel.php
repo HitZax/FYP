@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class TaskModel extends Model
 {
     protected $table            = 'task';
-    protected $allowedFields    = ['tid','tname','tdesc','tdate','remark','lbid'];
+    protected $primaryKey = 'lbid';
+    protected $allowedFields    = ['tid','tname','tdesc','tdate','remark','lbid','tpic'];
 
 }
