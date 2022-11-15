@@ -10,11 +10,19 @@
         <div class="row class">
 
         <div class="card-body">
-          <h2 class="text-center">Task Form</h2> 
+          <h2 class="text-center">Task Report</h2> 
           <div class="row">
 
-<form action="<?=url_to('task.store', $lbid['lbid'])?>" method="post" autocomplete="off">
-<?=csrf_field()?>
+
+          <form action="<?=url_to('task.store', $lbid['lbid'])?>" method="post" autocomplete="off">
+          <?=csrf_field()?>
+
+          <div class="mb-3">
+            <label class="form-label float-start">Date Of Task</label>
+              <input type="date" class="form-control" name="tdate" placeholder="Date" value="<?=date('Y-m-d')?>" required>
+              <div class="invalid-feedback">Please enter your Date.</div>
+          </div>
+          
           <div class="mb-3">
             <label class="form-label float-start">Task Activity</label>
               <input type="text" name="tname" placeholder="Task Activity Name"  class="form-control" required>
@@ -27,9 +35,10 @@
               <div class="invalid-feedback">Please enter your Task Description.</div>
           </div>
 
+
           <div class="mb-3">
-            <label class="form-label float-start">Date Of Task</label>
-              <input type="date" class="form-control" name="tdate" placeholder="Date" required>
+            <label class="form-label float-start">Picture Of Task <label class="text-muted">(Not Required)</label></label> 
+              <input type="date" class="form-control" name="tdate" placeholder="Date">
               <div class="invalid-feedback">Please enter your Date.</div>
           </div>
 
@@ -38,7 +47,6 @@
               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
               <div class="invalid-feedback">Please enter your Email.</div>
           </div> -->
-
           <div class="d-grid mb-1">
             <button type="submit" class="btn btn-primary btn-block">Add Task</button>
           </div>

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\TaskModel;
 use App\Models\LogbookModel;
 use App\Models\StudentModel;
 use App\Controllers\BaseController;
@@ -12,6 +13,7 @@ class Logbook extends BaseController
     {
         $this->logbookModel = new LogbookModel();
         $this->studentModel = new StudentModel();
+        $this->taskModel = new TaskModel();
     }
     
     /**
