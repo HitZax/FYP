@@ -24,15 +24,18 @@ class Logbook extends BaseController
 
     public function index()
     {
-        $sid = $this->studentModel->WHERE('studentid', session()->get('id'))->first();
-        $lbid = $this->logbookModel->WHERE('sid', $sid)->first();
+        $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
+        $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
+        $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
+       
         $data=[
             'title' => 'Student | Logbook',
-            'sid' => session()->get('id'),
-            'lbid' => $lbid,
-            'task' => $this->taskModel->find($lbid)
+            'student' => $student,
+            'logbook' => $logbook,
+            'task' => $task
+
         ];
-        d($data);
+        // d($data);
         return view('logbook/logbook', $data);
     }
 

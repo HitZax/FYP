@@ -4,6 +4,7 @@ use App\Models\TaskModel;
 use App\Models\UserModel;
 use App\Models\InternModel;
 use CodeIgniter\Controller;
+use App\Models\LogbookModel;
 use App\Models\StudentModel;
 use App\Controllers\BaseController;
   
@@ -14,8 +15,8 @@ class Dashboard extends BaseController
         $this->studentModel = new StudentModel();
         $this->internModel = new InternModel();
         $this->userModel = new UserModel();
-        // $this->taskModel = new TaskModel();
-        // $this->logbookModel = new LogbookModel();
+        $this->taskModel = new TaskModel();
+        $this->logbookModel = new LogbookModel();
 
     }
     public function index()
@@ -41,6 +42,11 @@ class Dashboard extends BaseController
         $daytoint = (int)($days/7-12)*-1;
         $week = intval($daytoint);
 
+        $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
+        $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
+        $lbid = $logbook['lbid'];
+        $taskcount = $this->taskModel->counttask($lbid);
+
         $data=[
             'title' => 'Dashboard',
             'id'=> session()->get('id'),
@@ -53,7 +59,7 @@ class Dashboard extends BaseController
             'endate' => $enddate,
             'days' => $days,
             'week' => $week,
-            // 'task' => $this->taskModel->find($lbid)
+            'taskcount' => $taskcount,
         ];
         d($data);
         return view('dashboard/dashboard', $data);

@@ -81,6 +81,8 @@ $routes->get('/logbook', 'logbook::insert', ['filter'=> 'authGuard'],);
 
 $routes->get('/task/new/(:any)', 'Task::index', ['filter'=> 'authGuard', 'as' => 'task.new'],);
 $routes->post('/task/new/(:any)', 'Task::store/$1', ['filter'=> 'authGuard', 'as' => 'task.store'],);
+$routes->get('/task/detail/(:any)', 'Task::edit/$1', ['filter'=> 'authGuard', 'as' => 'task.edit'],);
+$routes->post('/task/detail/(:any)', 'Task::update/$1', ['filter'=> 'authGuard', 'as' => 'task.update'],);
 
 
 

@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"><?=$intern->startdate?></h5>
+                                <h5 class="card-title fw-bold"><?=date('d-M-Y',strtotime($intern->startdate));?></h5>
                                 <p class="card-text">Internship Start Date</p>
                             </div>
                             <div class="align-self-center">
@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"> <?=$intern->enddate;?> </h5>
+                                <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->enddate));?> </h5>
                                 <p class="card-text"> Internship End Date </p>
                             </div>
                             <div class="align-self-center">
@@ -79,8 +79,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold">(Task Total)</h5>
-                                <p class="card-text"> Task Added </p>
+                                <h5 class="card-title fw-bold"><?=$taskcount['numrows']?></h5>
+                                <p class="card-text"> Total Task Added </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-journal-plus fa-5x"></i>

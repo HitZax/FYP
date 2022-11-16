@@ -16,15 +16,12 @@ class Task extends BaseController
 
     public function index()
     {
-        $sid =session()->get('id');
-        $lbid = $this->logbookModel->WHERE('sid', $sid)->first();
-
+        
         $data=[
             'title' => 'Student | Task',
             'sid' => session()->get('id'),
-            'lbid' => $lbid
         ];
-        d($data);
+        // d($data);
         return view('task/task',$data);
     }
 
@@ -38,50 +35,49 @@ class Task extends BaseController
             'lbid' => $lbid
         ];
         
-        // dd($data);
-        $this->taskModel->save($data);
+        // d($data);
+        $this->taskModel->insert($data);
 
         return redirect()->to('/logbook');
     }
 
         public function edit($lbid)
-    {
-        $taskmodel = new StudentModel();
-        $task = $taskmodel->detail($lbid);
+        {
+        
+        $task = $this->taskModel->find($lbid);
 
         $data=[
             'title' => 'Student | Task Report Edit',
-            'lbid' => $task
+            'task' => $task
         ];
 
         // d($data);
-        return view('Student/logbook', $data);
-    }
+        return view('task/edit', $data);
+        }
 
-    public function update($lbid)
-    {
-        $taskmodel = new TaskModel();
+        public function update($tid)
+        {
 
         $data=[
-            'sid' => $sid,
+            // 'tid' => $tid,
             'tname' => $this->request->getVar('tname'),
             'tdate' => $this->request->getVar('tdate'),
             'tdesc' => $this->request->getVar('tdesc'),
-            'tpic' => $this->request->getVar('tpic'),
+            'tpic' => null,
         ];
-        // dd($data);
-        $studentmodel->replace($data);
+        d($data);
+        $this->taskModel->update($tid, $data);
 
-        return redirect()->to('/student/logbook')->with('message','update');
-    }
+        return redirect()->to('/logbook')->with('message','update');
+        }
 
-    public function delete($lbid)
-    {
+        public function delete($lbid)
+        {
         $db = \Config\Database::connect();
         $builder = $db->table('task');
         $builder->where('lbid',$lbid);
         $builder->delete();
 
         return redirect()->back()->with('message','Delete');
-    }
+        }
 }
