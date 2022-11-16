@@ -42,10 +42,12 @@ class Dashboard extends BaseController
         $daytoint = (int)($days/7-12)*-1;
         $week = intval($daytoint);
 
+        //display task count and table
         $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
         $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
         $lbid = $logbook['lbid'];
         $taskcount = $this->taskModel->counttask($lbid);
+        $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
 
         $data=[
             'title' => 'Dashboard',
@@ -60,8 +62,9 @@ class Dashboard extends BaseController
             'days' => $days,
             'week' => $week,
             'taskcount' => $taskcount,
+            'task' => $task
         ];
-        d($data);
+        // dd($data);
         return view('dashboard/dashboard', $data);
         }
 
