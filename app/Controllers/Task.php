@@ -71,11 +71,11 @@ class Task extends BaseController
         return redirect()->to('/logbook')->with('message','update');
         }
 
-        public function delete($lbid)
+        public function delete($tid)
         {
         $db = \Config\Database::connect();
         $builder = $db->table('task');
-        $builder->where('lbid',$lbid);
+        $builder->where('tid',$tid);
         $builder->delete();
 
         return redirect()->back()->with('message','Delete');

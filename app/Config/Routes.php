@@ -83,6 +83,7 @@ $routes->get('/task/new/(:any)', 'Task::index', ['filter'=> 'authGuard', 'as' =>
 $routes->post('/task/new/(:any)', 'Task::store/$1', ['filter'=> 'authGuard', 'as' => 'task.store'],);
 $routes->get('/task/detail/(:any)', 'Task::edit/$1', ['filter'=> 'authGuard', 'as' => 'task.edit'],);
 $routes->post('/task/detail/(:any)', 'Task::update/$1', ['filter'=> 'authGuard', 'as' => 'task.update'],);
+$routes->delete('/task/delete/(:any)', 'Task::delete/$1', ['filter'=> 'authGuard', 'as' => 'task.delete'],);
 
 
 

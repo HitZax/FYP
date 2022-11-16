@@ -45,7 +45,7 @@
                                 <td>
                                     <a href="<?=url_to('task.edit',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
                                     
-                                    <form action="/student/delete/<?=$t['lbid']?>" method="post" class="d-inline">
+                                    <form action="/task/delete/<?=$t['tid']?>" method="post" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn btn-danger"
                                             onclick="return confirm('Are you sure you wanted to delete this task?')"><i
