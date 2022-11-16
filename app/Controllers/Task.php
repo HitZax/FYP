@@ -27,11 +27,14 @@ class Task extends BaseController
 
     public function store($lbid)
     {
+        $getfiles = $this->request->getFile('tpic');
+        $getfiles->move('asset/img/task');
+
         $data=[
             'tname' => $this->request->getVar('tname'),
             'tdesc' => $this->request->getVar('tdesc'),
             'tdate' => $this->request->getVar('tdate'),
-            'tpic' => $this->request->getVar('tpic'),
+            'tpic' => $getfiles->getName(),
             'lbid' => $lbid
         ];
         
@@ -58,12 +61,15 @@ class Task extends BaseController
         public function update($tid)
         {
 
+        $getfiles = $this->request->getFile('tpic');
+        $getfiles->move('asset/img/task');
+
         $data=[
             // 'tid' => $tid,
             'tname' => $this->request->getVar('tname'),
             'tdate' => $this->request->getVar('tdate'),
             'tdesc' => $this->request->getVar('tdesc'),
-            'tpic' => null,
+            'tpic' => $getfiles->getName(),
         ];
         d($data);
         $this->taskModel->update($tid, $data);
