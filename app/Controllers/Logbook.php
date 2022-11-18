@@ -51,4 +51,5 @@ class Logbook extends BaseController
 
         return redirect()->back()->with('message','insert');
     }
+
 }

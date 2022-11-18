@@ -43,6 +43,7 @@
                                 <td><?=$t['tname'];?></td>
                                 <td><?=$t['tdesc'];?></td>
                                 <td>
+                                    <a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
                                     <a href="<?=url_to('task.edit',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
                                     
                                     <form action="/task/delete/<?=$t['tid']?>" method="post" class="d-inline">

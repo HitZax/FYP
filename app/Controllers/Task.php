@@ -27,6 +27,23 @@ class Task extends BaseController
 
     public function store($lbid)
     {
+        if($this->request->getFile('tpic') == null)
+        {
+
+        $data=[
+            'tname' => $this->request->getVar('tname'),
+            'tdesc' => $this->request->getVar('tdesc'),
+            'tdate' => $this->request->getVar('tdate'),
+            'tpic' => null,
+            'lbid' => $lbid,
+        ];
+        $this->taskModel->insert($data);
+
+        return redirect()->to('/logbook');
+        }
+
+        else{
+            
         $getfiles = $this->request->getFile('tpic');
         $getfiles->move('asset/img/task');
 
@@ -42,6 +59,8 @@ class Task extends BaseController
         $this->taskModel->insert($data);
 
         return redirect()->to('/logbook');
+        }
+
     }
 
         public function edit($lbid)
@@ -61,15 +80,15 @@ class Task extends BaseController
         public function update($tid)
         {
 
-        $getfiles = $this->request->getFile('tpic');
-        $getfiles->move('asset/img/task');
+        // $getfiles = $this->request->getFile('tpic');
+        // $getfiles->move('asset/img/task');
 
         $data=[
             // 'tid' => $tid,
             'tname' => $this->request->getVar('tname'),
             'tdate' => $this->request->getVar('tdate'),
             'tdesc' => $this->request->getVar('tdesc'),
-            'tpic' => $getfiles->getName(),
+            // 'tpic' => $getfiles->getName(),
         ];
         d($data);
         $this->taskModel->update($tid, $data);
@@ -85,5 +104,19 @@ class Task extends BaseController
         $builder->delete();
 
         return redirect()->back()->with('message','Delete');
+        }
+
+        public function show($lbid)
+        {
+        $task = $this->taskModel->find($lbid);
+
+        $data=[
+            'title' => 'Student | Task Report Edit',
+            'task' => $this->taskModel->where('lbid',$lbid)->first(),
+            // 'lbid' => $lbid
+        ];
+
+        d($data);
+        return view('task/show', $data);
         }
 }

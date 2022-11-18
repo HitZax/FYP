@@ -123,7 +123,7 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Task Name</th>
                                 <th scope="col">Task Desc</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Lecturer's Remarks</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -136,14 +136,10 @@
                             <?php foreach($task as $t):?>
                             <tr>
                                 <th scope="row"><?=$bil++;?></th>
-                                <td><?=date('d/m',strtotime($t['tdate']));?></td>
+                                <td><?=date('d/m/Y',strtotime($t['tdate']));?></td>
                                 <td><?=$t['tname'];?></td>
                                 <td><?=$t['tdesc'];?></td>
-                                <td>
-                                    <a>Test</a>
-                                    
-
-                                </td>
+                                <td><?=$t['remark'];?></td>
 
                             </tr>
                             <?php endforeach;?>
