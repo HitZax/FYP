@@ -29,43 +29,50 @@ class Task extends BaseController
     {
         if($this->request->getFile('tpic') == null)
         {
+            $data=[
+                'tname' => $this->request->getVar('tname'),
+                'tdesc' => $this->request->getVar('tdesc'),
+                'tdate' => $this->request->getVar('tdate'),
+                'tpic' => null,
+                'lbid' => $lbid,
+            ];
+            $this->taskModel->insert($data);
 
-        $data=[
-            'tname' => $this->request->getVar('tname'),
-            'tdesc' => $this->request->getVar('tdesc'),
-            'tdate' => $this->request->getVar('tdate'),
-            'tpic' => null,
-            'lbid' => $lbid,
-        ];
-        $this->taskModel->insert($data);
-
-        return redirect()->to('/logbook');
+            return redirect()->to('/logbook');
         }
+        else
+        { 
+            $getfiles = $this->request->getFile('tpic');
+            $getfiles->move('asset/img/task');
 
-        else{
+            $data=[
+                'tname' => $this->request->getVar('tname'),
+                'tdesc' => $this->request->getVar('tdesc'),
+                'tdate' => $this->request->getVar('tdate'),
+                'tpic' => $getfiles->getName(),
+                'lbid' => $lbid
+            ];
             
-        $getfiles = $this->request->getFile('tpic');
-        $getfiles->move('asset/img/task');
+            $this->taskModel->insert($data);
 
-        $data=[
-            'tname' => $this->request->getVar('tname'),
-            'tdesc' => $this->request->getVar('tdesc'),
-            'tdate' => $this->request->getVar('tdate'),
-            'tpic' => $getfiles->getName(),
-            'lbid' => $lbid
-        ];
-        
-        // d($data);
-        $this->taskModel->insert($data);
-
-        return redirect()->to('/logbook');
+            return redirect()->to('/logbook');
         }
-
     }
 
-        public function edit($lbid)
-        {
-        
+    public function detail($lbid)
+    {
+        $task = $this->taskModel->find($lbid);
+
+        $data=[
+            'title' => 'Student | Task Report Show',
+            'task' => $this->taskModel->where('lbid',$lbid)->first(),
+        ];
+
+        return view('task/show', $data);
+    }
+
+    public function edit($lbid)
+    {
         $task = $this->taskModel->find($lbid);
 
         $data=[
@@ -73,50 +80,49 @@ class Task extends BaseController
             'task' => $task
         ];
 
-        // d($data);
         return view('task/edit', $data);
-        }
+    }
 
-        public function update($tid)
+    public function update($tid)
+    {
+        if($this->request->getFile('tpic') == null)
         {
+            $data=[
+                'tname' => $this->request->getVar('tname'),
+                'tdate' => $this->request->getVar('tdate'),
+                'tdesc' => $this->request->getVar('tdesc'),
+            ];
+            $this->taskModel->update($tid, $data);
 
-        // $getfiles = $this->request->getFile('tpic');
-        // $getfiles->move('asset/img/task');
-
-        $data=[
-            // 'tid' => $tid,
-            'tname' => $this->request->getVar('tname'),
-            'tdate' => $this->request->getVar('tdate'),
-            'tdesc' => $this->request->getVar('tdesc'),
-            // 'tpic' => $getfiles->getName(),
-        ];
-        d($data);
-        $this->taskModel->update($tid, $data);
-
-        return redirect()->to('/logbook')->with('message','update');
+            return redirect()->to('/logbook')->with('message','update');
         }
+        else
+        { 
+            $getfiles = $this->request->getFile('tpic');
+            $getfiles->move('asset/img/task');
 
-        public function delete($tid)
-        {
-        $db = \Config\Database::connect();
-        $builder = $db->table('task');
-        $builder->where('tid',$tid);
-        $builder->delete();
+            $data=[
+                'tname' => $this->request->getVar('tname'),
+                'tdesc' => $this->request->getVar('tdesc'),
+                'tpic' => $getfiles->getName(),
+            ];
+            
+            // d($data);
+            $this->taskModel->update($tid, $data);
 
-        return redirect()->back()->with('message','Delete');
+            return redirect()->to('/logbook')->with('message','update');
         }
+    }
 
-        public function show($lbid)
-        {
-        $task = $this->taskModel->find($lbid);
+    public function delete($tid)
+    {
+    $db = \Config\Database::connect();
+    $builder = $db->table('task');
+    $builder->where('tid',$tid);
+    $builder->delete();
 
-        $data=[
-            'title' => 'Student | Task Report Show',
-            'task' => $this->taskModel->where('lbid',$lbid)->first(),
-            // 'lbid' => $lbid
-        ];
+    return redirect()->back()->with('message','Delete');
+    }
 
-        d($data);
-        return view('task/show', $data);
-        }
+   
 }
