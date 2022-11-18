@@ -86,7 +86,7 @@ $routes->post('/task/detail/(:any)', 'Task::update/$1', ['filter'=> 'authGuard',
 $routes->delete('/task/delete/(:any)', 'Task::delete/$1', ['filter'=> 'authGuard', 'as' => 'task.delete'],);
 $routes->get('/task/new/(:any)', 'Task::show/$1', ['filter'=> 'authGuard', 'as' => 'task.show'],);
 
-
+$routes->get('/chat', 'Chat::index');
 
 
 

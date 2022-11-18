@@ -12,8 +12,15 @@
         <div class="row mb-3 class">
 
         <div class="card-body">
-          <h2 class="text-center">Edit Profile</h2> 
+          <?php if($this->session->role == "Student"):?>
+          <h2 class="text-center">Edit Profile | Student</h2> 
           <div class="row">
+            <?php endif?>
+
+        <?php if($this->session->role == "Lecturer"):?>
+          <h2 class="text-center">Edit Profile | Lecturer</h2> 
+          <div class="row">
+            <?php endif?>
 
             <div class="container-fluid">
                 <div class="row">

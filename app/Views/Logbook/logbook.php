@@ -39,12 +39,12 @@
                             <?php foreach($task as $t):?>
                             <tr>
                                 <th scope="row"><?=$bil++;?></th>
-                                <td><?=date('d/m',strtotime($t['tdate']));?></td>
+                                <td><?=date('d/m/y',strtotime($t['tdate']));?></td>
                                 <td><?=$t['tname'];?></td>
                                 <td><?=$t['tdesc'];?></td>
                                 <td>
-                                    <a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-                                    <a href="<?=url_to('task.edit',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
+                                    <a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-three-dots-vertical"></i></i></a>
+                                    <a href="<?=url_to('task.edit',$t['tid'])?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
                                     
                                     <form action="/task/delete/<?=$t['tid']?>" method="post" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">

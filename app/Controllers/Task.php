@@ -111,7 +111,7 @@ class Task extends BaseController
         $task = $this->taskModel->find($lbid);
 
         $data=[
-            'title' => 'Student | Task Report Edit',
+            'title' => 'Student | Task Report Show',
             'task' => $this->taskModel->where('lbid',$lbid)->first(),
             // 'lbid' => $lbid
         ];
