@@ -9,7 +9,7 @@
         <div class="card px-2 py-2 bg-light">
           <div class="row class">
           <div class="card-body">
-            <h2 class="text-center">Task Edit Report</h2> 
+            <h2 class="text-center">Show Report</h2> 
               <div class="row">
           <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <?=csrf_field()?>
@@ -28,17 +28,13 @@
                   <input type="text" name="tdesc" placeholder="Description of Task" value="<?=$task['tdesc']?>" class="form-control" style="height: 100px" required readonly>
                   <div class="invalid-feedback">Please enter your Task Description.</div>
               </div>
-              <!-- <div class="mb-3">
-                <label class="form-label float-start">Picture Of Task <label class="text-muted">(If available)</label></label> 
-                  <input type="file" class="form-control" name="tpic" placeholder="Picture Reference" >
-                  <div class="invalid-feedback">Enter if you have one.</div>
-              </div> -->
+
               <div>
                    <a href="/asset/img/task/<?=$task['tpic']?>" target="_blank">View Image</a>
               </div>
-              <div class="d-grid mb-1">
+              <!-- <div class="d-grid mb-1">
                 <button type="submit" class="btn btn-primary btn-block">Edit Task Report</button>
-              </div>
+              </div> -->
             </form>
           </div>
         </div>

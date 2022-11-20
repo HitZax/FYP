@@ -114,6 +114,14 @@ class Auth extends Controller
         ];
         $this->logbookModel->save($data2);
 
+        // $internid = $internmodel->getInsertID();
+
+        // $data3=[
+        //     'lbcreated' => date('Y-m-d'),
+        //     'sid'       => $sid
+        // ];
+        // $this->internModel->save($data3);
+
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
            

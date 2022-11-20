@@ -9,7 +9,7 @@
         <div class="card px-2 py-2 bg-light">
           <div class="row class">
           <div class="card-body">
-            <h2 class="text-center">Task Edit Report</h2> 
+            <h2 class="text-center">Edit Report</h2> 
               <div class="row">
           <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <?=csrf_field()?>

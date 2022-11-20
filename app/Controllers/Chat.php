@@ -8,6 +8,10 @@ class Chat extends BaseController
 {
     public function index()
     {
-        return view('chat/chat');
+        $data=[
+            'title' => 'Still Ongoing',
+        ];
+
+        return view('chat/chat',$data);
     }
 }

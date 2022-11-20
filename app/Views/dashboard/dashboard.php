@@ -14,7 +14,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card ">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card ">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
@@ -44,22 +44,39 @@
                     </div>
                 </div>
             </div>
-         
-            <div class="col-md-4">
+            
+            <div class="col-md-3">
                 <div class="card ">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"> Currently On Week <?=$week?> </h5>
-                                <p class="card-text"> Internship Week </p>
+                                <h5 class="card-title fw-bold"> (Still Working) </h5>
+                                <p class="card-text"> Visiting Appointment Date </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-week fa-3x"></i>
+                                <i class="bi bi-calendar-check fa-3x"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h5 class="card-title fw-bold"> (Still Working) </h5>
+                                <p class="card-text"> Report Submission Date </p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="bi bi-calendar-check fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     
@@ -83,13 +100,13 @@
                                 <p class="card-text"> Total Task Added </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-journal-plus fa-5x"></i>
+                                <i class="bi bi-journal-plus fa-3x"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
@@ -98,7 +115,22 @@
                                 <p class="card-text"> Internship Days Remaining </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-hourglass-split fa-5x"></i>
+                                <i class="bi bi-hourglass-split fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h5 class="card-title fw-bold"> Currently On Week <?=$week?> </h5>
+                                <p class="card-text"> Internship Week </p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="bi bi-calendar-week fa-3x"></i>
                             </div>
                         </div>
                     </div>

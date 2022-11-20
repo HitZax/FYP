@@ -124,5 +124,15 @@ class Task extends BaseController
     return redirect()->back()->with('message','Delete');
     }
 
-   
+    public function show($lbid)
+    {
+        $task = $this->taskModel->find($lbid);
+
+        $data=[
+            'title' => 'Student | Task Report Show',
+            'task' => $task
+        ];
+
+        return view('task/show', $data);
+    }   
 }

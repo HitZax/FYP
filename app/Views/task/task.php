@@ -34,7 +34,7 @@
                   <div class="invalid-feedback">Enter if you have one.</div>
               </div>
               <div class="d-grid mb-1">
-                <button type="submit" class="btn btn-primary btn-block">Add Task</button>
+                <button type="submit" class="btn btn-primary btn-block">Add Task Report</button>
               </div>
             </form>
           </div>
