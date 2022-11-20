@@ -24,6 +24,8 @@ class Logbook extends BaseController
 
     public function index()
     {
+        if(session()->get('role')=="Student"){
+
         $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
         $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
         $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
@@ -33,10 +35,25 @@ class Logbook extends BaseController
             'student' => $student,
             'logbook' => $logbook,
             'task' => $task
+        ];
+       
+
+        return view('logbook/logbook', $data);
+        }
+
+        else{
+
+        $data=[
+            'title' => 'Lecturer | Logbook',
 
         ];
+
+        return view('logbook/logbooklect', $data);
+        }
+
+
         // d($data);
-        return view('logbook/logbook', $data);
+
     }
 
     public function insert()

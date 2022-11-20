@@ -11,7 +11,7 @@
           <div class="card-body">
             <h2 class="text-center">Show Report</h2> 
               <div class="row">
-          <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+          <form action="/logbook/logbook" method="post" autocomplete="off" enctype="multipart/form-data">
             <?=csrf_field()?>
               <div class="mb-3">
                 <label class="form-label float-start">Date Of Task</label>
@@ -28,14 +28,19 @@
                   <input type="text" name="tdesc" placeholder="Description of Task" value="<?=$task['tdesc']?>" class="form-control" style="height: 100px" required readonly>
                   <div class="invalid-feedback">Please enter your Task Description.</div>
               </div>
+              <div class="mb-3">
+                <label class="form-label float-start">Lecturer's Remarks</label>
+                  <input type="text" name="tname" placeholder="Remarks left by lecturer" value="<?=$task['remark']?>" class="form-control" required readonly>
+                  <div class="invalid-feedback">Please enter your Remarks</div>
+              </div>
 
               <div>
-                   <a href="/asset/img/task/<?=$task['tpic']?>" target="_blank">View Image</a>
-              </div>
-              <!-- <div class="d-grid mb-1">
-                <button type="submit" class="btn btn-primary btn-block">Edit Task Report</button>
-              </div> -->
+                <div>
+                   <a href="/asset/img/task/<?=$task['tpic']?>" target="_blank"><h5>View Image</h5></a>
+                </div>
+              </div>          
             </form>
+            
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"> (Still Working) </h5>
+                                <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->visitdate));?> </h5>
                                 <p class="card-text"> Visiting Appointment Date </p>
                             </div>
                             <div class="align-self-center">
@@ -66,7 +66,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"> (Still Working) </h5>
+                                <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->reportdate));?> </h5>
                                 <p class="card-text"> Report Submission Date </p>
                             </div>
                             <div class="align-self-center">

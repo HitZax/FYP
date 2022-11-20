@@ -13,6 +13,7 @@
 
       <!-- Folder Navigation --> 
       <link rel="stylesheet" href="/asset/css/navbar.css">
+      <link rel="stylesheet" href="/asset/css/chat.css">
       <link rel="stylesheet" href="/asset/css/style.css">
 
       <!-- Font Awesome Kit  -->
