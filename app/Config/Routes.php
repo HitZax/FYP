@@ -62,6 +62,7 @@ $routes->get('/logout', 'Auth::logout');
 *Routes for Student
 *----------------------------------------------------------------------
 */
+
 $routes->get('/', 'Student::index');
 $routes->get('/student', 'Student::show', ['filter' => 'authGuard'],);
 $routes->post('/student', 'Student::insert',['filter' => 'authGuard']);
@@ -88,6 +89,11 @@ $routes->delete('/task/delete/(:any)', 'Task::delete/$1', ['filter'=> 'authGuard
 
 $routes->get('/chat', 'Chat::index');
 
+/*
+*----------------------------------------------------------------------
+*Routes for Lecturer
+*----------------------------------------------------------------------
+*/
 
 
 

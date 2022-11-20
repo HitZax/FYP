@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+use App\Models\InternModel;
 use App\Models\ProgramModel;
 use App\Models\StudentModel;
 use App\Controllers\BaseController;
@@ -28,14 +30,22 @@ class Student extends BaseController
             $programmodel = new ProgramModel();
             $program = $programmodel->findall();
 
+            $internmodel = new InternModel();
+            $intern = $internmodel->findall();
+
+            $usernmodel = new UserModel();
+            $user = $usernmodel->findall();
         
             $data=[
             'title' => 'Student List',
             'student' => $student,
             'program' => $program,
+            'intern' => $intern,
+            'user' => $user,
+            
             // 'role' => $session->get('role')
             ];
-            // d($data);
+            d($data);
             return view('Student/show', $data);
         }
         else
@@ -86,18 +96,18 @@ class Student extends BaseController
         return view('Student/edit', $data);
     }
 
-    public function update($sid)
+    public function update($id)
     {
         $studentmodel = new StudentModel();
+        $internmodel = new InternModel();
 
         $data=[
-            'sid' => $sid,
-            'sname' => $this->request->getVar('name'),
-            'studentid' => $this->request->getVar('studentid'),
-            'sprogram' => $this->request->getVar('program'),
+            'id' => $id,
+            'reportdate' => $this->request->getVar('reportdate'),
+            'visitdate' => $this->request->getVar('visitdate'),
         ];
         // dd($data);
-        $studentmodel->replace($data);
+        $internmodel->replace($data);
 
         return redirect()->to('/student')->with('message','update');
     }
