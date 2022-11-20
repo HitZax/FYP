@@ -78,17 +78,17 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Task Added</h5>
-                                <p class="card-text"> (Task Total) </p>
+                                <h5 class="card-title">Remarks Given</h5>
+                                <p class="card-text"> (Remarks Total) </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-journal-plus fa-5x"></i>
+                                <i class="bi bi-journal-plus fa-3x"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
@@ -97,7 +97,22 @@
                                 <p class="card-text">  </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-hourglass-split fa-5x"></i>
+                                <i class="bi bi-hourglass-split fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h5 class="card-title">Total students</h5>
+                                <p class="card-text">  </p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="bi bi-person-fill fa-3x"></i>
                             </div>
                         </div>
                     </div>
