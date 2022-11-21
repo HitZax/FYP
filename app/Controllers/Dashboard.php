@@ -49,6 +49,8 @@ class Dashboard extends BaseController
         $taskcount = $this->taskModel->counttask($lbid);
         $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
 
+        
+
         $data=[
             'title' => 'Dashboard',
             'id'=> session()->get('id'),

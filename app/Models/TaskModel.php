@@ -15,5 +15,11 @@ class TaskModel extends Model
         $sql = "SELECT COUNT(*) AS `numrows` FROM `task` WHERE lbid = $lbid";
         return $this->db->query($sql)->getRowArray();
     }
+
+        public function recenttask($lbid)
+    {
+        $sql = "SELECT * FROM `task` WHERE id=(SELECT MAX(3) FROM `task`);";
+        return $this->db->query($sql)->getRowArray();
+    }
     
 }

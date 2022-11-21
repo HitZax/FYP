@@ -81,7 +81,8 @@
       <th scope="col">#</th>
       <th scope="col">Student ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Programme</th>
+      <th scope="col">Visiting Date</th>
+      <th scope="col">Report Date</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -97,6 +98,7 @@
       <th scope="row"><?=$bil++;?></th>
       <td><?=$s['studentid'];?></td>
       <td><?=$s['sname'];?></td>
+      <td><?=$s['sprogram'];?></td>
       <td><?=$s['sprogram'];?></td>
       <td>
         <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
