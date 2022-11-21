@@ -24,31 +24,29 @@ class Logbook extends BaseController
 
     public function index()
     {
-        if(session()->get('role')=="Student"){
-
-        $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
-        $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
-        $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
-       
-        $data=[
-            'title' => 'Student | Logbook',
-            'student' => $student,
-            'logbook' => $logbook,
-            'task' => $task
-        ];
-       
-
-        return view('logbook/logbook', $data);
+        if(session()->get('role')=="Student")
+        {
+            $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
+            $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
+            $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
+        
+            $data=[
+                'title' => 'Student | Logbook',
+                'student' => $student,
+                'logbook' => $logbook,
+                'task' => $task
+            ];
+            return view('logbook/logbook', $data);
         }
+        else
+        {
 
-        else{
+            $data=[
+                'title' => 'Lecturer | Logbook',
+                'logbook' => $this->logbookModel->find()
+            ];
 
-        $data=[
-            'title' => 'Lecturer | Logbook',
-
-        ];
-
-        return view('logbook/logbooklect', $data);
+            return view('logbook/logbooklect', $data);
         }
 
 
