@@ -34,6 +34,7 @@
 </div>
 
 <script>
+   
   (function () {
     var Message;
     Message = function (arg) {
