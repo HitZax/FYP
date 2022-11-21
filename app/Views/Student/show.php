@@ -100,10 +100,10 @@
       <td><?=$s['sprogram'];?></td>
       <td>
         <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-        <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
+        <!-- <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wanted to delete this student?')"><i class="bi bi-trash"></i></button>
-        </form>
+        </form> -->
     </td>
 
     </tr>
