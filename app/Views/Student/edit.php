@@ -12,11 +12,11 @@
             <form action="/student/edit/<?=$student->sid?>" method="post">
                 <div class="mb-3">
                     <label class="form-label">Visiting Date</label>
-                    <input type="date" class="form-control" id="name" placeholder="Visit Date" name="visitdate" value="" required>
+                    <input type="date" class="form-control" id="name" placeholder="Visit Date" name="visitdate" value="NULL">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Report Submission Date</label>
-                    <input type="date" class="form-control" id="name" placeholder="Report Data" name="reportdate" value="" required>
+                    <input type="date" class="form-control" id="name" placeholder="Report Data" name="reportdate" value="NULL">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

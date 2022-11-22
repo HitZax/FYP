@@ -100,14 +100,14 @@ class Student extends BaseController
     {
         $studentmodel = new StudentModel();
         $internmodel = new InternModel();
-
+        
         $data=[
-            'id' => $id,
+            // 'id' => $id,
             'reportdate' => $this->request->getVar('reportdate'),
             'visitdate' => $this->request->getVar('visitdate'),
         ];
         // dd($data);
-        $internmodel->replace($data);
+        $internmodel->update($id, $data);
 
         return redirect()->to('/student')->with('message','update');
     }

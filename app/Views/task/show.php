@@ -35,8 +35,8 @@
               </div>
 
               <div>
-                <div>
-                   <a href="/asset/img/task/<?=$task['tpic']?>" target="_blank"><h5>View Image</h5></a>
+                <div class="offset-md-4">
+                   <img src="/asset/img/task/<?=$task['tpic']?>" target="_blank" width="400" height="400"></img>
                 </div>
               </div>          
             </form>

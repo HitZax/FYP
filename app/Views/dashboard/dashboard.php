@@ -23,7 +23,7 @@
                                 <p class="card-text">Internship Start Date</p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-plus fa-3x"></i>
+                                <i class="bi bi-calendar-check fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -49,6 +49,15 @@
                 <div class="card ">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
+                            <?php if($intern->visitdate == ''):?>
+                            <div>
+                                <h5 class="card-title fw-bold">Date Hasn't Been Set</h5>
+                                <p class="card-text"> Visiting Appointment Date </p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="bi bi-calendar-check fa-3x"></i>
+                            </div>
+                            <?php else:?>
                             <div>
                                 <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->visitdate));?> </h5>
                                 <p class="card-text"> Visiting Appointment Date </p>
@@ -56,6 +65,7 @@
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-check fa-3x"></i>
                             </div>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>
@@ -65,6 +75,15 @@
                 <div class="card ">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
+                            <?php if($intern->reportdate == ''):?>
+                            <div>
+                                <h5 class="card-title fw-bold">Date Hasn't Been Set</h5>
+                                <p class="card-text"> Report Submission Date </p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="bi bi-calendar-check fa-3x"></i>
+                            </div>
+                            <?php else:?>
                             <div>
                                 <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->reportdate));?> </h5>
                                 <p class="card-text"> Report Submission Date </p>
@@ -72,6 +91,7 @@
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-check fa-3x"></i>
                             </div>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>

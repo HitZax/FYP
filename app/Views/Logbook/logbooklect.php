@@ -23,12 +23,13 @@
 <div class="container-fluid">
     <div class="row">
             <div class="col-lg-4 col-md-4">
-                <div class="card">
+                <div class="card-shadow">
                     <!-- <h5 class="card-header">Featured</h5> -->
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <i class="bi bi-journal-text float-end fa-4x"></i>
+                        <h5 class="card-title">(Student's Name)</h5>
+                        <p class="card-text">(Student's ID)</p>
+                        <a href="#" class="btn btn-primary">View Logbook</a>
                     </div>
                 </div>
             </div>

@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\TaskModel;
+use App\Models\UserModel;
 use App\Models\LogbookModel;
 use App\Models\StudentModel;
+use App\Models\LecturerModel;
 use App\Controllers\BaseController;
 
 class Logbook extends BaseController
@@ -13,7 +15,9 @@ class Logbook extends BaseController
     {
         $this->logbookModel = new LogbookModel();
         $this->studentModel = new StudentModel();
+        $this->lecturerModel = new LecturerModel();
         $this->taskModel = new TaskModel();
+        $this->userModel = new UserModel();
     }
     
     /**
@@ -41,16 +45,27 @@ class Logbook extends BaseController
         else
         {
 
+            $lecturer = $this->userModel->WHERE('id', session()->get('id'))->first();
+            $logbook = $this->logbookModel->WHERE('lid', $lecturer['id'])->first();
+            $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
+            $student = $this->studentModel->WHERE('lid',$lecturer['id'])->findAll();
+
+
             $data=[
                 'title' => 'Lecturer | Logbook',
-                'logbook' => $this->logbookModel->find()
+                // 'logbook' => $this->logbookModel->find()
+                'lecturer' => $lecturer,
+                'logbook' => $logbook,
+                'task' => $task,
+                'student' => $student
+                
             ];
-
+            d($data);
             return view('logbook/logbooklect', $data);
         }
 
 
-        // d($data);
+        
 
     }
 
