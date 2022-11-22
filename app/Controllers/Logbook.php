@@ -62,7 +62,6 @@ class Logbook extends BaseController
 
             $data=[
                 'title' => 'Lecturer | Logbook',
-                // 'logbook' => $this->logbookModel->find()
                 'lecturer' => $lecturer,
                 'logbook' => $logbook,
                 'task' => $task,
@@ -70,7 +69,7 @@ class Logbook extends BaseController
                 // 'lid' => $lid
                 
             ];
-            d($data);
+            // dd($data);
             return view('logbook/logbooklect', $data);
         }
 

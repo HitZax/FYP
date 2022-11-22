@@ -2,6 +2,8 @@
 namespace App\Controllers;  
 use App\Models\UserModel;
 use CodeIgniter\Controller;
+use App\Models\StudentModel;
+use App\Controllers\BaseController;
   
 class Profile extends BaseController
 {
@@ -35,6 +37,7 @@ class Profile extends BaseController
     public function update($id)
     {
         $usermodel = new UserModel();
+        $studentmodel = new StudentModel();
 
         $data=[
             'sid' => $id,
@@ -43,8 +46,8 @@ class Profile extends BaseController
             'email' => $this->request->getVar('email'),
             'password' => $this->request->getVar('password'),
         ];
-        dd($data);
-        $studentmodel->replace($data);
+        // dd($data);
+        $studentmodel->update($data);
 
         return redirect()->to('/student')->with('message','update');
     }

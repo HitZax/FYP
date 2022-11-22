@@ -27,7 +27,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Task Name</th>
-                                <th scope="col">Task Desc</th>
+                                <th scope="col">Lecturer's Remarks</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -43,9 +43,9 @@
                                 <th scope="row"><?=$bil++;?></th>
                                 <td><?=date('d/m/y',strtotime($t['tdate']));?></td>
                                 <td><?=$t['tname'];?></td>
-                                <td><?=$t['tdesc'];?></td>
+                                <td><?=$t['remark'];?></td>
                                 <td>
-                                    <a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-three-dots-vertical"></i></i></a>
+                                    <a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-eye"></i></i></a>
                                     <a href="<?=url_to('task.edit',$t['tid'])?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
                                     <form action="<?=url_to('task.delete',$t['tid'])?>" method="post" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">
