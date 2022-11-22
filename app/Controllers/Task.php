@@ -132,6 +132,7 @@ class Task extends BaseController
             'title' => 'Student | Task Report Show',
             'task' => $task
         ];
+        //  dd($data);
 
         return view('task/show', $data);
     }   

@@ -44,7 +44,9 @@
                                 <label for="program" class="form-label">Password</label>
                                 <input type="text" class="form-control" id="name" placeholder="Your Password" name="password" value="<?=$user['password']?>" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="d-grid mb-1">
+                            <button type="submit" class="btn btn-primary">Edit Profile</button>
+                            </div>
                         </form>
                     </div>
                 </div>

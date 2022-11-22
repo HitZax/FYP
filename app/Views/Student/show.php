@@ -81,9 +81,9 @@
       <th scope="col">#</th>
       <th scope="col">Student ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Visiting Date</th>
-      <th scope="col">Report Date</th>
-      <th scope="col">Action</th>
+      <!-- <th scope="col">Visiting Date</th> -->
+      <!-- <th scope="col">Report Date</th> -->
+      <th scope="col">Edit Student Date</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -98,10 +98,10 @@
       <th scope="row"><?=$bil++;?></th>
       <td><?=$s['studentid'];?></td>
       <td><?=$s['sname'];?></td>
-      <td><?=$s['sprogram'];?></td>
-      <td><?=$s['sprogram'];?></td>
+      <!-- <td><?=$s['sprogram'];?></td> -->
+      <!-- <td><?=$s['sprogram'];?></td> -->
       <td>
-        <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
+        <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-primary"><i class="bi bi-pencil"></i></a>
         <!-- <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wanted to delete this student?')"><i class="bi bi-trash"></i></button>

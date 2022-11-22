@@ -47,20 +47,19 @@ class Logbook extends BaseController
 
             $lecturer = $this->userModel->WHERE('id', session()->get('id'))->first();
             $logbook = $this->logbookModel->WHERE('lid', $lecturer['id'])->first();
-            $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
+            // $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
             $student = $this->studentModel->WHERE('lid',$lecturer['id'])->findAll();
 
 
             $data=[
                 'title' => 'Lecturer | Logbook',
-                // 'logbook' => $this->logbookModel->find()
                 'lecturer' => $lecturer,
                 'logbook' => $logbook,
-                'task' => $task,
+                // 'task' => $task,
                 'student' => $student
                 
             ];
-            d($data);
+            // dd($data);
             return view('logbook/logbooklect', $data);
         }
 

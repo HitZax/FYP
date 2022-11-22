@@ -23,7 +23,7 @@
                                 <p class="card-text">Internship Start Date</p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-check fa-3x"></i>
+                                <i class="bi bi-calendar3 fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                                 <p class="card-text"> Internship End Date </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-check fa-3x"></i>
+                                <i class="bi bi-calendar3 fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                 <p class="card-text"> Visiting Appointment Date </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-check fa-3x"></i>
+                                <i class="bi bi-calendar fa-3x"></i>
                             </div>
                             <?php else:?>
                             <div>
@@ -81,7 +81,7 @@
                                 <p class="card-text"> Report Submission Date </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-check fa-3x"></i>
+                                <i class="bi bi-calendar fa-3x"></i>
                             </div>
                             <?php else:?>
                             <div>

@@ -20,10 +20,10 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship Start Date</h5>
-                                <p class="card-text">  </p>
+                                <p class="card-text"> (Start Of Intern) </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-plus fa-3x"></i>
+                                <i class="bi bi-calendar-check fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship End Date</h5>
-                                <p class="card-text">  </p>
+                                <p class="card-text"> (End Of Intern) </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-check fa-3x"></i>
@@ -50,7 +50,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Current Week</h5>
-                                <p class="card-text"> On week  </p>
+                                <p class="card-text"> On week (1-12) </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-week fa-3x"></i>
@@ -94,7 +94,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship Days Left</h5>
-                                <p class="card-text">  </p>
+                                <p class="card-text"> (Count total days left) </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-hourglass-split fa-3x"></i>
@@ -109,7 +109,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Total students</h5>
-                                <p class="card-text">  </p>
+                                <p class="card-text"> (Students under supervision) </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-person-fill fa-3x"></i>
@@ -119,7 +119,7 @@
                 </div>
             </div>
 
-            <div class="container-fluid">
+            <!-- <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="my-2 py-2 fs-2">My Recent Tasks</h1>
@@ -145,7 +145,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 </div>
