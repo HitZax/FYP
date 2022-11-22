@@ -25,7 +25,7 @@ class Student extends BaseController
         if (session()->get('role') == "Lecturer")
         {
             $studentmodel = new StudentModel();
-            $student = $studentmodel->findall();
+            $student = $studentmodel->WHERE('lid','1')->findall();
 
             $programmodel = new ProgramModel();
             $program = $programmodel->findall();

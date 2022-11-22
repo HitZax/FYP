@@ -58,8 +58,6 @@ class Logbook extends BaseController
                 ->where('lecturer.id', $lid)
                 ->get()->getResultArray();
 
-
-
             $data=[
                 'title' => 'Lecturer | Logbook',
                 'lecturer' => $lecturer,
