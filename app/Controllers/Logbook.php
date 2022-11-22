@@ -48,7 +48,16 @@ class Logbook extends BaseController
             $lecturer = $this->userModel->WHERE('id', session()->get('id'))->first();
             $logbook = $this->logbookModel->WHERE('lid', $lecturer['id'])->first();
             $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
-            $student = $this->studentModel->WHERE('lid',$lecturer['id'])->findAll();
+            $lid = $lecturer['id'];
+            //connect to database
+            $db = \Config\Database::connect();
+            //codeigniter 4 query builder join
+            $student = $db->table('student')
+                ->join('logbook', 'student.sid = logbook.sid')
+                ->join('lecturer', 'logbook.lid = lecturer.id')
+                ->where('lecturer.id', $lid)
+                ->get()->getResultArray();
+
 
 
             $data=[
@@ -57,7 +66,8 @@ class Logbook extends BaseController
                 'lecturer' => $lecturer,
                 'logbook' => $logbook,
                 'task' => $task,
-                'student' => $student
+                'student' => $student,
+                // 'lid' => $lid
                 
             ];
             d($data);
