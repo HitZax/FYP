@@ -7,5 +7,6 @@ use CodeIgniter\Model;
 class LecturerModel extends Model
 {
     protected $table            = 'lecturer';
-    protected $allowedFields    = ['lname','lemail','lroom', 'invcode'];
+    protected $primaryKey = 'lid';
+    protected $allowedFields    = ['lid','lname','lemail','lroom', 'invcode', 'id'];
 }

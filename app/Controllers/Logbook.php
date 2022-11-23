@@ -45,29 +45,31 @@ class Logbook extends BaseController
         else
         {
 
-            $lecturer = $this->userModel->WHERE('id', session()->get('id'))->first();
-            $logbook = $this->logbookModel->WHERE('lid', $lecturer['id'])->first();
-            $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
-            $lid = $lecturer['id'];
+            $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+            $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
+            // $logbook = $this->logbookModel->WHERE('lid', $lecturer['id'])->first();
+            // $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
+            $lid = $lecturer['lid'];
             //connect to database
             $db = \Config\Database::connect();
             //codeigniter 4 query builder join
             $student = $db->table('student')
-                ->join('logbook', 'student.sid = logbook.sid')
-                ->join('lecturer', 'logbook.lid = lecturer.id')
-                ->where('lecturer.id', $lid)
-                ->get()->getResultArray();
+                            ->join('logbook', 'student.sid = logbook.sid')
+                            // ->join('lecturer', 'logbook.lid = lecturer.id')
+                            ->where('logbook.lid', $lid)
+                            ->get()->getResultArray();
 
             $data=[
                 'title' => 'Lecturer | Logbook',
+                'user' => $user,
+                // 'logbook' => $logbook,
+                // 'task' => $task,
                 'lecturer' => $lecturer,
-                'logbook' => $logbook,
-                'task' => $task,
                 'student' => $student,
-                // 'lid' => $lid
+                'lid' => $lid
                 
             ];
-            // dd($data);
+            dd($data);
             return view('logbook/logbooklect', $data);
         }
 

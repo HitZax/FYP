@@ -81,8 +81,8 @@
       <th scope="col">#</th>
       <th scope="col">Student ID</th>
       <th scope="col">Name</th>
-      <!-- <th scope="col">Visiting Date</th> -->
-      <!-- <th scope="col">Report Date</th> -->
+      <th scope="col">Visiting Date</th>
+      <th scope="col">Report Submission Date</th>
       <th scope="col">Edit Student Date</th>
     </tr>
   </thead>
@@ -98,8 +98,8 @@
       <th scope="row"><?=$bil++;?></th>
       <td><?=$s['studentid'];?></td>
       <td><?=$s['sname'];?></td>
-      <!-- <td><?=$s['sprogram'];?></td> -->
-      <!-- <td><?=$s['sprogram'];?></td> -->
+      <td>(Visiting Date)</td>
+      <td>(Report Submission Date)</td>
       <td>
         <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-primary"><i class="bi bi-pencil"></i></a>
         <!-- <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">

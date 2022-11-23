@@ -55,6 +55,8 @@ $routes->post('/register/lecturer/', 'Auth::receiveInvCode');
 $routes->get('/register/lecturer/(:any)', 'Auth::registerlect/$1');
 $routes->post('/register/lecturer/(:any)', 'Auth::attemptRegisterlect');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/password', 'Auth::password');
+
 
 
 /*

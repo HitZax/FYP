@@ -55,13 +55,13 @@
         </form>
 
         <div class="row float-end">
-        <h6 class=""><span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Forgot Password? </a></span></h6>
+        <h6 class=""><span><a href="/password" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Forgot Password? </a></span></h6>
         </div>
-          <h6 class="">Need an account for student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
+          <!-- <h6 class="">Need an account for student? <span><a href="/register" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
         </div>
           <div class="row mt-2 mb-2">
           <h6 class="">Need an account for lecturer? <span><a href="/register/lecturer" @click="analyticEvent('Authentication', 'Click', 'Register button on login page')">Register</a></span></h6>
-          </div>
+          </div> -->
     
       </div>
           </div>

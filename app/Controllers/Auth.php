@@ -216,5 +216,9 @@ class Auth extends Controller
         return redirect()->to('/login');
     }
 
+        public function password()
+    {
     
+        return view('auth/password');
+    } 
 }
