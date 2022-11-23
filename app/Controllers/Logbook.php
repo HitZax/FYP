@@ -47,29 +47,22 @@ class Logbook extends BaseController
 
             $user = $this->userModel->WHERE('id', session()->get('id'))->first();
             $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
-            // $logbook = $this->logbookModel->WHERE('lid', $lecturer['id'])->first();
-            // $task = $this->logbookModel->WHERE('lid',$logbook['lid'])->findAll();
             $lid = $lecturer['lid'];
-            //connect to database
             $db = \Config\Database::connect();
-            //codeigniter 4 query builder join
             $student = $db->table('student')
                             ->join('logbook', 'student.sid = logbook.sid')
-                            // ->join('lecturer', 'logbook.lid = lecturer.id')
                             ->where('logbook.lid', $lid)
                             ->get()->getResultArray();
 
             $data=[
                 'title' => 'Lecturer | Logbook',
                 'user' => $user,
-                // 'logbook' => $logbook,
-                // 'task' => $task,
                 'lecturer' => $lecturer,
                 'student' => $student,
                 'lid' => $lid
                 
             ];
-            dd($data);
+            d($data);
             return view('logbook/logbooklect', $data);
         }
 

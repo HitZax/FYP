@@ -2,15 +2,26 @@
 
 namespace App\Controllers;
 
+use App\Models\TaskModel;
 use App\Models\UserModel;
 use App\Models\InternModel;
+use App\Models\LogbookModel;
 use App\Models\ProgramModel;
 use App\Models\StudentModel;
+use App\Models\LecturerModel;
 use App\Controllers\BaseController;
 
 class Student extends BaseController
 {
    
+    public function __construct()
+    {
+        $this->logbookModel = new LogbookModel();
+        $this->studentModel = new StudentModel();
+        $this->lecturerModel = new LecturerModel();
+        $this->taskModel = new TaskModel();
+        $this->userModel = new UserModel();
+    }
     public function index()
     {
         return redirect()->to('/login');
@@ -24,8 +35,12 @@ class Student extends BaseController
         //kat sini aq tambah line ni hadi @HitZax
         if (session()->get('role') == "Lecturer")
         {
+            $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+            $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
+
+            $lid = $lecturer['lid'];
             $studentmodel = new StudentModel();
-            $student = $studentmodel->WHERE('lid','1')->findall();
+            $student = $studentmodel->WHERE('lid',$lid)->findall();
 
             $programmodel = new ProgramModel();
             $program = $programmodel->findall();
@@ -42,6 +57,9 @@ class Student extends BaseController
             'program' => $program,
             'intern' => $intern,
             'user' => $user,
+               'lecturer' => $lecturer,
+                'student' => $student,
+                'lid' => $lid
             
             // 'role' => $session->get('role')
             ];

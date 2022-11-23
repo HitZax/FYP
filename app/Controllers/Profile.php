@@ -37,18 +37,36 @@ class Profile extends BaseController
     public function update($id)
     {
         $usermodel = new UserModel();
-        $studentmodel = new StudentModel();
+        // $studentmodel = new StudentModel();
 
-        $data=[
-            'sid' => $id,
-            'fullname' => $this->request->getVar('fullname'),
-            'studentid' => $this->request->getVar('studentid'),
-            'email' => $this->request->getVar('email'),
-            'password' => $this->request->getVar('password'),
-        ];
-        // dd($data);
-        $studentmodel->update($data);
+        if(session()->get('role') ==  'Student')
+        {
+            $data=[
+                // 'sid' => $id,
+                'fullname' => $this->request->getVar('fullname'),
+                'studentid' => $this->request->getVar('studentid'),
+                'email' => $this->request->getVar('email'),
+                'password' => $this->request->getVar('password'),
+            ];
+            // dd($data);
+            $usermodel->update($id, $data);
+    
+            return redirect()->to('/profile/edit/'.$id)->with('message','update');
+        }
+        else
+        {
+             $data=[
+                // 'sid' => $id,
+                'fullname' => $this->request->getVar('fullname'),
+                // 'studentid' => $this->request->getVar('studentid'),
+                'email' => $this->request->getVar('email'),
+                'password' => $this->request->getVar('password'),
+            ];
+            // dd($data);
+            $usermodel->update($id, $data);
+    
+            return redirect()->to('/profile/edit/'.$id)->with('message','Successfully update profile');
+        }
 
-        return redirect()->to('/student')->with('message','update');
     }
 }
