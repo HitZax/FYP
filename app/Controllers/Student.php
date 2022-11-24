@@ -35,10 +35,16 @@ class Student extends BaseController
         //kat sini aq tambah line ni hadi @HitZax
         if (session()->get('role') == "Lecturer")
         {
+
             $user = $this->userModel->WHERE('id', session()->get('id'))->first();
             $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
-
             $lid = $lecturer['lid'];
+
+            $db = \Config\Database::connect();
+            $student = $db->table('student')
+                            ->join('interndetail', 'student.sid = interndetail.sid')
+                            ->get()->getResultArray();
+
             $studentmodel = new StudentModel();
             $student = $studentmodel->WHERE('lid',$lid)->findall();
 
@@ -57,9 +63,9 @@ class Student extends BaseController
             'program' => $program,
             'intern' => $intern,
             'user' => $user,
-               'lecturer' => $lecturer,
-                'student' => $student,
-                'lid' => $lid
+            'lecturer' => $lecturer,
+            'student' => $student,
+            'lid' => $lid
             
             // 'role' => $session->get('role')
             ];
