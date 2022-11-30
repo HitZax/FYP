@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="my-2 py-2 mt-2">Logbook</h1>
                     <!-- <hr> -->
-                    <a href="<?=url_to('task.new', $logbook['lbid'])?>" class="btn btn-outline-primary float-end">Add Task Report</a>
+                    
                 </div>
             </div>
         </div>
@@ -25,7 +25,8 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Task Name</th>
                                 <th scope="col">Lecturer's Remarks</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Edit Remarks</th>
+                                <th scope="col">View</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -41,15 +42,9 @@
                                 <td><?=date('d/m/y',strtotime($t['tdate']));?></td>
                                 <td><?=$t['tname'];?></td>
                                 <td><?=$t['remark'];?></td>
-                                <td>
-                                    <a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-eye"></i></i></a>
-                                    <a href="<?=url_to('task.edit',$t['tid'])?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
-                                    <form action="<?=url_to('task.delete',$t['tid'])?>" method="post" class="d-inline">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wanted to delete this task?')"><i class="bi bi-trash"></i></button>
-                                    </form>
-                                </td>
-
+                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$t['tid']?>">
+                                <i class="bi bi-pencil"></i></button></td>
+                                <td><a href="<?=url_to('task.show',$t['tid'])?>" class="btn btn-secondary"><i class="bi bi-eye"></i></a></td>
                             </tr>
                             <?php endforeach;?>
                         </tbody>
@@ -57,5 +52,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<?php foreach($task as $t):?>
+<div class="modal fade" id="exampleModal<?=$t['tid']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Remarks For <?=$t['tname'];?></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/update/task/<?=$t['tid']?>" method="post" autocomplete="off" enctype="multipart/form-data">
+            <?=csrf_field()?>
+              <div class="mb-3">
+                <label class="form-label float-start">Remarks</label>
+                  <input type="text" class="form-control" name="remark" placeholder="Please insert remarks" required>
+                  <div class="invalid-feedback">Please insert remarks</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="submit" class="btn btn-primary">Edit Remarks</button>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endforeach;?>
 
         <?=$this->endsection()?>

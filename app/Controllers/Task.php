@@ -136,4 +136,16 @@ class Task extends BaseController
 
         return view('task/show', $data);
     }   
+
+    public function remark($lbid)
+    {
+        
+         $data=[
+            'remark' => $this->request->getVar('remark'),
+            
+        ];
+            $this->taskModel->update($lbid, $data);
+
+         return redirect()->back()->with('message','update');
+    }   
 }

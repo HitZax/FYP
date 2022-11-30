@@ -24,7 +24,7 @@
           
 <!-- Button trigger modal -->
           <!-- <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            New Student
+            Edit Date
           </button>
         </div>
     </div>
@@ -111,7 +111,7 @@
       <th scope="col">Name</th>
       <th scope="col">Visiting Date</th>
       <th scope="col">Report Submission Date</th>
-      <th scope="col">Edit Student Date</th>
+      <!-- <th scope="col">Edit Student Date</th> -->
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -126,10 +126,9 @@
       <th scope="row"><?=$bil++;?></th>
       <td><?=$s['studentid'];?></td>
       <td><?=$s['sname'];?></td>
-      <td>(Visiting Date)</td>
-      <td>(Report Submission Date)</td>
-      <td>
-        <a href="/student/edit/<?=$s['sid']?>"  class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+      <td>(Visiting Date)  <a href="/student/edit/<?=$s['sid']?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a></td>
+      <td>(Report Submission Date) <a href="/student/edit/<?=$s['sid']?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a></td>
+      <!-- <td><a href="/student/edit/<?=$s['sid']?>"  class="btn btn-primary"><i class="bi bi-pencil"></i></a> -->
         <!-- <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wanted to delete this student?')"><i class="bi bi-trash"></i></button>

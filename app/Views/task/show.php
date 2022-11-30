@@ -34,7 +34,7 @@
                   <div class="invalid-feedback">Please enter your Remarks</div>
               </div>
 
-              <div><label class="form-label float-start">Task Image</label>
+              <div><label class="form-label float-start">Task File or Image</label>
                 <div class="offset-md-3">
                    <img src="/asset/img/task/<?=$task['tpic']?>" target="_blank" height="50%" width="50%"></img>
                 </div>

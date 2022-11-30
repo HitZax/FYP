@@ -81,6 +81,7 @@ $routes->get('/dashboard', 'Dashboard::index', ['filter'=> 'authGuard'],);
 
 $routes->get('/logbook', 'logbook::index', ['filter'=> 'authGuard'],);
 $routes->get('/logbook', 'logbook::insert', ['filter'=> 'authGuard'],);
+$routes->get('/logbook/(:num)', 'logbook::taskdetail/$1', ['filter'=> 'authGuard'],);
 
 $routes->get('/task/new/(:any)', 'Task::index', ['filter'=> 'authGuard', 'as' => 'task.new'],);
 $routes->post('/task/new/(:any)', 'Task::store/$1', ['filter'=> 'authGuard', 'as' => 'task.store'],);
@@ -97,7 +98,7 @@ $routes->get('/chat', 'Chat::index');
 *----------------------------------------------------------------------
 */
 
-
+$routes->post('/update/task/(:any)', 'Task::remark/$1', ['filter'=> 'authGuard']);
 
 /*
  * --------------------------------------------------------------------

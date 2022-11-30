@@ -31,7 +31,7 @@
                             <div>
                                 <h5 class="card-title fw-bold"><?= $s['sname'];?> </h5>
                                 <p class="card-text"> <?= $s['studentid'];?> </p>
-                                <a href="" class="btn btn-primary">View Logbook</a>
+                                <a href="/logbook/<?=$s['lbid']?>" class="btn btn-primary">View Logbook</a>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-journal-text float-end fa-4x"></i>

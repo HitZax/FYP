@@ -84,4 +84,14 @@ class Logbook extends BaseController
         return redirect()->back()->with('message','insert');
     }
 
+    public function taskdetail($lbid)
+    {
+        $data=[
+            'title' => 'Logbook Detail Task',
+            'task' => $this->taskModel->Where('lbid', $lbid)->findAll()
+        ];
+        d($data);
+        return view('logbook/logbookview', $data);
+    }
+
 }

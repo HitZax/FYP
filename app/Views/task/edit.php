@@ -29,7 +29,7 @@
                   <div class="invalid-feedback">Please enter your Task Description.</div>
               </div>
               <div class="mb-3">
-                <label class="form-label float-start">Picture Of Task <label class="text-muted">(Please Reupload)</label></label> 
+                <label class="form-label float-start">Task File or Image <label class="text-muted">(Please Reupload)</label></label> 
                   <input type="file" class="form-control" name="tpic" placeholder="Picture Reference" >
                   <div class="invalid-feedback">Enter if you have one.</div>
               </div>
