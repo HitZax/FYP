@@ -6,7 +6,7 @@
     <div class="row">
       <!-- <div class="col-md-6 offset-md-3 mt-5 mb-5"> -->
       <!-- <div class="shadow-lg"> -->
-        <div class="card px-2 py-2 bg-light">
+        <div class="card mb-5 px-2 py-2 bg-light">
           <div class="row class">
           <div class="card-body">
             <h2 class="text-center">Show Report</h2> 

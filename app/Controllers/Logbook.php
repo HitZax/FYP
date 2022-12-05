@@ -86,9 +86,19 @@ class Logbook extends BaseController
 
     public function taskdetail($lbid)
     {
+        $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+        $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
+        $lid = $lecturer['lid'];
+        $db = \Config\Database::connect();
+        $student = $db->table('student')
+                ->join('logbook', 'student.sid = logbook.sid')
+                ->where('logbook.lid', $lid)
+                ->get()->getResultArray();
+
         $data=[
             'title' => 'Logbook Detail Task',
-            'task' => $this->taskModel->Where('lbid', $lbid)->findAll()
+            'task' => $this->taskModel->Where('lbid', $lbid)->findAll(),
+            'student' => $student,
         ];
         d($data);
         return view('logbook/logbookview', $data);

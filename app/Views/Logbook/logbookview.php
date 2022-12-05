@@ -2,6 +2,8 @@
 
 <?=$this->section('content')?>
 
+<?php $this->session = \Config\Services::session(); ?>
+
 <div class="container-fluid">
     
     <div class="container-fluid">
