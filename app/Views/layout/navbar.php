@@ -66,7 +66,7 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right" role="menu"> 
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="dropdown-item" href="/profile/edit/<?=$this->session->get('id');?>">
                             <i class="bi bi-pencil-fill"></i> Edit Profile
                             </a>
