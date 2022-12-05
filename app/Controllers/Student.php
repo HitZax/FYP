@@ -46,7 +46,7 @@ class Student extends BaseController
                             ->get()->getResultArray();
 
             $studentmodel = new StudentModel();
-            $student = $studentmodel->WHERE('lid',$lid)->findall();
+            $student = $studentmodel->join('interndetail', 'student.sid = interndetail.sid')->WHERE('lid',$lid)->findall();
 
             $programmodel = new ProgramModel();
             $program = $programmodel->findall();
@@ -69,7 +69,7 @@ class Student extends BaseController
             
             // 'role' => $session->get('role')
             ];
-            // dd($data);
+            d($data);
             return view('Student/show', $data);
         }
         else
@@ -120,15 +120,27 @@ class Student extends BaseController
         return view('Student/edit', $data);
     }
 
-    public function update($id)
+    public function updatevisit($id)
     {
         $studentmodel = new StudentModel();
         $internmodel = new InternModel();
         
         $data=[
-            // 'id' => $id,
-            'reportdate' => $this->request->getVar('reportdate'),
             'visitdate' => $this->request->getVar('visitdate'),
+        ];
+        // dd($data);
+        $internmodel->update($id, $data);
+
+        return redirect()->to('/student')->with('message','update');
+    }
+
+        public function updatereport($id)
+    {
+        $studentmodel = new StudentModel();
+        $internmodel = new InternModel();
+        
+        $data=[
+            'reportdate' => $this->request->getVar('reportdate'),
         ];
         // dd($data);
         $internmodel->update($id, $data);

@@ -15,7 +15,7 @@
             <?=csrf_field()?>
               <div class="mb-3">
                 <label class="form-label float-start">Date Of Task</label>
-                  <input type="date" class="form-control" name="tdate" placeholder="Date" value="<?=date('Y-m-d')?>" required>
+                  <input type="date" id="date" class="form-control" name="tdate" placeholder="Date" value="<?=date('Y-m-d')?>" max="<?=date("Y-m-d")?>" required>
                   <div class="invalid-feedback">Please enter your Date.</div>
               </div>
               <div class="mb-3">
@@ -42,5 +42,13 @@
       </div>
           <!-- </div> -->
   </div>
+
+<script>
+  document.getElementById("date").addEventListener("keydown", function(event) {
+  event.preventDefault();
+  // other code here
+});
+
+</script>
 
 <?=$this->endsection()?>

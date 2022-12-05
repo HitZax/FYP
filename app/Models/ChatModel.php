@@ -7,5 +7,5 @@ use CodeIgniter\Model;
 class ChatModel extends Model
 {
     protected $table            = 'chat';
-    protected $allowedFields    = ['chatid','message','date','sid','lid','lbid'];
+    protected $allowedFields    = ['chatid','message','timestamp','sid','lid','lbid'];
 }

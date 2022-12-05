@@ -58,11 +58,11 @@
             </ul>
             <?php endif?>
 
-            <?php if($this->session->role == "Lecturer"):?>
+            <?php if(role() == "Lecturer"):?>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle nav-link active text-white" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                        <b class="bi bi-person-circle pr-1"> <?= $this->session->get('fullname');  ?></b><span class="caret"></span>
+                        <b class="bi bi-person-circle pr-1"> <?=fullname()?></b><span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right" role="menu"> 

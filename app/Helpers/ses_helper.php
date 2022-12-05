@@ -25,7 +25,7 @@ function useremail()
 }
 
 //function get session user role
-function userrole()
+function role()
 {
     return session()->get('role');
 }

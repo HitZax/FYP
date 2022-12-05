@@ -15,7 +15,7 @@
             <?=csrf_field()?>
               <div class="mb-3">
                 <label class="form-label float-start">Date Of Task</label>
-                  <input type="date" class="form-control" name="tdate" placeholder="Date" value="<?=$task['tdate']?>" required>
+                  <input type="date" class="form-control" name="tdate" placeholder="Date" value="<?=$task['tdate']?>" max="<?=date("Y-m-d")?>" required>
                   <div class="invalid-feedback">Please enter your Date.</div>
               </div>
               <div class="mb-3">
@@ -28,10 +28,8 @@
                   <input type="text" name="tdesc" placeholder="Description of Task" value="<?=$task['tdesc']?>" class="form-control" style="height: 100px" required>
                   <div class="invalid-feedback">Please enter your Task Description.</div>
               </div>
-              <div class="mb-3">
-                <label class="form-label float-start">Task File or Image <label class="text-muted">(Please Reupload)</label></label> 
-                  <input type="file" class="form-control" name="tpic" placeholder="Picture Reference" >
-                  <div class="invalid-feedback">Enter if you have one.</div>
+              <div class="d-grid mb-1">
+                <button type="submit" class="btn btn-primary btn-block">Edit File or Picture</button>
               </div>
               <div class="d-grid mb-1">
                 <button type="submit" class="btn btn-primary btn-block">Edit Task Report</button>
@@ -42,5 +40,37 @@
       </div>
           <!-- </div> -->
   </div>
+
+  <!-- Modal Report Date-->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Insert Report Submission Date (<?=$s['studentid'];?>)</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form action="/intern/update/report/<?=$s['internid']?>" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label class="form-label float-start">Task File or Image <label class="text-muted">(Please Reupload)</label></label> 
+                  <input type="file" class="form-control" name="tpic" placeholder="Picture Reference" >
+                  <div class="invalid-feedback">Enter if you have one.</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form> 
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  <script>
+  document.getElementById("date").addEventListener("keydown", function(event) {
+  event.preventDefault();
+  // other code here
+});
+
+</script>
 
 <?=$this->endsection()?>

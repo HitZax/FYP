@@ -21,34 +21,21 @@
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom">
           <h1 class="h2">Student</h1>
-          
-<!-- Button trigger modal -->
-          <!-- <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Edit Date
-          </button>
-        </div>
-    </div>
-</div> -->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php foreach($student as $s):?>
+<!-- Modal Visit Date -->
+<div class="modal fade" id="Modal<?=$s['internid']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Insert New Student</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Insert Visit Date (<?=$s['studentid'];?>)</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-        <form action="/student" method="post">
+        <form action="/intern/update/visit/<?=$s['internid']?>" method="post">
             <div class="modal-body">
                 <div class="mb-3">
                     <label class="form-label">Visit Date</label>
-                    <input type="date" class="form-control" id="date" placeholder="Visit Date" name="visitdate" required>
-                </div>
-            </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Report Date</label>
-                    <input type="date" class="form-control" id="date" placeholder="Report Date" name="reportdate" required>
+                    <input type="date" class="form-control" id="date" placeholder="Visit Date" name="visitdate" value="<?=$s['visitdate'];?>" required>
                 </div>
             </div>
             <div class="modal-footer">
@@ -59,42 +46,33 @@
     </div>
   </div>
 </div>
+<?php endforeach?>
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php foreach($student as $s):?>
+<!-- Modal Report Date-->
+<div class="modal fade" id="exampleModal<?=$s['internid']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Insert New Student</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Insert Report Submission Date (<?=$s['studentid'];?>)</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-        <form action="/student" method="post">
-            <div class="modal-body">
+        <form action="/intern/update/report/<?=$s['internid']?>" method="post">
+              <div class="modal-body">
                 <div class="mb-3">
-                    <label for="studentid" class="form-label">Student ID</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your Student ID" name="studentid" required>
-                </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your Name" name="name" required>
-                </div>
-                <div class="mb-3">
-                  <label for="program" class="form-label float-start">Programme</label>
-                    <select class="form-select" aria-label="Default select example" name="program" required>
-                      <?php foreach($program as $p):?>
-                        <option value="<?=$p['pname']?>"> <?=$p['pname']?></option>
-                      <?php endforeach;?>
-                    </select>
+                    <label class="form-label">Report Date</label>
+                    <input type="date" class="form-control" id="date" placeholder="Report Date" name="reportdate" value="<?=$s['reportdate'];?>" required>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
-        </form>  
+        </form> 
       </div>
     </div>
   </div>
-</div> -->
+</div>
+<?php endforeach?>
 
         </div>
     </div>
@@ -111,7 +89,6 @@
       <th scope="col">Name</th>
       <th scope="col">Visiting Date</th>
       <th scope="col">Report Submission Date</th>
-      <!-- <th scope="col">Edit Student Date</th> -->
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -126,15 +103,15 @@
       <th scope="row"><?=$bil++;?></th>
       <td><?=$s['studentid'];?></td>
       <td><?=$s['sname'];?></td>
-      <td>(Visiting Date)  <a href="/student/edit/<?=$s['sid']?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a></td>
-      <td>(Report Submission Date) <a href="/student/edit/<?=$s['sid']?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a></td>
+      <td><?=$s['visitdate'];?><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></td>
+      <td><?=$s['reportdate'];?><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$s['sid']?>"><i class="bi bi-pencil"></i></td>
       <!-- <td><a href="/student/edit/<?=$s['sid']?>"  class="btn btn-primary"><i class="bi bi-pencil"></i></a> -->
         <!-- <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wanted to delete this student?')"><i class="bi bi-trash"></i></button>
         </form> -->
+        <!-- <a href="/student/edit/<?=$s['sid']?>" class="btn btn-primary"><i class="bi bi-pencil"></i></a> -->
     </td>
-
     </tr>
 <?php endforeach;?>
   </tbody>
@@ -144,9 +121,8 @@
         </div>
     </div>
 </div>
-
-
 </div>
+
 
 
 <?=$this->endsection()?>
