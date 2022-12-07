@@ -59,12 +59,12 @@
                 <div class="mb-2">
                     <label class="form-label">File Or Image</label>
                 </div>
-                <div class="mb-2"><input type="file" name="files[]" multiple>
+                <div class="mb-2"><input type="file" name="tpic" multiple>
               </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" value="Upload">Edit</button>
+                <button type="submit" class="btn btn-primary" value="Upload">Upload</button>
         </form> 
       </div>
     </div>

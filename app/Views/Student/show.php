@@ -35,7 +35,7 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label class="form-label">Visit Date</label>
-                    <input type="date" class="form-control" id="date" placeholder="Visit Date" name="visitdate" value="<?=$s['visitdate'];?>" required>
+                    <input type="date" class="form-control" id="date" placeholder="Visit Date" name="visitdate" value="<?=$s['visitdate'];?>">
                 </div>
             </div>
             <div class="modal-footer">
@@ -61,7 +61,7 @@
               <div class="modal-body">
                 <div class="mb-3">
                     <label class="form-label">Report Date</label>
-                    <input type="date" class="form-control" id="date" placeholder="Report Date" name="reportdate" value="<?=$s['reportdate'];?>" required>
+                    <input type="date" class="form-control" id="date" placeholder="Report Date" name="reportdate" value="<?=$s['reportdate'];?>">
                 </div>
             </div>
             <div class="modal-footer">

@@ -104,7 +104,7 @@ class Task extends BaseController
             $data=[
                 'tname' => $this->request->getVar('tname'),
                 'tdesc' => $this->request->getVar('tdesc'),
-                'tpic' => $getfiles->getName(),
+                // 'tpic' => $getfiles->getName(),
             ];
             
             // d($data);

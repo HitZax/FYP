@@ -2,13 +2,20 @@
 
 <?=$this->section('content')?>
 
+<?php $this->session = \Config\Services::session(); ?>
+
 <div class="container-fluid">
     
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <?php if($this->session->role == "Lecturer"):?>
+                    <h1 class="my-2 py-2 mt-2">Logbook <?=$student['sname']?></h1>
+                    <?php endif?>
+                    <?php if($this->session->role == "Student"):?>
                     <h1 class="my-2 py-2 mt-2">Logbook</h1>
+                    <?php endif?>
                     <!-- <hr> -->
                     <a href="<?=url_to('task.new', $logbook['lbid'])?>" class="btn btn-outline-primary float-end">Add Task Report</a>
                 </div>
