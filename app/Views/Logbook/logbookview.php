@@ -72,7 +72,7 @@
             <?=csrf_field()?>
               <div class="mb-3">
                 <label class="form-label float-start">Remarks</label>
-                  <input type="text" class="form-control" name="remark" placeholder="Please insert remarks" required>
+                  <input type="text" class="form-control" name="remark" value="<?=$t['remark']?>" placeholder="Please insert remarks">
                   <div class="invalid-feedback">Please insert remarks</div>
               </div>
             </div>

@@ -22,14 +22,14 @@
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/dashboard">Dashboard</a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="/logbook">Logbook</a>
+                </li>
                 <?php if($this->session->role == "Lecturer"):?>
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/student">Student</a>
                 </li>
                 <?php endif?>
-                <li class="nav-item ">
-                    <a class="nav-link active text-white" aria-current="page" href="/logbook">Logbook</a>
-                </li>
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/chat">Communicate</a>
                 </li>

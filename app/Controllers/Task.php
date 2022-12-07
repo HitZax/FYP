@@ -114,6 +114,23 @@ class Task extends BaseController
         }
     }
 
+    public function updatepicture($tid)
+    {
+
+        $getfiles = $this->request->getFile('tpic');
+        $getfiles->move('asset/img/task');
+
+        $data=[
+            'tpic' => $getfiles->getName(),
+        ];
+        
+        // d($data);
+        $this->taskModel->update($tid, $data);
+
+        return redirect()->to('/logbook')->with('message','update');
+    }
+
+
     public function delete($tid)
     {
     $db = \Config\Database::connect();
