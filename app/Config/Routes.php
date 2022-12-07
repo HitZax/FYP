@@ -89,6 +89,7 @@ $routes->get('/task/show/(:any)', 'Task::show/$1', ['filter'=> 'authGuard', 'as'
 $routes->delete('/task/delete/(:any)', 'Task::delete/$1', ['filter'=> 'authGuard', 'as' => 'task.delete'],);
 
 $routes->get('/chat', 'Chat::index');
+$routes->get('/message', 'Chat::insert');
 
 /*
 *----------------------------------------------------------------------

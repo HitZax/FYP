@@ -12,15 +12,17 @@
         </div>
         <div class="title">Chat</div>
     </div>
-    <ul class="messages">Currently Still In Progress...</ul>
+    <div class="container-fluid" id="showmessage">
+        
+    </div>
     <div class="bottom_wrapper clearfix">
         <div class="message_input_wrapper">
-            <input class="message_input" placeholder="Type your message here..." />
+            <input class="message_input" id="message" placeholder="Type your message here..." />
         </div>
-        <div class="send_message">
+        <!-- <div class="send_message">
             <div class="icon"></div>
-            <div class="text">Send</div>
-        </div>
+            <div class="text" id="message">Send</div>
+        </div> -->
     </div>
 </div>
 <div class="message_template">
@@ -34,64 +36,50 @@
 </div>
 
 <script>
-   
-  (function () {
-    var Message;
-    Message = function (arg) {
-        this.text = arg.text, this.message_side = arg.message_side;
-        this.draw = function (_this) {
-            return function () {
-                var $message;
-                $message = $($('.message_template').clone().html());
-                $message.addClass(_this.message_side).find('.text').html(_this.text);
-                $('.messages').append($message);
-                return setTimeout(function () {
-                    return $message.addClass('appeared');
-                }, 0);
-            };
-        }(this);
-        return this;
-    };
-    $(function () {
-        var getMessageText, message_side, sendMessage;
-        message_side = 'right';
-        getMessageText = function () {
-            var $message_input;
-            $message_input = $('.message_input');
-            return $message_input.val();
-        };
-        sendMessage = function (text) {
-            var $messages, message;
-            if (text.trim() === '') {
-                return;
-            }
-            $('.message_input').val('');
-            $messages = $('.messages');
-            message_side = message_side === 'left' ? 'right' : 'left';
-            message = new Message({
-                text: text,
-                message_side: message_side
+
+    //keyup event
+    $(document).ready(function(){
+        $('#message').keyup(function(e){
+            if(e.keyCode == 13) {
+                var message = $(this).val();
+                $('#message').val('');
+                console.log(message);
+                $('#showmessage').append(`
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                ${message}
+                            </div>
+                        </div>
+                    </div>`);
+                $.ajax({
+                url: "/message?message="+message,
+                success: function(data){
+                    console.log("success");
+                }
             });
-            message.draw();
-            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-        };
-        $('.send_message').click(function (e) {
-            return sendMessage(getMessageText());
-        });
-        $('.message_input').keyup(function (e) {
-            if (e.which === 13) {
-                return sendMessage(getMessageText());
             }
+            $('.send_message').click(function(){
+                var message = $('#message').val();
+                $('#message').val('');
+                console.log(message);
+                $('#showmessage').append(`
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                ${message}
+                            </div>
+                        </div>
+                    </div>`);
+                       
+                
+            });
+            //jquery insert data to database when user click send button
+            
+            //display message
         });
-        sendMessage('Hello Philip! :)');
-        setTimeout(function () {
-            return sendMessage('Hi Sandy! How are you?');
-        }, 1000);
-        return setTimeout(function () {
-            return sendMessage('I\'m fine, thank you!');
-        }, 2000);
     });
-  }.call(this));
+
 </script>
 
 <?=$this->endsection()?>
