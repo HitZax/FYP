@@ -38,8 +38,8 @@ class Logbook extends BaseController
                 'title' => 'Student | Logbook',
                 'student' => $student,
                 'logbook' => $logbook,
-                'task' => $task->paginate(10),
-                'pager' => $model->pager,
+                'task' => $this->taskModel->WHERE('lbid',$logbook['lbid'])->Orderby('tdate', 'DESC')->paginate(3, 'task'),
+                'pager' => $this->taskModel->pager,
             ];
             d($data);
             return view('logbook/logbook', $data);

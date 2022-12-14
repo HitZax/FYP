@@ -118,14 +118,15 @@ class Task extends BaseController
     {
         // dd($_POST);
         $getfiles = $this->request->getFile('tpic');
-        dd($getfiles);
+        // dd($getfiles);
         $getfiles->move('asset/img/task');
 
         $data=[
             'tpic' => $getfiles->getName(),
+            'tid' => $tid,
         ];
         
-        dd($data);
+        // dd($data);
         $this->taskModel->update($tid, $data);
 
         return redirect()->to('/logbook')->with('message','update');

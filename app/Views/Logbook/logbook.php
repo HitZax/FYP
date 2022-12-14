@@ -76,9 +76,13 @@
                             <?php endforeach;?>
                         </tbody>
                     </table>
+
+                    <?=$pager->links('task')?>
                 </div>
             </div>
         </div>
+
+
         
 
         <?=$this->endsection()?>
