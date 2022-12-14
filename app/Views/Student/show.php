@@ -2,6 +2,21 @@
 
 <?=$this->section('content')?>
 
+<div class=" container-fluid">
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                          <li class="breadcrumb-item"><a href="/dashboard" class="text-dark text-underline-hover">
+                                  Dashboard</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page"> Student's Date Edit</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+
 <div class="container-fluid px-3 py-3">
 
 <div class="container-fluid">
@@ -19,8 +34,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Student</h1>
+        <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Student's Date Edit</h1>
 
 <?php foreach($student as $s):?>
 <!-- Modal Visit Date -->
@@ -103,8 +118,12 @@
       <th scope="row"><?=$bil++;?></th>
       <td><?=$s['studentid'];?></td>
       <td><?=$s['sname'];?></td>
-      <td><?=$s['visitdate'];?><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></td>
-      <td><?=$s['reportdate'];?><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$s['sid']?>"><i class="bi bi-pencil"></i></td>
+      <td>
+        <?=date('d-m-Y',strtotime($s['visitdate']));?>
+        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
+                                    
+      </td>
+      <td><?=date('d-m-Y',strtotime($s['reportdate']));?><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$s['sid']?>"><i class="bi bi-pencil"></i></td>
       <!-- <td><a href="/student/edit/<?=$s['sid']?>"  class="btn btn-primary"><i class="bi bi-pencil"></i></a> -->
         <!-- <form action="/student/delete/<?=$s['sid']?>" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">

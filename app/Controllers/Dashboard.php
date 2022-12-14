@@ -47,11 +47,11 @@ class Dashboard extends BaseController
         $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
         $lbid = $logbook['lbid'];
         $taskcount = $this->taskModel->counttask($lbid);
-        $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
+        $task = $this->taskModel->gettask($lbid);
 
         //display 3 recent task
         
-
+        // echo $this->taskModel->getLastQuery();
         $data=[
             'title' => 'Dashboard',
             'id'=> session()->get('id'),
@@ -67,6 +67,7 @@ class Dashboard extends BaseController
             'taskcount' => $taskcount,
             'task' => $task
         ];
+
         // dd($data);
         return view('dashboard/dashboard', $data);
         }

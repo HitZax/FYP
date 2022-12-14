@@ -16,10 +16,17 @@ class TaskModel extends Model
         return $this->db->query($sql)->getRowArray();
     }
 
-        public function recenttask($lbid)
+    public function recenttask($lbid)
     {
         $sql = "SELECT * FROM `task` WHERE id=(SELECT MAX(3) FROM `task`);";
         return $this->db->query($sql)->getRowArray();
     }
+
+    public function gettask($lbid)
+    {
+        $sql = "SELECT * FROM task  WHERE lbid = $lbid LIMIT 3";
+        return $this->db->query($sql)->getResultArray();
+    }
+    
     
 }

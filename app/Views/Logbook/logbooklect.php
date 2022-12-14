@@ -2,19 +2,26 @@
 
 <?=$this->section('content')?>
 
+<div class=" container-fluid">
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                          <li class="breadcrumb-item"><a href="/dashboard" class="text-dark text-underline-hover">
+                                  Dashboard</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page"> Student's Logbook</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+
 <div class="container-fluid px-3 py-3">
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom">
+        <div class="col-md-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">Student's Logbook</h1>
         </div>
     </div>
@@ -24,12 +31,12 @@
     <div class="row">
 
         <?php foreach ($student as $s) : ?>
-        <div class="col-lg-4 col-md-4">
+        <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"><?= $s['sname'];?> </h5>
+                                <b class="card-title fw-bold"><?= $s['sname'];?> </b>
                                 <p class="card-text"> <?= $s['studentid'];?> </p>
                                 <a href="/logbook/<?=$s['lbid']?>" class="btn btn-primary">View Logbook</a>
                             </div>

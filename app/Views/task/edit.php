@@ -2,7 +2,23 @@
 
 <?=$this->section('content')?>
 
-<div class="container mx-auto mt-5">
+<div class=" container-fluid">
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                        <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Dashboard</li>
+                          <li class="breadcrumb-item"><a href="/logbook" class="text-dark text-underline-hover">
+                                  Logbook</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Edit Report</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+<div class="container mx-auto">
     <div class="row">
       <!-- <div class="col-md-6 offset-md-3 mt-5 mb-5"> -->
       <!-- <div class="shadow-lg"> -->
@@ -29,10 +45,11 @@
                   <div class="invalid-feedback">Please enter your Task Description.</div>
               </div>
               <div class="mb-3">
-              <div><label class="form-label float-start">Task File or Image</label></div>
+              <div><label class="form-label float-start">Task File or Image: </label></div>
                 <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit File</button>
-                <div class="offset-md-3">
-                   <img src="/asset/img/task/<?=$task['tpic']?>" target="_blank" height="50%" width="50%"></img>
+                <!-- <div class="offset-md-3"> -->
+                   <!-- <img src="/asset/img/task/<?=$task['tpic']?>" target="_blank" height="50%" width="50%"></img> -->
+                   <a href="/asset/img/task/<?=$task['tpic']?>" target="_blank"> View File</a>
                   </div>
                 </div> 
               </div>
@@ -59,7 +76,7 @@
                 <div class="mb-2">
                     <label class="form-label">File Or Image</label>
                 </div>
-                <div class="mb-2"><input type="file" name="tpic" multiple>
+                <div class="mb-2"><input type="file" name="tpic " multiple>
               </div>
             </div>
             <div class="modal-footer">

@@ -2,14 +2,30 @@
 
 <?=$this->section('content')?>
 
-<div class="container mx-auto mt-5">
+<div class=" container-fluid">
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                        <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Dashboard</li>
+                          <li class="breadcrumb-item"><a href="/logbook" class="text-dark text-underline-hover">
+                                  Logbook</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Add Report</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+<div class="container mx-auto">
     <div class="row">
       <!-- <div class="col-md-6 offset-md-3 mt-5 mb-5"> -->
       <!-- <div class="shadow-lg"> -->
         <div class="card px-2 py-2 bg-light">
           <div class="row class">
           <div class="card-body">
-            <h2 class="text-center">Task Report</h2> 
+            <h2 class="text-center">Add Report</h2> 
               <div class="row">
           <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <?=csrf_field()?>

@@ -4,13 +4,29 @@
 
 <?php $this->session = \Config\Services::session(); ?>
 
+<div class=" container-fluid">
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                        <li class=" breadcrumb-item active text-dark text-muted" aria-current="page"> Dashboard</li>
+                          <li class="breadcrumb-item"><a href="/logbook" class="text-dark text-underline-hover">
+                                  Student's Logbook</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page"> Logbook Task List</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+
 <div class="container-fluid">
     
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="my-2 py-2 mt-2">Logbook</h1>
+                <div class="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="my-2 py-2 mt-2">Logbook Task List</h1>
                     <!-- <hr> -->
                     
                 </div>

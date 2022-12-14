@@ -124,7 +124,7 @@ class Task extends BaseController
             'tpic' => $getfiles->getName(),
         ];
         
-        // d($data);
+        dd($data);
         $this->taskModel->update($tid, $data);
 
         return redirect()->to('/logbook')->with('message','update');
@@ -149,7 +149,7 @@ class Task extends BaseController
             'title' => 'Student | Task Report Show',
             'task' => $task
         ];
-        //  dd($data);
+         d($data);
 
         return view('task/show', $data);
     }   

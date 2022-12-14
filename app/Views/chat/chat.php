@@ -2,6 +2,21 @@
 
 <?=$this->section('content')?>
 
+<div class=" container-fluid">
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                          <li class="breadcrumb-item"><a href="/dashboard" class="text-dark text-underline-hover">
+                                  Dashboard</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Chat</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+
 <div class="container mx-auto">
 <div class="chat_window">
     <div class="top_menu">

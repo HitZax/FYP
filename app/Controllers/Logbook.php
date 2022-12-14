@@ -62,7 +62,7 @@ class Logbook extends BaseController
                 'lid' => $lid
                 
             ];
-            d($data);
+            // d($data);
             return view('logbook/logbooklect', $data);
         }
 
@@ -94,11 +94,15 @@ class Logbook extends BaseController
                 ->join('logbook', 'student.sid = logbook.sid')
                 ->where('logbook.lid', $lid)
                 ->get()->getResultArray();
+       
+        // $studname = $this->studentModel->find
 
+        
         $data=[
             'title' => 'Logbook Detail Task',
             'task' => $this->taskModel->Where('lbid', $lbid)->findAll(),
             'student' => $student,
+            // 'lbid' => $lbid
         ];
         d($data);
         return view('logbook/logbookview', $data);

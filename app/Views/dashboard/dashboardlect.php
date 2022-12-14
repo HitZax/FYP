@@ -7,11 +7,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="my-2 py-2">Dashboard</h1>
+                <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="my-2 py-2 mt-2">Dashboard</h1>
                 <hr>
+                </div>
             </div>
         </div>
     </div>
+    
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
