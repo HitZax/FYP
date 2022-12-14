@@ -23,7 +23,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship Start Date</h5>
-                                <p class="card-text"> (Start Of Intern) </p>
+                                <p class="card-text"> <?=date('d-M-Y',strtotime($intern->startdate));?> </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-check fa-3x"></i>
@@ -38,7 +38,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship End Date</h5>
-                                <p class="card-text"> (End Of Intern) </p>
+                                <p class="card-text"> <?=date('d-M-Y',strtotime($intern->enddate));?>) </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-check fa-3x"></i>
@@ -97,7 +97,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship Days Left</h5>
-                                <p class="card-text"> (Count total days left) </p>
+                                <p class="card-text"> <?=$week?> </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-hourglass-split fa-3x"></i>
@@ -112,7 +112,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Total students</h5>
-                                <p class="card-text"> (Students under supervision) </p>
+                                <p class="card-text"> <?=$cs['numrows']?></p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-person-fill fa-3x"></i>
