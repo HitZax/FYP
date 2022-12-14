@@ -63,7 +63,7 @@
           <!-- </div> -->
   </div>
 
-<!-- Modal Report Date-->
+<!-- Modal File-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -71,12 +71,14 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Insert File Or Image</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="/task/file/<?=$task['tid']?>" enctype="multipart/form-data">
               <div class="modal-body">
                 <div class="mb-2">
                     <label class="form-label">File Or Image</label>
                 </div>
-                <div class="mb-2"><input type="file" name="tpic " multiple>
+                <div class="mb-2">
+                  <input type="file" name="tpic" class="form-control">
+                </div>
               </div>
             </div>
             <div class="modal-footer">

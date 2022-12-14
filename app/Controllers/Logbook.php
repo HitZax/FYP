@@ -32,14 +32,16 @@ class Logbook extends BaseController
         {
             $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
             $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
-            $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->findAll();
+            $task = $this->taskModel->WHERE('lbid',$logbook['lbid'])->Orderby('tdate', 'DESC')->findAll();
         
             $data=[
                 'title' => 'Student | Logbook',
                 'student' => $student,
                 'logbook' => $logbook,
-                'task' => $task
+                'task' => $task->paginate(10),
+                'pager' => $model->pager,
             ];
+            d($data);
             return view('logbook/logbook', $data);
         }
         else
@@ -100,11 +102,11 @@ class Logbook extends BaseController
         
         $data=[
             'title' => 'Logbook Detail Task',
-            'task' => $this->taskModel->Where('lbid', $lbid)->findAll(),
+            'task' => $this->taskModel->Where('lbid', $lbid)->Orderby('tdate', 'DESC')->findAll(),
             'student' => $student,
             // 'lbid' => $lbid
         ];
-        d($data);
+        // d($data);
         return view('logbook/logbookview', $data);
     }
 

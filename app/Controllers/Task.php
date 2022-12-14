@@ -114,10 +114,11 @@ class Task extends BaseController
         }
     }
 
-    public function updatepicture($tid)
+    public function updatefile($tid)
     {
-
+        // dd($_POST);
         $getfiles = $this->request->getFile('tpic');
+        dd($getfiles);
         $getfiles->move('asset/img/task');
 
         $data=[
