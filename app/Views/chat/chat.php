@@ -96,7 +96,7 @@
         console.log(comment);
   $.ajax({
     type: 'POST',
-    url: '/message?message="+comment',
+    url: '/message?message="+comment"',
     success: function(response) {
       console.log(response);
     }
