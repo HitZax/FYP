@@ -21,7 +21,7 @@
 
 <div class="chatContainer">
 
-    <div class="chatTitleContainer">Chat(Student Name)</div>
+    <div class="chatTitleContainer">Chat (Student Name)</div>
 	<div class="chatHistoryContainer">
 
         <ul class="formComments">
