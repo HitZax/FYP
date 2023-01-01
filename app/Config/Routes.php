@@ -89,7 +89,7 @@ $routes->post('/task/file/(:any)', 'Task::updatefile/$1', ['filter'=> 'authGuard
 $routes->get('/task/show/(:any)', 'Task::show/$1', ['filter'=> 'authGuard', 'as' => 'task.show'],);
 $routes->delete('/task/delete/(:any)', 'Task::delete/$1', ['filter'=> 'authGuard', 'as' => 'task.delete'],);
 
-$routes->get('/chat', 'Chat::index');
+$routes->get('/chat/(:any)', 'Chat::index/$1');
 $routes->post('/message', 'Chat::insert');
 
 /*

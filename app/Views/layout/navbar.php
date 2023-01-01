@@ -31,7 +31,7 @@
                 </li>
                 <?php endif?>
                 <li class="nav-item ">
-                    <a class="nav-link active text-white" aria-current="page" href="/chat">Communicate</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/chat/<?= $this->session->get('id');?>">Communicate</a>
                 </li>
             </ul>
 
