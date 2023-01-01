@@ -38,7 +38,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h5 class="card-title">Internship End Date</h5>
-                                <p class="card-text"> <?=date('d-M-Y',strtotime($intern->enddate));?>) </p>
+                                <p class="card-text"> <?=date('d-M-Y',strtotime($intern->enddate));?> </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-check fa-3x"></i>

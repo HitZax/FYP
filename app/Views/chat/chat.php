@@ -2,11 +2,26 @@
 
 <?=$this->section('content')?>
 
-<div class="container-fluid pt-3">
+<div class="container-fluid">
+
+  <div class=" container-fluid">
+              <div class="row">
+                  <div class="col-md-12 pt-3">
+                      <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
+                          <li class="breadcrumb-item"><a href="/dashboard" class="text-dark text-underline-hover">
+                                  Dashboard</a>
+                          </li>
+                          <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Chat</li>
+                      </ol>
+                  </div>
+              </div>
+            </div>
+
+<div class="container-fluid">
 
 <div class="chatContainer">
 
-    <div class="chatTitleContainer">Chat (Student Name)</div>
+    <div class="chatTitleContainer">Chat(Student Name)</div>
 	<div class="chatHistoryContainer">
 
         <ul class="formComments">
@@ -34,273 +49,6 @@
 				</table>
 			</li>
             
-            
-    		<li class="commentLi commentstep-1" data-commentid="5">
-				<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-5" data-commentid="5" class="comment comment-step1">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-5" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            
-    		<li class="commentLi commentstep-1" data-commentid="6">
-				<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-6" data-commentid="6" class="comment">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-6" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            
-            <li class="commentLi commentstep-2" data-commentid="7">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-7" data-commentid="7" class="comment">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-7" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-                
-                <li class="commentLi commentstep-3" data-commentid="8">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-8" data-commentid="8" class="comment">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-8" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            <li class="commentLi commentstep-3" data-commentid="10">
-        		<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-10" data-commentid="10" class="comment">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-10" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            <li class="commentLi commentstep-2" data-commentid="9">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-9" data-commentid="9" class="comment">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-9" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-
-
-            <li class="commentLi commentstep-1" data-commentid="11">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-11" data-commentid="11" class="comment comment-step1">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-11" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            <li class="commentLi commentstep-1" data-commentid="12">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-12" data-commentid="12" class="comment comment-step1">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-12" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            <li class="commentLi commentstep-1" data-commentid="13">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-13" data-commentid="13" class="comment comment-step1">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-13" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            <li class="commentLi commentstep-1" data-commentid="14">
-    			<table class="form-comments-table">
-					<tr>
-						<td><div class="comment-timestamp">12:03 25/4/2016</div></td>
-						<td><div class="comment-user">Ollie Bott</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img src="">
-							</div>
-						</td>
-						<td>
-							<div id="comment-14" data-commentid="14" class="comment comment-step1">
-								This is a comment HELLO!!!!
-                                <div id="commentactions-14" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
-                            </div>
-						</td>
-					</tr>
-				</table>
-			</li>
-            
-            
-            
-            
-            
         </ul>
 
 
@@ -310,10 +58,10 @@
     
     <div class="input-group input-group-sm chatMessageControls">
         <span class="input-group-addon" id="sizing-addon3">Comment</span>
-        <input type="text" class="form-control" placeholder="Type your message here.." aria-describedby="sizing-addon3">    
+        <input type="text" class="form-control" placeholder="Type your message here.." aria-describedby="sizing-addon3" id="comment">    
         <span class="input-group-btn">
             <button id="clearMessageButton" class="btn btn-default" type="button">Clear</button>
-            <button id="sendMessageButton" class="btn btn-primary" type="button"><i class="fa fa-send"></i>Send</button>
+            <button id="send" class="btn btn-primary" type="button"><i class="fa fa-send"></i>Send</button>
         </span>
         <span class="input-group-btn">
             <button id="undoSendButton" class="btn btn-default" type="button" disabled><i class="fa fa-undo"></i>Undo</button>
@@ -322,5 +70,44 @@
 </div>
 
 </div>
+
+<script>
+
+    // //keyup event
+    // $(document).ready(function(){
+    //     $('#message').keyup(function(e){
+
+    //             $.ajax({
+    //             url: "/message?message="+message,
+    //             success: function(data){
+    //                 console.log("success");
+    //             }
+    //         });
+    //         }
+   
+    //         }));
+    //         //jquery insert data to database when user click send button
+            
+    //         //display message
+
+    $(document).ready(function() {
+    $('#send').click(function() {
+        var comment = $('#comment').val();
+        console.log(comment);
+  $.ajax({
+    type: 'POST',
+    url: '/message?message="+comment',
+    success: function(response) {
+      console.log(response);
+    }
+  });
+    });
+
+  });
+
+
+
+
+</script>
 
 <?=$this->endsection()?>

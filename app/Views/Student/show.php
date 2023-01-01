@@ -121,6 +121,7 @@
                     <td>
                       <?php if($s['visitdate'] == ""):?>
                         <small class="text">No Data</small>
+                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
                       <?php else: ?>
                         <?=date('d-m-Y',strtotime($s['visitdate']));?>
                         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
@@ -129,6 +130,7 @@
                     <td>
                       <?php if($s['reportdate'] == ""):?>
                         <small class="text">No Data</small>
+                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
                       <?php else: ?>
                         <?=date('d-m-Y',strtotime($s['reportdate']));?>
                         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
