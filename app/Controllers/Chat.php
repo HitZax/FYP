@@ -28,7 +28,7 @@ class Chat extends BaseController
         if(session()->get('role')=="Student")
         {
         
-        $chat = $chatModel->find($sid);
+        // $chat = $chatModel->find($sid);
 
             $data=[
                 'title' => 'Chat',
