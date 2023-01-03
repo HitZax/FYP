@@ -30,22 +30,39 @@ class Chat extends BaseController
         if(session()->get('role')=="Student")
         {
         
-        // $chat = $chatModel->find($sid);
             //find message by id
             $sid = session()->get('id');
             $chat = $this->chatModel->WHERE('sid', $sid)->first();
             //findchat id
-            $chatid = $chat['chatid'];
+        
+            if(empty($chat))
+            {
+                // $chatid = $chat['chatid'];
+                // $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
+                //get lid
+                $findstudent = $this->studentModel->WHERE('sid', $sid)->first();
+
+                $lid = $findstudent['lid'];
+                $data=[
+                    'title' => 'Chat',
+                    'messages' => [],
+                    'lid' => $lid,
+                ];
+                // dd($data);
+                return view('chat/chat', $data);
+            }
+            else
+            {
+                $chatid = $chat['chatid'];
+                $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
+                $data=[
+                    'title' => 'Chat',
+                    'messages' => $messages,
+                ];
+                // dd($data);
+                return view('chat/chat', $data);
+            }
             // dd($chatid);
-
-            $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
-            $data=[
-                'title' => 'Chat',
-                'messages' => $messages,
-
-            ];
-            // dd($data);
-            return view('chat/chat', $data);
         }
         else
         {
@@ -86,6 +103,16 @@ class Chat extends BaseController
         }
     }
 
+    public function new()
+    {
+        $id = $this->request->getVar('id');
+        // $sid = session()->get('id');
+        $data=[
+            'title' => 'Chat',
+            'id' => $id,
+
+        ];
+    }
     //create show method for lecturer
     public function show($sid)
     {

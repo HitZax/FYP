@@ -26,6 +26,11 @@
 
         <ul class="formComments">
             <li class="commentLi commentstep-1" data-commentid="4">
+                <?php if(empty($messages)):?>
+                    <div class="comment-timestamp">No message</div>
+                    <button class="btn btn-primary" id="newchat">New Chat</button>
+                <?php endif?>
+
                 <?php foreach($messages as $message): ?>
 				<table class="form-comments-table">
 					<tr>
@@ -69,6 +74,26 @@
             $.ajax({
                 type: 'post',
                 url: "/message?message="+comment,
+                success: function(response) {
+                    //reload container
+                    $('#comment').val('');
+                    //by default scroll to the bottom of the chat
+                    $('.chatHistoryContainer').load(' .chatHistoryContainer');
+
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#newchat').click(function() {
+            // var comment = $('#comment').val();
+            // console.log(comment);
+            var id = '<?=session()->get('id')?>';
+            var lid = '<?=$lid?>';
+            $.ajax({
+                type: 'post',
+                url: "/newmessage?id="+id"&lid="+lid,
                 success: function(response) {
                     //reload container
                     $('#comment').val('');
