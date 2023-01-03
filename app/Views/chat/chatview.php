@@ -39,7 +39,7 @@
                             <div>
                                 <b class="card-title fw-bold"><?= $s['sname'];?> </b>
                                 <p class="card-text"> <?= $s['studentid'];?> </p>
-                                <a href="/chat" class="btn btn-primary">Open Chat</a>
+                                <a href="/chat/<?= $s['sid'];?>" class="btn btn-primary">Open Chat</a>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-chat-dots float-end fa-4x"></i>

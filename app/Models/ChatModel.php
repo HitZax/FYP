@@ -8,5 +8,5 @@ class ChatModel extends Model
 {
     protected $table            = 'chat';
     protected $primaryKey       = 'chatid';
-    protected $allowedFields    = ['message','timestamp','sid','lid'];
+    protected $allowedFields    = ['sid','lid'];
 }
