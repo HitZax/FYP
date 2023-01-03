@@ -90,10 +90,10 @@
             // var comment = $('#comment').val();
             // console.log(comment);
             var id = '<?=session()->get('id')?>';
-            var lid = '<?=$lid?>';
+           
             $.ajax({
                 type: 'post',
-                url: "/newmessage?id="+id"&lid="+lid,
+                url: "/newmessage?id="+id,
                 success: function(response) {
                     //reload container
                     $('#comment').val('');
