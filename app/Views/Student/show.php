@@ -73,6 +73,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
                 <form action="/intern/update/report/<?=$s['internid']?>" method="post">
+                <?=csrf_field()?>
                       <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Report Date</label>
@@ -130,10 +131,10 @@
                     <td>
                       <?php if($s['reportdate'] == ""):?>
                         <small class="text">No Data</small>
-                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
                       <?php else: ?>
                         <?=date('d-m-Y',strtotime($s['reportdate']));?>
-                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#Modal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$s['sid']?>"><i class="bi bi-pencil"></i></button>
                       <?php endif?>
                     </td>
                   

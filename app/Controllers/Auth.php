@@ -18,7 +18,6 @@ class Auth extends Controller
 
     public function index()
     {
-        // helper(['form']);
         return view('auth/login');
     } 
   

@@ -29,10 +29,16 @@
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/student">Student</a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="/chatlect/<?= $this->session->get('id');?>">Communicate</a>
+                </li>
                 <?php endif?>
+
+                <?php if($this->session->role == "Student"):?>
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/chat/<?= $this->session->get('id');?>">Communicate</a>
                 </li>
+                <?php endif?>
             </ul>
 
             <?php if($this->session->role == "Student"):?>

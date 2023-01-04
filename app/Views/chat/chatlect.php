@@ -21,12 +21,15 @@
 
 <div class="chatContainer">
 
-    <div class="chatTitleContainer">Chat</div>
+    <div class="chatTitleContainer">Chat with Lecturer</div>
 	<div class="chatHistoryContainer">
 
         <ul class="formComments">
             <li class="commentLi commentstep-1" data-commentid="4">
-
+                <?php if(empty($messages)):?>
+                    <div class="comment-timestamp">No message</div>
+                    <button class="btn btn-primary" id="newchat">New Chat</button>
+                <?php endif?>
 
                 <?php foreach($messages as $message): ?>
 				<table class="form-comments-table">
@@ -49,34 +52,26 @@
 			</li>
         </ul>
 	</div>
-  <?php if (session()->get('role')== 'Student'): ?>
+    
     <div class="input-group input-group-sm chatMessageControls">
     <div class=" container-fluid d-grid gap-2">
-        <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Write a message to lecturer <i class="bi bi-send-fill"></i></button>
+        <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Write a message <i class="bi bi-send-fill"></i></button>
         </span>
     </div>
     </div>
-    <?php else: ?>
-      <div class="input-group input-group-sm chatMessageControls">
-    <div class=" container-fluid d-grid gap-2">
-        <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#lecturerModal">Write a message to student <i class="bi bi-send-fill"></i></button>
-        </span>
-    </div>
-    </div>
-    <?php endif; ?>
 </div>
 
 </div>
 
 <!-- Button trigger modal -->
 
-<?php if (session()->get('role')== 'Student'): ?>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Message Student</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -97,34 +92,7 @@
     </div>
   </div>
 </div>
-<?php else: ?>
 
-<!-- Modal -->
-<div class="modal fade" id="lecturerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Message Lecturer</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
 
-      <form action="/message?c=<?=$message['chatid']?>" method="post" autocomplete="off">
-      <div class="modal-body">
-            <div class="mb-3">
-                <!-- <label class="form-label float-start">Messages</label> -->
-                  <input type="text" name="message" placeholder="Write your message here" class="form-control" style="height: 100px" required>
-                  <!-- <div class="invalid-feedback">Please enter your Task Description.</div> -->
-            </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Send Message <i class="bi bi-send-fill"></i></button>
-      </div>
-        </form>
-    </div>
-  </div>
-</div>
-<?php endif;?>
 
 <?=$this->endsection()?>

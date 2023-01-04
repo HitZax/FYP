@@ -99,7 +99,7 @@ class Dashboard extends BaseController
         //count weeks
         $daytoint = (int)($days/7-12)*-1;
         $week = intval($daytoint);
- $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+        $user = $this->userModel->WHERE('id', session()->get('id'))->first();
             $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
             $lid = $lecturer['lid'];
          $countstudent = $this->studentModel->countstudent($lid);

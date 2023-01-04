@@ -25,62 +25,49 @@ class Chat extends BaseController
         $this->messageModel = new MessageModel();
     }
 
-    public function index()
+    public function index($id)
     {
-        if(session()->get('role')=="Student")
-        {
-        
-            //find message by id
-            $sid = session()->get('id');
-            $chat = $this->chatModel->WHERE('sid', $sid)->first();
-            //findchat id
-        
-            if(empty($chat))
-            {
-                // $chatid = $chat['chatid'];
-                // $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
-                //get lid
-                $findstudent = $this->studentModel->WHERE('sid', $sid)->first();
+        // dd($id);
+            $chat = $this->chatModel->WHERE('sid', $id)->first();
+        // dd($id);
+        $chatid = $chat['chatid'];
+        $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->OrderBy('messageid', 'ASC')->findAll();
+        // $now = time("Y-m-d",strtotime($intern->enddate));
 
-                $lid = $findstudent['lid'];
-                $data=[
-                    'title' => 'Chat',
-                    'messages' => [],
-                    'lid' => $lid,
-                ];
-                // dd($data);
-                return view('chat/chat', $data);
-            }
-            else
-            {
-                $chatid = $chat['chatid'];
-                $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
-                $data=[
-                    'title' => 'Chat',
-                    'messages' => $messages,
-                ];
-                // dd($data);
-                return view('chat/chat', $data);
-            }
+        $data=[
+            'title' => 'Chat',
+            'messages' => $messages,
+        ];
+        // dd($data);
+        return view('chat/chat', $data);
+        
+            // //find message by id
+            // $sid = session()->get('id');
+            // $chat = $this->chatModel->WHERE('sid', $sid)->first();
+            // //findchat id
+        
+            // if(empty($chat))
+            // {
+            //     // $chatid = $chat['chatid'];
+            //     // $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
+            //     //get lid
+            //     $findstudent = $this->studentModel->WHERE('sid', $sid)->first();
+
+            //     $lid = $findstudent['lid'];
+            //     $data=[
+            //         'title' => 'Chat',
+            //         'messages' => [],
+            //         'lid' => $lid,
+            //     ];
+            //     // dd($data);
+            //     return view('chat/chat', $data);
+            // }
+            // else
+            // {
+              
+            // }
             // dd($chatid);
-        }
-        else
-        {
-            $sid = session()->get('id');
-            // $messages = $this->chatModel->WHERE('sid', $sid)->findAll();
-            ///find message by id and join table user and table lecturer
-
-            // $messages = $this->chatModel->WHERE('sid', $sid)->join('users', 'chat.sid = users.id')->findAll();
-
-            //find message by id and join table user and table lecturer
-            $messages = $this->chatModel->WHERE('sid', $sid)->join('users', 'chat.sid = users.id')->join('lecturer', 'chat.sid = lecturer.lid')->orderby('timestamp', 'ASC')->findAll();
-            $data=[
-                'title' => 'Chat',
-                'messages' => $messages,
-
-            ];
-            d($data);
-            return view('chat/chat', $data);
+      
             // $user = $this->userModel->WHERE('id', session()->get('id'))->first();
             // $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
             // $lid = $lecturer['lid'];
@@ -100,7 +87,43 @@ class Chat extends BaseController
             // ];
             // // d($data);
             // return view('chat/chatview', $data);
-        }
+        
+    }
+
+    public function indexlect()
+    {
+        $sid = session()->get('id');
+           
+            $findallstudent = $this->chatModel->join('student', 'student.sid = chat.sid')->WHERE('id', $sid)->findall();
+            
+            // dd($findallstudent);
+            $data=[
+                'title' => 'Chat',
+                'student' => $findallstudent,
+
+            ];
+            d($data);
+            return view('chat/chatview', $data);
+            // $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+            // $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
+            // $lid = $lecturer['lid'];
+            // $db = \Config\Database::connect();
+            // $student = $db->table('student')
+            //                 ->join('logbook', 'student.sid = logbook.sid')
+            //                 ->where('logbook.lid', $lid)
+            //                 ->get()->getResultArray();
+
+            // $data=[
+            //     'title' => 'Lecturer | Logbook',
+            //     'user' => $user,
+            //     'lecturer' => $lecturer,
+            //     'student' => $student,
+            //     'lid' => $lid
+                
+            // ];
+            // // d($data);
+            // return view('chat/chatview', $data);
+        
     }
 
     public function new()
@@ -110,7 +133,6 @@ class Chat extends BaseController
         $data=[
             'title' => 'Chat',
             'id' => $id,
-
         ];
     }
     //create show method for lecturer
@@ -136,19 +158,43 @@ class Chat extends BaseController
             'sid' => $sid
             
         ];
-        // d($data);
+        dd($data);
         return view('chat/chatview', $data);
     }
 
-    //create insert method
+
+    // public function insert()
+    // {
+    //     $sid = session()->get('id');
+    //     $chat = $this->chatModel->WHERE('sid', $sid)->first();
+    //     $chatid = $chat['chatid'];
+    //     $message = $this->request->getVar('message');
+
+    //     $data = [
+    //         'message' => $message,
+    //         'timestamp' => date('Y-m-d H:i:s'),
+    //         'id' => session()->get('id'),
+    //         'chatid' => $chatid,
+    //         // 'lid' => 
+    //     ];
+    //     dd($data);
+    //     $this->messageModel->insert($data);
+    //     // return redirect()->to(base_url('chat'));
+    // }
+
     public function insert()
     {
-        $sid = session()->get('id');
-        $chat = $this->chatModel->WHERE('sid', $sid)->first();
-            //findchat id
-        $chatid = $chat['chatid'];
+        if(session()->get('role')=="Lecturer")
 
+        {
+        $sid = session()->get('id');
+        // dd($sid);
+        $chatid = $this->request->getVar('c');
+        // dd($chatid);
+        // $chat = $this->chatModel->WHERE('id', $sid)->first();
+        // $chatid = $chat['chatid'];
         $message = $this->request->getVar('message');
+        
         $data = [
             'message' => $message,
             'timestamp' => date('Y-m-d H:i:s'),
@@ -158,6 +204,31 @@ class Chat extends BaseController
         ];
         // dd($data);
         $this->messageModel->insert($data);
-        // return redirect()->to(base_url('chat'));
+        return redirect()->back();
+        }
+        elseif(session()->get('role')=="Student")
+        {
+            $sid = session()->get('id');
+            d($sid);
+            $chat = $this->chatModel->WHERE('sid', $sid)->first();
+            // dd($chat);
+            $chatid = $chat['chatid'];
+            $message = $this->request->getVar('message');
+            
+            $data = [
+                'message' => $message,
+                'timestamp' => date('Y-m-d H:i:s'),
+                'id' => session()->get('id'),
+                'chatid' => $chatid,
+                // 'lid' => 
+            ];
+            // dd($data);
+            $this->messageModel->insert($data);
+            return redirect()->back();
+        }
+        else
+        {
+            echo'Error';
+        }
     }
 }

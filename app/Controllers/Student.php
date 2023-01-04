@@ -134,8 +134,10 @@ class Student extends BaseController
         return redirect()->to('/student')->with('message','update');
     }
 
-        public function updatereport($id)
+    public function updatereport($id)
     {
+        // dd($id);
+
         $studentmodel = new StudentModel();
         $internmodel = new InternModel();
         
