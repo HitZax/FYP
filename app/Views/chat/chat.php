@@ -56,7 +56,7 @@
                             <?php if ($message['role'] == 'Student'): ?>
 							<div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-primary"><?=$message['message']?></div>
                             <?php else: ?>
-                            <div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-danger"><?=$message['message']?></div>
+                            <div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-success"><?=$message['message']?></div>
                             <?php endif; ?>
 						</td>
 					</tr>
@@ -92,7 +92,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Message Student</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -120,7 +120,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Message Lecturer</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
