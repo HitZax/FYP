@@ -4,13 +4,14 @@
 
 <div class="container-fluid">
 
-<?php if (session()->get('role')== 'Student'): ?>
+<?php if (session()->get('role')== 'Lecturer'): ?>
   <div class=" container-fluid">
               <div class="row">
                   <div class="col-md-12 pt-3">
                       <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
-                          <li class="breadcrumb-item"><a href="/dashboard" class="text-dark text-underline-hover">
-                                  Dashboard</a>
+                      <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Dashboard</li>
+                          <li class="breadcrumb-item"><a href="/chatlect/.$id" class="text-dark text-underline-hover">
+                                  Chat List</a>
                           </li>
                           <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Chat</li>
                       </ol>
