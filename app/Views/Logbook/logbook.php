@@ -76,8 +76,7 @@
                             <?php endforeach;?>
                         </tbody>
                     </table>
-
-                    <?=$pager->links('task')?>
+                    <div class=" d-flex justify-content-center"><?=$pager->links('task')?></div>
                 </div>
             </div>
         </div>

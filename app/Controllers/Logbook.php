@@ -99,7 +99,8 @@ class Logbook extends BaseController
         
         $data=[
             'title' => 'Logbook Detail Task',
-            'task' => $this->taskModel->Where('lbid', $lbid)->Orderby('tdate', 'DESC')->findAll(),
+            'task' => $this->taskModel->Where('lbid', $lbid)->Orderby('tdate', 'DESC')->paginate(10, 'task'),
+            'pager' => $this->taskModel->pager,
             'student' => $student,
             // 'lbid' => $lbid
         ];

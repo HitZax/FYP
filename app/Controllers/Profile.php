@@ -49,7 +49,7 @@ class Profile extends BaseController
             // dd($data);
             $usermodel->update($id, $data);
     
-            return redirect()->to('/profile/edit/'.$id)->with('message','update');
+            return redirect()->to('/profile/edit/'.$id)->with('message','Successfully updated profile');
         }
         else
         {
@@ -63,7 +63,7 @@ class Profile extends BaseController
             // dd($data);
             $usermodel->update($id, $data);
     
-            return redirect()->to('/profile/edit/'.$id)->with('message','Successfully update profile');
+            return redirect()->to('/profile/edit/'.$id)->with('message','Successfully updated profile');
         }
 
     }

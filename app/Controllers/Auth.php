@@ -56,13 +56,13 @@ class Auth extends Controller
             }
             else
             {
-                $session->setFlashdata('msg', 'Wrong Password');
+                $session->setFlashdata('msg', 'Invalid Password');
                 return redirect()->to('/login');
             }
         }
         else
         {
-            $session->setFlashdata('msg', 'Email or Student ID not Found');
+            $session->setFlashdata('msg', 'Invalid Email or Student ID.');
             return redirect()->to('/login');
         }
            

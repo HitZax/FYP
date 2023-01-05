@@ -22,11 +22,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Internship Start Date</h5>
-                                <p class="card-text"> <?=date('d-M-Y',strtotime($intern->startdate));?> </p>
+                                <h5 class="card-title fw-bold"><?=date('d-M-Y',strtotime($intern->startdate));?></h5>
+                                <p class="card-text">Internship Start Date</p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-check fa-3x"></i>
+                                <i class="bi bi-calendar3 fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -37,11 +37,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Internship End Date</h5>
-                                <p class="card-text"> <?=date('d-M-Y',strtotime($intern->enddate));?> </p>
+                                <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->enddate));?> </h5>
+                                <p class="card-text"> Internship End Date </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-calendar-check fa-3x"></i>
+                                <i class="bi bi-calendar3 fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -52,8 +52,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Current Week</h5>
-                                <p class="card-text"> On week (1-12) </p>
+                                <h5 class="card-title fw-bold"> Currently On Week <?=$week?> </h5>
+                                <p class="card-text"> Internship Week </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar-week fa-3x"></i>
@@ -81,11 +81,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Remarks Given</h5>
-                                <p class="card-text"> (Remarks Total) </p>
+                                <h5 class="card-title fw-bold">3</h5>
+                                <p class="card-text"> Total Remarks </p>
                             </div>
                             <div class="align-self-center">
-                                <i class="bi bi-journal-plus fa-3x"></i>
+                                <i class="bi bi-pencil-fill fa-3x"></i>
                             </div>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Internship Days Left</h5>
-                                <p class="card-text"> <?=$week?> </p>
+                                <h5 class="card-title fw-bold"> <?=$days?> Days </h5>
+                                <p class="card-text"> Internship Days Remaining </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-hourglass-split fa-3x"></i>
@@ -111,8 +111,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title">Total students</h5>
-                                <p class="card-text"> <?=$cs['numrows']?></p>
+                                <h5 class="card-title fw-bold"><?=$cs['numrows']?></h5>
+                                <p class="card-text"> Total Students </p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-person-fill fa-3x"></i>

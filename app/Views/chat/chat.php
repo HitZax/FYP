@@ -43,44 +43,41 @@
         <ul class="formComments">
             <li class="commentLi commentstep-1" data-commentid="4">
 
-
-                <?php foreach($messages as $message): ?>
+      <?php foreach($messages as $message): ?>
 				<table class="form-comments-table">
 					<tr>
 						<td><div class="comment-timestamp"><?=$message['timestamp']?></div></td>
 						<td><div class="comment-user"><?=$message['fullname']?></div></td>
-						<td>
-							
-						</td>
-						<td>
-                            <?php if ($message['role'] == 'Student'): ?>
-							<div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-primary"><?=$message['message']?></div>
-                            <?php else: ?>
-                            <div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-success"><?=$message['message']?></div>
-                            <?php endif; ?>
-						</td>
+						<td></td>
+              <td>
+                  <?php if ($message['role'] == 'Student'): ?>
+                    <div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-primary"><?=$message['message']?></div>
+                  <?php else: ?>
+                    <div id="comment-4" data-commentid="4" class="comment comment-step1 text-bg-success"><?=$message['message']?></div>
+                  <?php endif; ?>
+              </td>
 					</tr>
 				</table>
-                <?php endforeach; ?>
-			</li>
-        </ul>
-	</div>
-  <?php if (session()->get('role')== 'Student'): ?>
-    <div class="input-group input-group-sm chatMessageControls">
-    <div class=" container-fluid d-grid gap-2">
-        <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Write a message to lecturer <i class="bi bi-send-fill"></i></button>
-        </span>
+          <?php endforeach; ?>
+          </li>
+            </ul>
+          </div>
+          <?php if (session()->get('role')== 'Student'): ?>
+            <div class="input-group input-group-sm chatMessageControls">
+            <div class=" container-fluid d-grid gap-2">
+                <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Write a message to lecturer <i class="bi bi-send-fill"></i></button>
+                </span>
+            </div>
+            </div>
+            <?php else: ?>
+              <div class="input-group input-group-sm chatMessageControls">
+            <div class=" container-fluid d-grid gap-2">
+                <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#lecturerModal">Write a message to student <i class="bi bi-send-fill"></i></button>
+                </span>
+            </div>
+            </div>
+            <?php endif; ?>
     </div>
-    </div>
-    <?php else: ?>
-      <div class="input-group input-group-sm chatMessageControls">
-    <div class=" container-fluid d-grid gap-2">
-        <button type="button " class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#lecturerModal">Write a message to student <i class="bi bi-send-fill"></i></button>
-        </span>
-    </div>
-    </div>
-    <?php endif; ?>
-</div>
 
 </div>
 
