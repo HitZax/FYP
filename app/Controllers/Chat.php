@@ -231,4 +231,27 @@ class Chat extends BaseController
             echo'Error';
         }
     }
+
+    public function fetchMessages()
+    {
+        $chatid = $this->request->getVar('chatid');
+        $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->OrderBy('messageid', 'ASC')->findAll();
+
+        return $this->response->setJSON(['messages' => $messages]);
+    }
+
+    public function sendMessage()
+    {
+        $message = $this->request->getVar('message');
+        $chatid = $this->request->getVar('chatid');
+        $data = [
+            'message' => $message,
+            'timestamp' => date('Y-m-d H:i:s'),
+            'id' => session()->get('id'),
+            'chatid' => $chatid,
+        ];
+        $this->messageModel->insert($data);
+
+        return $this->response->setJSON(['status' => 'success']);
+    }
 }

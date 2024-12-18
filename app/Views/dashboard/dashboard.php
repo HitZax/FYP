@@ -22,7 +22,9 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"><?=date('d-M-Y',strtotime($intern->startdate));?></h5>
+                                <h5 class="card-title fw-bold">
+                                    <?= $intern->startdate ? date('d-M-Y', strtotime($intern->startdate)) : "Date hasn't Been Set"; ?>
+                                </h5>
                                 <p class="card-text">Internship Start Date</p>
                             </div>
                             <div class="align-self-center">
@@ -37,8 +39,10 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold"> <?=date('d-M-Y',strtotime($intern->enddate));?> </h5>
-                                <p class="card-text"> Internship End Date </p>
+                                <h5 class="card-title fw-bold">
+                                    <?= $intern->enddate ? date('d-M-Y', strtotime($intern->enddate)) : " Date hasn't Been Set"; ?>
+                                </h5>
+                                <p class="card-text">Internship End Date</p>
                             </div>
                             <div class="align-self-center">
                                 <i class="bi bi-calendar3 fa-3x"></i>

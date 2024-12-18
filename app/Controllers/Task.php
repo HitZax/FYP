@@ -27,9 +27,11 @@ class Task extends BaseController
 
     public function store($lbid)
     {
-        if($this->request->getFile('tpic') == null)
+        $file = $this->request->getFile('tpic');
+        
+        if ($file == null)
         {
-            $data=[
+            $data = [
                 'tname' => $this->request->getVar('tname'),
                 'tdesc' => $this->request->getVar('tdesc'),
                 'tdate' => $this->request->getVar('tdate'),
@@ -41,21 +43,30 @@ class Task extends BaseController
             return redirect()->to('/logbook');
         }
         else
-        { 
-            $getfiles = $this->request->getFile('tpic');
-            $getfiles->move('asset/img/task');
-
-            $data=[
-                'tname' => $this->request->getVar('tname'),
-                'tdesc' => $this->request->getVar('tdesc'),
-                'tdate' => $this->request->getVar('tdate'),
-                'tpic' => $getfiles->getName(),
-                'lbid' => $lbid
-            ];
+        {
+            $validMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
             
-            $this->taskModel->insert($data);
+            if ($file->isValid() && in_array($file->getMimeType(), $validMimeTypes))
+            {
+                $file->move('asset/img/task');
+                
+                $data = [
+                    'tname' => $this->request->getVar('tname'),
+                    'tdesc' => $this->request->getVar('tdesc'),
+                    'tdate' => $this->request->getVar('tdate'),
+                    'tpic' => $file->getName(),
+                    'lbid' => $lbid
+                ];
+                
+                $this->taskModel->insert($data);
 
-            return redirect()->to('/logbook');
+                return redirect()->to('/logbook');
+            }
+            else
+            {
+                // Handle invalid file type
+                return redirect()->back()->with('error', 'Invalid file type. Only images and PDF files are allowed.');
+            }
         }
     }
 
@@ -116,20 +127,28 @@ class Task extends BaseController
 
     public function updatefile($tid)
     {
-        // dd($_POST);
         $getfiles = $this->request->getFile('tpic');
-        // dd($getfiles);
-        $getfiles->move('asset/img/task');
-
-        $data=[
-            'tpic' => $getfiles->getName(),
-            'tid' => $tid,
-        ];
         
-        // dd($data);
-        $this->taskModel->update($tid, $data);
+        $validMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+        
+        if ($getfiles->isValid() && in_array($getfiles->getMimeType(), $validMimeTypes))
+        {
+            $getfiles->move('asset/img/task');
+            
+            $data = [
+                'tpic' => $getfiles->getName(),
+                'tid' => $tid,
+            ];
+            
+            $this->taskModel->update($tid, $data);
 
-        return redirect()->to('/logbook')->with('message','update');
+            return redirect()->to('/logbook')->with('message', 'update');
+        }
+        else
+        {
+            // Handle invalid file type
+            return redirect()->back()->with('error', 'Invalid file type. Only images and PDF files are allowed.');
+        }
     }
 
 

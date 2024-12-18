@@ -50,13 +50,16 @@ $routes->get('/login', 'Auth::index');
 $routes->post('/login', 'Auth::attemptLogin');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::attemptRegister');
-$routes->get('/register/lecturer/', 'Auth::invitecode');
-$routes->post('/register/lecturer/', 'Auth::receiveInvCode');
+$routes->get('/register/lecturer', 'Auth::registerlect');
+$routes->post('/register/lecturer', 'Auth::attemptRegisterlect');
 $routes->get('/register/lecturer/(:any)', 'Auth::registerlect/$1');
 $routes->post('/register/lecturer/(:any)', 'Auth::attemptRegisterlect');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/password', 'Auth::password');
 
+
+// $routes->get('/register/lecturer/', 'Auth::invitecode');
+// $routes->post('/register/lecturer/', 'Auth::receiveInvCode');
 
 
 /*
@@ -89,11 +92,22 @@ $routes->post('/task/file/(:any)', 'Task::updatefile/$1', ['filter'=> 'authGuard
 $routes->get('/task/show/(:any)', 'Task::show/$1', ['filter'=> 'authGuard', 'as' => 'task.show'],);
 $routes->delete('/task/delete/(:any)', 'Task::delete/$1', ['filter'=> 'authGuard', 'as' => 'task.delete'],);
 
+
+/*
+*----------------------------------------------------------------------
+*Routes for Chats
+*----------------------------------------------------------------------
+*/
+
+
 $routes->get('/chat/(:any)', 'Chat::index/$1');
 $routes->get('/chatlect/(:any)', 'Chat::indexlect/$1');
 $routes->post('/message', 'Chat::insert');
+$routes->get('/chat/fetchMessages/(:num)', 'Chat::fetchMessages/$1');
 
 $routes->post('/newmessage', 'Chat::new');
+
+
 
 /*
 *----------------------------------------------------------------------
@@ -107,6 +121,26 @@ $routes->post('/intern/update/visit/(:num)', 'Student::updatevisit/$1',['filter'
 $routes->post('/intern/update/report/(:num)', 'Student::updatereport/$1',['filter' => 'authGuard']);
 
 /*
+
+
+
+/*
+*----------------------------------------------------------------------
+*Routes for Admin
+*----------------------------------------------------------------------
+*/
+
+$routes->get('/admin/dashboard', 'Admin::dashboard', ['filter' => 'authGuard']);
+$routes->get('/admin/student', 'Admin::studentlist', ['filter' => 'authGuard']);
+$routes->get('/admin/lecturer', 'Admin::lecturerlist', ['filter' => 'authGuard']);
+$routes->post('/assignLecturer', 'Admin::assignLecturer');
+$routes->post('admin/changeStartDate', 'Admin::changeStartDate');
+$routes->post('admin/changeEndDate', 'Admin::changeEndDate');
+
+/*
+
+
+
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------

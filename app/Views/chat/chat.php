@@ -142,3 +142,46 @@
 
 
 <?=$this->endsection()?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function fetchMessages() {
+            $.ajax({
+                url: '/chat/fetchMessages',
+                method: 'GET',
+                success: function(data) {
+                    var chatBox = document.getElementById('chat-box');
+                    chatBox.innerHTML = '';
+                    data.messages.forEach(function(message) {
+                        chatBox.innerHTML += '<div>' + message.message + '</div>';
+                    });
+                }
+            });
+        }
+
+        setInterval(fetchMessages, 3000); // Fetch messages every 3 seconds
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            $.ajax({
+                url: '/chat/sendMessage',
+                method: 'POST',
+                data: { message: message },
+                success: function() {
+                    document.getElementById('message').value = '';
+                    fetchMessages();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="chat-box"></div>
+    <input type="text" id="message">
+    <button onclick="sendMessage()">Send</button>
+</body>
+</html>

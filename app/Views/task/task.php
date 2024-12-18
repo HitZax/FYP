@@ -7,7 +7,8 @@
               <div class="row">
                   <div class="col-md-12 pt-3">
                       <ol class="breadcrumb border px-2 py-2 bg-dark bg-opacity-10">
-                        <li class=" breadcrumb-item active text-dark text-muted" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="/dashboard" class="text-dark text-underline-hover">
+                                  Dashboard</a>
                           <li class="breadcrumb-item"><a href="/logbook" class="text-dark text-underline-hover">
                                   Logbook</a>
                           </li>
@@ -26,6 +27,11 @@
           <div class="row class">
           <div class="card-body">
             <h2 class="text-center">Add Report</h2> 
+            <?php if(session()->get('error')): ?>
+                <div class="alert alert-danger">
+                    <?= session()->get('error') ?>
+                </div>
+            <?php endif; ?>
               <div class="row">
           <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <?=csrf_field()?>
@@ -45,7 +51,7 @@
                   <div class="invalid-feedback">Please enter your Task Description.</div>
               </div>
               <div class="mb-3">
-                <label class="form-label float-start">Picture Of Task <label class="text-muted"></label></label> 
+                <label class="form-label float-start">Task File/Image <i class="text-muted">(Only PNG/JPEG/PDF)</i><label class="text-muted"></label></label> 
                   <input type="file" class="form-control" name="tpic" placeholder="Picture" required>
                   <div class="invalid-feedback">Enter if you have one.</div>
               </div>

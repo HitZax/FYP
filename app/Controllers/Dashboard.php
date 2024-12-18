@@ -1,5 +1,6 @@
 <?php 
 namespace App\Controllers;  
+
 use App\Models\TaskModel;
 use App\Models\UserModel;
 use App\Models\InternModel;
@@ -8,7 +9,7 @@ use App\Models\LogbookModel;
 use App\Models\StudentModel;
 use App\Models\LecturerModel;
 use App\Controllers\BaseController;
-  
+
 class Dashboard extends BaseController
 {
     public function __construct()
@@ -19,114 +20,61 @@ class Dashboard extends BaseController
         $this->taskModel = new TaskModel();
         $this->logbookModel = new LogbookModel();
         $this->lecturerModel = new LecturerModel();
-
-
     }
+
     public function index()
     {
-        if(session()->get('role')=="Student")
-
-        {
-        $internmodel = new InternModel();
-        $intern = $internmodel->detail(session()->get('id'));
-
-        //get current and end time
-        $now = date("Y-m-d"); 
-        $enddate = date("Y-m-d",strtotime($intern->enddate));
-
-    
-        //count days
-        $origin = date_create($now);
-        $target = date_create($enddate);
-        $interval = date_diff($origin, $target);
-        $days = $interval->format('%a');
-        
-        //count weeks
-        $daytoint = (int)($days/7-12)*-1;
-        $week = intval($daytoint);
-
-        //display task count and table
-        $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
-        $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
-        $lbid = $logbook['lbid'];
-        $taskcount = $this->taskModel->counttask($lbid);
-        $task = $this->taskModel->gettask($lbid);
-
-        //display 3 recent task
-        
-        // echo $this->taskModel->getLastQuery();
-        $data=[
+        $role = session()->get('role');
+        $id = session()->get('id');
+        $data = [
             'title' => 'Dashboard',
-            'id'=> session()->get('id'),
+            'id' => $id,
             'name' => session()->get('fullname'),
             'email' => session()->get('email'),
             'studentid' => session()->get('studentid'),
-            'sid' => session()->get('sid'),
-            'intern' => $intern,
-            'now' => $now,
-            'endate' => $enddate,
-            'days' => $days,
-            'week' => $week,
-            'taskcount' => $taskcount,
-            'task' => $task
+            'sid' => session()->get('sid')
         ];
-
-        // dd($data);
-        return view('dashboard/dashboard', $data);
-        }
-
-        else
-
-        {
-            $data=[
-                'title' => 'Dashboard Lecturer',
-            ];
-
-        $internmodel = new InternModel();
-        $intern = $internmodel->detail(session()->get('id'));
-
-        //get current and end time
-        $now = date("Y-m-d"); 
-        $enddate = date("Y-m-d",strtotime($intern->enddate));
-
     
-        //count days
-        $origin = date_create($now);
-        $target = date_create($enddate);
-        $interval = date_diff($origin, $target);
-        $days = $interval->format('%a');
+        $intern = $this->internModel->detail($id);
         
-        //count weeks
-        $daytoint = (int)($days/7-12)*-1;
-        $week = intval($daytoint);
-        $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+        // Get current and end time
+        $now = date("Y-m-d"); 
+        $startdate = $intern->startdate ? date("Y-m-d", strtotime($intern->startdate)) : null;
+        $enddate = $intern->enddate ? date("Y-m-d", strtotime($intern->enddate)) : null;
+        
+        // Calculate days remaining
+        $days = $enddate ? (strtotime($enddate) - strtotime($now)) / (60 * 60 * 24) : null;
+        
+        // Calculate current week
+        $weeks = $startdate ? ceil((strtotime($now) - strtotime($startdate)) / (60 * 60 * 24 * 7)) : null;
+        
+        $data['intern'] = $intern;
+        $data['now'] = $now;
+        $data['endate'] = $enddate;
+        $data['days'] = $days;
+        $data['week'] = $weeks;
+    
+        if ($role == "Student") {
+            $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
+            $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
+            $lbid = $logbook['lbid'];
+            $taskcount = $this->taskModel->counttask($lbid);
+            $task = $this->taskModel->gettask($lbid);
+    
+            $data['taskcount'] = $taskcount;
+            $data['task'] = $task;
+    
+            return view('dashboard/dashboard', $data);
+        } else {
+            $user = $this->userModel->WHERE('id', $id)->first();
             $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
             $lid = $lecturer['lid'];
-         $countstudent = $this->studentModel->countstudent($lid);
-
-        // echo $this->studentModel->getLastQuery();
-        $data=[
-            'title' => 'Dashboard',
-            'id'=> session()->get('id'),
-            'name' => session()->get('fullname'),
-            'email' => session()->get('email'),
-            'studentid' => session()->get('studentid'),
-            'sid' => session()->get('sid'),
-            'intern' => $intern,
-            'now' => $now,
-            'endate' => $enddate,
-            'days' => $days,
-            'week' => $week,
-            'cs' => $countstudent,
-            'lid' => $lid
-        ];
-        d($data);
-
+            $countstudent = $this->studentModel->countstudent($lid);
+    
+            $data['cs'] = $countstudent;
+            $data['lid'] = $lid;
+    
             return view('dashboard/dashboardlect', $data);
         }
-        
     }
-
-    
-    
 }

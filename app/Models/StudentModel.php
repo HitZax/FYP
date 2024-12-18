@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class StudentModel extends Model
 {
     protected $table            = 'student';
-    protected $allowedFields    = ['sid', 'lid','sname','sprogram','studentid', ];
+    protected $allowedFields    = ['sid','lid','sname','sprogram','studentid','id'];
     protected $returnType     = 'array';
 
     public function detail($sid)

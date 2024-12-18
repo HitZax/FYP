@@ -8,6 +8,8 @@ use App\Models\ProgramModel;
 use App\Models\StudentModel;
 use App\Models\LecturerModel;
 use App\Models\InviteCodeModel;
+use App\Models\ChatModel;
+use App\Models\InternModel;
 
 class Auth extends Controller
 {
@@ -29,14 +31,29 @@ class Auth extends Controller
         $userModel = new UserModel();
         $auth = $this->request->getVar('auth');
         $password = $this->request->getVar('password');
-        
+        $recaptchaResponse = $this->request->getVar('g-recaptcha-response');
+
+        // Verify reCAPTCHA
+        $secretKey = '6Lea9pAqAAAAAOAiaPzioYZHqO65YVNeG98hN7RE';
+        $recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
+        $response = file_get_contents($recaptchaUrl . '?secret=' . $secretKey . '&response=' . $recaptchaResponse);
+        $responseKeys = json_decode($response, true);
+
+        if (intval($responseKeys["success"]) !== 1) {
+            $session->setFlashdata('msg', 'reCAPTCHA verification failed. Please try again.');
+            return redirect()->to('/login');
+        }
+
         $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
-        
-        if($data)
-        {
+
+        if ($data) {
+            if ($data['role'] !== 'Admin' && $data['status'] !== 'Active') {
+                $session->setFlashdata('msg', 'Your account is inactive. Please contact support.');
+                return redirect()->to('/login');
+            }
+
             $pass = $data['password'];
-            if($password == $pass)
-            {
+            if (password_verify($password, $pass)) {
                 $session_data = [
                     'id' => $data['id'],
                     'fullname' => $data['fullname'],
@@ -46,16 +63,17 @@ class Auth extends Controller
                     'logged_in' => TRUE,
                 ];
                 $session->set($session_data);
-                return redirect()->to('/dashboard');
-            }
-            else
-            {
+
+                if ($data['role'] == 'Admin') {
+                    return redirect()->to('/admin/dashboard');
+                } else {
+                    return redirect()->to('/dashboard');
+                }
+            } else {
                 $session->setFlashdata('msg', 'Invalid Password');
                 return redirect()->to('/login');
             }
-        }
-        else
-        {
+        } else {
             $session->setFlashdata('msg', 'Invalid Email or Student ID.');
             return redirect()->to('/login');
         }
@@ -83,31 +101,45 @@ class Auth extends Controller
         $data = [
             'fullname'      => $this->request->getVar('name'),
             'email'         => $this->request->getVar('email'),
-            'password'      => $this->request->getVar('password'),
+            'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'studentid'     => $this->request->getVar('studentid'),
-            'program'       => $this->request->getVar('program'),
-            'role' => "Student"
+            'role'          => "Student"
         ];
         $usermodel->save($data);
 
+        $id = $usermodel->getInsertID();
+
         $studentmodel = new StudentModel();
-        $data1=[
+        $data1 = [
             'studentid' => $this->request->getVar('studentid'),
-            'sname' => $this->request->getVar('name'),
-            'sprogram' => $this->request->getVar('program'),
+            'sname'     => $this->request->getVar('name'),
+            'sprogram'  => $this->request->getVar('program'),
         ];
         $studentmodel->save($data1);
 
         $sid = $studentmodel->getInsertID();
 
-        $data2=[
+        $data2 = [
             'lbcreated' => date('Y-m-d'),
             'sid'       => $sid
         ];
         $this->logbookModel->save($data2);
 
+        $chatmodel = new ChatModel();
+        $data3 = [
+            'sid' => $sid,
+        ];
+        $chatmodel->save($data3);
+
+        $internmodel = new InternModel();
+        $data4 = [
+            'id' => $id,
+        ];
+        $internmodel->insert($data4);
+        // dd($data4);
+
         $session->setFlashdata('msg', 'Successfully Registered');
-        return redirect()->to('/login');
+        return redirect()->to('/admin/dashboard');
     }
 
     // Display invite code page

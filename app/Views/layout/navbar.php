@@ -16,8 +16,13 @@
         <a class="navbar-brand text-white"><b>Lecturer OLS</b></a>
         <?php endif?>
 
+        <?php if($this->session->role == "Admin"):?>
+        <a class="navbar-brand text-white"><b>Admin OLS</b></a>
+        <?php endif?>
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             
+            <?php if($this->session->role != "Admin"):?>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="/dashboard">Dashboard</a>
@@ -40,6 +45,48 @@
                 </li>
                 <?php endif?>
             </ul>
+            <?php endif?>
+
+            <?php if($this->session->role == "Admin"):?>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="/admin/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="/admin/student">Students</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="/admin/lecturer">Lecturers</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="#">Audit Logs</a>
+                </li>
+                <!-- <li class="nav-item ">
+                    <a class="nav-link active text-white" aria-current="page" href="#">Communicate</a>
+                </li> -->
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle nav-link active text-white" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                        <b class="bi bi-person-circle pr-1"> <?= $this->session->get('fullname');  ?> </b><span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">  
+                        <li class="nav-item">
+                        <a class="dropdown-item" href="/profile/edit/<?=$this->session->get('id');?>">
+                            <i class="bi bi-pencil-fill"></i></i> Edit Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="/logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <?php endif?>
 
             <?php if($this->session->role == "Student"):?>
             <ul class="nav navbar-nav">
@@ -64,7 +111,7 @@
             </ul>
             <?php endif?>
 
-            <?php if(role() == "Lecturer"):?>
+            <?php if($this->session->role == "Lecturer"):?>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle nav-link active text-white" data-bs-toggle="dropdown" role="button" aria-expanded="false">
