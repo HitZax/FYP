@@ -8,7 +8,7 @@ use App\Models\ProgramModel;
 use App\Models\StudentModel;
 use App\Models\LecturerModel;
 use App\Models\InviteCodeModel;
-  
+
 class Auth extends Controller
 {
     public function __construct()
@@ -16,11 +16,13 @@ class Auth extends Controller
         $this->logbookModel = new LogbookModel();
     }
 
+    // Display login page
     public function index()
     {
         return view('auth/login');
     } 
-  
+
+    // Handle login attempt
     public function attemptLogin()
     {
         $session = session();
@@ -29,18 +31,12 @@ class Auth extends Controller
         $password = $this->request->getVar('password');
         
         $data = $userModel->where('email', $auth)->orWhere('studentid', $auth)->first();
-        // $data = $userModel->login($auth);
         
         if($data)
         {
             $pass = $data['password'];
-            
-            // $pass = $data->password;
-          
-            // $authenticatePassword = password_verify($password, $pass);
             if($password == $pass)
             {
-                
                 $session_data = [
                     'id' => $data['id'],
                     'fullname' => $data['fullname'],
@@ -48,11 +44,9 @@ class Auth extends Controller
                     'email' => $data['email'],
                     'role' => $data['role'],
                     'logged_in' => TRUE,
-                
                 ];
                 $session->set($session_data);
                 return redirect()->to('/dashboard');
-                
             }
             else
             {
@@ -65,24 +59,23 @@ class Auth extends Controller
             $session->setFlashdata('msg', 'Invalid Email or Student ID.');
             return redirect()->to('/login');
         }
-           
     }
 
+    // Display registration page
     public function register()
     {
         helper(['form']);
-
         $programmodel = new ProgramModel();
         $program = $programmodel->findall();
         
         $data = [
             'program'=> $program
         ];
-        // d($data);
 
         return view('auth/register', $data);
     }
 
+    // Handle student registration attempt
     public function attemptRegister()
     {
         $session = session();
@@ -113,34 +106,22 @@ class Auth extends Controller
         ];
         $this->logbookModel->save($data2);
 
-        // $internid = $internmodel->getInsertID();
-
-        // $data3=[
-        //     'lbcreated' => date('Y-m-d'),
-        //     'sid'       => $sid
-        // ];
-        // $this->internModel->save($data3);
-
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
-           
     }
 
-    
+    // Display invite code page
     public function invitecode()
     {
         $data=['title'=>'Register Lecturer'];
         return view('auth/invitecode', $data);
     }
 
+    // Handle invite code submission
     public function receiveInvCode()
     {
         $invitecode = $this->request->getVar('invcode');
-
-        // dd($invitecode);
         $invcodemodel = new InviteCodeModel();
-        
-
         $checkcode = $invcodemodel->where('invcode',$invitecode)->first();
 
         if($checkcode)
@@ -151,17 +132,12 @@ class Auth extends Controller
         {
             return redirect()->to('/login');
         }
-        
-        // dd($invitecode);
     }
 
+    // Display lecturer registration page
     public function registerlect($invitecode)
     {
-        // $invitecode = $this->request->getVar('invitecode');
-
         $invcodemodel = new InviteCodeModel();
-        
-
         $checkcode = $invcodemodel->where('invcode',$invitecode)->first();
 
         if($checkcode)
@@ -176,10 +152,9 @@ class Auth extends Controller
         {
             return redirect()->to('/login');
         }
-        
     }
 
-    //attempt register lecturer
+    // Handle lecturer registration attempt
     public function attemptRegisterlect()
     {
         $session = session();
@@ -200,14 +175,13 @@ class Auth extends Controller
             'lroom' => $this->request->getVar('room'),
             'invcode' => $this->request->getVar('invcode'),
         ];
-        // dd($data1);
         $lecturermodel->save($data1);
 
-        // dd($data,$data1);
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/login');
-           
     }
+
+    // Handle logout
     public function logout()
     {
         $session = session();
@@ -215,9 +189,9 @@ class Auth extends Controller
         return redirect()->to('/login');
     }
 
-        public function password()
+    // Display password reset page
+    public function password()
     {
-    
         return view('auth/password');
     } 
 }
