@@ -1,13 +1,15 @@
 <?php
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
 use App\Models\TaskModel;
 use App\Models\UserModel;
 use App\Models\InternModel;
+use CodeIgniter\Controller;
 use App\Models\LogbookModel;
 use App\Models\StudentModel;
+use App\Models\AuditLogModel;
 use App\Models\LecturerModel;
+use App\Models\ActiveSessionModel;
 use App\Controllers\BaseController;
 
 class Admin extends Controller
@@ -78,11 +80,13 @@ class Admin extends Controller
                                     ->orLike('studentid', $search)
                                     ->orLike('sprogram', $search)
                                     ->join('lecturer', 'student.lid = lecturer.lid', 'left')
-                                    ->select('student.*, lecturer.lname as lecturer_name')
+                                    ->join('users', 'student.id = users.id', 'left')
+                                    ->select('student.*, lecturer.lname as lecturer_name, users.status as user_status')
                                     ->findAll();
         } else {
             $students = $studentModel->join('lecturer', 'student.lid = lecturer.lid', 'left')
-                                    ->select('student.*, lecturer.lname as lecturer_name')
+                                    ->join('users', 'student.id = users.id', 'left')
+                                    ->select('student.*, lecturer.lname as lecturer_name, users.status as user_status')
                                     ->findAll();
         }
     
@@ -97,6 +101,35 @@ class Admin extends Controller
         ];
     
         return view('admin/student_list', $data);
+    }
+
+    public function reset($userId)
+    {
+        $auditLogModel = new AuditLogModel();
+        $userModel = new UserModel();
+        $activeSessionModel = new ActiveSessionModel();
+    
+        // Create a new entry in the audit log with the action of "reset"
+        $auditLogModel->insert([
+            'user_id' => $userId,
+            'action' => 'Reset',
+            'status' => 'Success',
+            'attempt_number' => 0,
+            'ip_address' => $this->request->getIPAddress(),
+            'user_agent' => $this->request->getUserAgent(),
+            'timestamp' => date('Y-m-d H:i:s')
+        ]);
+    
+        // Change the user's status to active
+        $userModel->update($userId, ['status' => 'Active']);
+    
+        // Delete the sessions belonging to the user
+        $activeSessions = $activeSessionModel->where('user_id', $userId)->findAll();
+        foreach ($activeSessions as $session) {
+            $activeSessionModel->delete($session['id']);
+        }
+    
+        return redirect()->back()->with('message', 'User reset successfully');
     }
 
     public function assignLecturer()
@@ -143,4 +176,54 @@ class Admin extends Controller
         return view('admin/lecturer_list', $data);
     }
 
+    public function auditLog()
+    {
+        $auditLogModel = new AuditLogModel();
+        $search = $this->request->getGet('search');
+    
+        // Get total number of active sessions
+        $activeSessionModel = new ActiveSessionModel();
+        $totalActiveSessions = $activeSessionModel->countAllResults();
+    
+        // Fetch active sessions with user details
+        $activeSessions = $activeSessionModel->select('active_session.*, users.fullname')
+                                             ->join('users', 'active_session.user_id = users.id')
+                                             ->findAll();
+    
+        if ($search) {
+            $logs = $auditLogModel->select('audit_log.*, users.fullname, users.email, users.role, users.status as user_status, users.last2FA')
+                                  ->join('users', 'audit_log.user_id = users.id')
+                                  ->like('users.fullname', $search)
+                                  ->orLike('audit_log.action', $search)
+                                  ->orLike('audit_log.status', $search)
+                                  ->orLike('audit_log.timestamp', $search)
+                                  ->orderBy('audit_log.timestamp', 'DESC')
+                                  ->findAll();
+        } else {
+            $logs = $auditLogModel->select('audit_log.*, users.fullname, users.email, users.role, users.status as user_status, users.last2FA')
+                                  ->join('users', 'audit_log.user_id = users.id')
+                                  ->orderBy('audit_log.timestamp', 'DESC')
+                                  ->findAll();
+        }
+    
+        $data = [
+            'title' => 'Audit Log',
+            'logs' => $logs,
+            'search' => $search,
+            'totalActiveSessions' => $totalActiveSessions,
+            'activeSessions' => $activeSessions,
+        ];
+    
+        return view('admin/audit_log', $data);
+    }
+
+    public function getActiveSessions()
+    {
+        $activeSessionModel = new ActiveSessionModel();
+        $activeSessions = $activeSessionModel->select('active_session.*, users.fullname')
+                                             ->join('users', 'active_session.user_id = users.id')
+                                             ->findAll();
+    
+        return $this->response->setJSON($activeSessions);
+    }
 }

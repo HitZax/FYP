@@ -136,6 +136,10 @@ $routes->get('/admin/lecturer', 'Admin::lecturerlist', ['filter' => 'authGuard']
 $routes->post('/assignLecturer', 'Admin::assignLecturer');
 $routes->post('admin/changeStartDate', 'Admin::changeStartDate');
 $routes->post('admin/changeEndDate', 'Admin::changeEndDate');
+$routes->get('/admin/reset/(:num)', 'Admin::reset/$1');
+
+$routes->get('/admin/auditlog', 'Admin::auditLog', ['filter' => 'authGuard']);
+
 
 /*
 

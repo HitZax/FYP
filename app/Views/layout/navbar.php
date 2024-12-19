@@ -59,7 +59,7 @@
                     <a class="nav-link active text-white" aria-current="page" href="/admin/lecturer">Lecturers</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active text-white" aria-current="page" href="#">Audit Logs</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/admin/auditlog">Audit Logs</a>
                 </li>
                 <!-- <li class="nav-item ">
                     <a class="nav-link active text-white" aria-current="page" href="#">Communicate</a>

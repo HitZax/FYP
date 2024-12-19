@@ -34,7 +34,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <table class="table">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -42,6 +42,7 @@
                 <th scope="col">Program</th>
                 <th scope="col">Visiting Lecturer</th>
                 <th scope="col">Action</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -62,8 +63,14 @@
                     <?= isset($student['lecturer_name']) ? $student['lecturer_name'] : 'Not Assigned'; ?>
                   </td>
                   <td class="">
-                    <a href="/profile/edit/<?=$student['id'];?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil"></i></a>
+                    <a href="/profile/edit/<?=$student['id'];?>" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                    <a href="/admin/reset/<?=$student['id'];?>" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-clockwise"></i></a>
+                    <button class="btn btn-danger btn-sm" onclick="deleteStudent(<?=$student['sid'];?>)"><i class="bi bi-trash"></i></button>
                   </td>
+                  <td>
+                    <span style="color: <?= $student['user_status'] == 'Active' ? 'green' : 'red' ?>;">
+                        <?= $student['user_status'] ?>
+                    </span>
                 </tr>
                 <?php endforeach; ?>
               <?php endif;?>
