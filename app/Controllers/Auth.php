@@ -188,16 +188,23 @@ class Auth extends Controller
         $usermodel->save($data);
 
         $id = $usermodel->getInsertID();
+        // dd($id);
 
         $studentmodel = new StudentModel();
         $data1 = [
             'studentid' => $this->request->getVar('studentid'),
             'sname'     => $this->request->getVar('name'),
             'sprogram'  => $this->request->getVar('program'),
+            'id'        => $id
         ];
-        $studentmodel->save($data1);
+        if (!$studentmodel->insert($data1)) {
+            // Log the error
+            $errors = $studentmodel->errors();
+            dd($errors);
+        }
 
         $sid = $studentmodel->getInsertID();
+        // dd($sid);
 
         $data2 = [
             'lbcreated' => date('Y-m-d'),
@@ -214,9 +221,9 @@ class Auth extends Controller
         $internmodel = new InternModel();
         $data4 = [
             'id' => $id,
+            'sid' => $sid
         ];
         $internmodel->insert($data4);
-        // dd($data4);
 
         $session->setFlashdata('msg', 'Successfully Registered');
         return redirect()->to('/admin/dashboard');
@@ -247,23 +254,13 @@ class Auth extends Controller
     }
 
     // Display lecturer registration page
-    public function registerlect($invitecode)
+    public function registerlect($invitecode = null)
     {
-        $invcodemodel = new InviteCodeModel();
-        $checkcode = $invcodemodel->where('invcode',$invitecode)->first();
-
-        if($checkcode)
-        {
-            $data=[
-                'title'=>'Register Lecturer',
-                'invitecode' => $invitecode
-            ];
-            return view('auth/registerlect', $data);
-        }
-        else
-        {
-            return redirect()->to('/login');
-        }
+        $data=[
+            'title'=>'Register Lecturer',
+            'invitecode' => $invitecode
+        ];
+        return view('auth/registerlect', $data);
     }
 
     // Handle lecturer registration attempt
@@ -274,23 +271,33 @@ class Auth extends Controller
         $data = [
             'fullname'      => $this->request->getVar('name'),
             'email'         => $this->request->getVar('email'),
-            'password'      => $this->request->getVar('password'),
-            'studentid'     => "-",
+            'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'studentid'     => NULL,
             'role' => "Lecturer"
         ];
         $usermodel->save($data);
+
+        $id = $usermodel->getInsertID();
 
         $lecturermodel = new LecturerModel();
         $data1=[
             'lname' => $this->request->getVar('name'),
             'lemail' => $this->request->getVar('email'),
             'lroom' => $this->request->getVar('room'),
-            'invcode' => $this->request->getVar('invcode'),
+            'id' => $id,
         ];
         $lecturermodel->save($data1);
 
+        $internmodel = new InternModel();
+        $data2 = [
+            'id' => $id,
+            'sid' => NULL
+        ];
+        $internmodel->insert($data2);
+
+
         $session->setFlashdata('msg', 'Successfully Registered');
-        return redirect()->to('/login');
+        return redirect()->to('/admin/dashboard');
     }
 
     // Display password reset page

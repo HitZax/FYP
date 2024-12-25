@@ -117,9 +117,10 @@
             <thead>
               <tr>
                 <th scope="col">User ID</th>
-                <th scope="col">Full Name</th>
+                <th scope="col">Name</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Session ID</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody id="activeSessionsTable">
@@ -129,6 +130,11 @@
                 <td><?=$session['fullname'];?></td>
                 <td><?=$session['created_at'];?></td>
                 <td><?=$session['session_id'];?></td>
+                <td>
+                  <form action="/admin/deleteActiveSession/<?=$session['id'];?>" method="post" onsubmit="return confirm('Are you sure you want to delete this session?');">
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                  </form>
+                </td>
               </tr>
               <?php endforeach; ?>
             </tbody>

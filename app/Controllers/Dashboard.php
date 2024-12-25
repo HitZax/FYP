@@ -55,24 +55,30 @@ class Dashboard extends BaseController
         $data['week'] = $weeks;
     
         if ($role == "Student") {
-            $student = $this->studentModel->WHERE('studentid', session()->get('studentid'))->first();
-            $logbook = $this->logbookModel->WHERE('sid', $student['sid'])->first();
+            $student = $this->studentModel->where('studentid', session()->get('studentid'))->first();
+            $logbook = $this->logbookModel->where('sid', $student['sid'])->first();
             $lbid = $logbook['lbid'];
             $taskcount = $this->taskModel->counttask($lbid);
             $task = $this->taskModel->gettask($lbid);
+            $totalRemarks = $this->taskModel->countRemarks($lbid);
     
             $data['taskcount'] = $taskcount;
             $data['task'] = $task;
+            $data['totalRemarks'] = $totalRemarks;
     
             return view('dashboard/dashboard', $data);
         } else {
-            $user = $this->userModel->WHERE('id', $id)->first();
-            $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
+            $user = $this->userModel->where('id', $id)->first();
+            $lecturer = $this->lecturerModel->where('id', $user['id'])->first();
             $lid = $lecturer['lid'];
             $countstudent = $this->studentModel->countstudent($lid);
+            $totalRemarks = $this->taskModel->countRemarks($lid);
+            $recentRemarks = $this->taskModel->getRecentRemarks($lid);
     
             $data['cs'] = $countstudent;
             $data['lid'] = $lid;
+            $data['totalRemarks'] = $totalRemarks;
+            $data['recentRemarks'] = $recentRemarks;
     
             return view('dashboard/dashboardlect', $data);
         }

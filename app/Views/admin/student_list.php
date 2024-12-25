@@ -41,8 +41,8 @@
                 <th scope="col">Student ID</th>
                 <th scope="col">Program</th>
                 <th scope="col">Visiting Lecturer</th>
-                <th scope="col">Action</th>
                 <th scope="col">Status</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -57,20 +57,18 @@
                   <td><?=$student['studentid'];?></td>
                   <td><?=$student['sprogram'];?></td>
                   <td>
-                    <button type="button" class="btn btn-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#assignLecturerModal" data-sid="<?=$student['sid'];?>">
-                        <i class="bi bi-person-fill"></i>
-                    </button>
                     <?= isset($student['lecturer_name']) ? $student['lecturer_name'] : 'Not Assigned'; ?>
-                  </td>
-                  <td class="">
-                    <a href="/profile/edit/<?=$student['id'];?>" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                    <a href="/admin/reset/<?=$student['id'];?>" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-clockwise"></i></a>
-                    <button class="btn btn-danger btn-sm" onclick="deleteStudent(<?=$student['sid'];?>)"><i class="bi bi-trash"></i></button>
                   </td>
                   <td>
                     <span style="color: <?= $student['user_status'] == 'Active' ? 'green' : 'red' ?>;">
                         <?= $student['user_status'] ?>
                     </span>
+                  <td class="">
+                    <a href="/profile/edit/<?=$student['id'];?>" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#assignLecturerModal" data-student-id="<?=$student['id'];?>" data-student-name="<?=$student['sname'];?>" data-lecturer-id="<?=$student['lid'];?>"><i class="bi bi-person"></i></button>
+                    <a href="/admin/reset/<?=$student['id'];?>" class="btn btn-secondary btn-sm" onclick="confirmReset(<?=$student['id'];?>)"><i class="bi bi-arrow-clockwise"></i></a>
+                    <button class="btn btn-danger btn-sm" onclick="deleteStudent(<?=$student['sid'];?>)"><i class="bi bi-trash"></i></button>
+                  </td>
                 </tr>
                 <?php endforeach; ?>
               <?php endif;?>
@@ -82,48 +80,71 @@
 
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="assignLecturerModal" tabindex="-1" aria-labelledby="assignLecturerModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="assignLecturerModalLabel">Assign Lecturer</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="assignLecturerForm" method="post" action="/assignLecturer">
-            <input type="hidden" name="sid" id="studentId">
-            <div class="mb-3">
-              <label for="lecturer" class="form-label">Select Lecturer</label>
-              <select class="form-select" id="lecturer" name="lecturer">
-                <?php foreach($lecturers as $lecturer): ?>
-                  <option value="<?=$lecturer['lid'];?>"><?=$lecturer['lname'];?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Assign</button>
-          </form>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="assignLecturerModal" tabindex="-1" aria-labelledby="assignLecturerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assignLecturerModalLabel">Assign Lecturer to <span id="studentName"></span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <form id="assignLecturerForm" method="post" action="/admin/assignLecturer">
+        <div class="modal-body">
+          <input type="hidden" name="student_id" id="student_id">
+          <div class="mb-3">
+            <label for="lecturer_id" class="form-label">Select Lecturer</label>
+            <select class="form-select" id="lecturer_id" name="lecturer_id">
+              <option value="">Unassign</option>
+              <?php foreach ($lecturers as $lecturer): ?>
+                <option value="<?= $lecturer['lid']; ?>"><?= $lecturer['lname']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Assign</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var assignLecturerModal = document.getElementById('assignLecturerModal');
   assignLecturerModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget;
-    var sid = button.getAttribute('data-sid');
-    var studentIdInput = document.getElementById('studentId');
-    studentIdInput.value = sid;
+    var studentId = button.getAttribute('data-student-id');
+    var studentName = button.getAttribute('data-student-name');
+    var currentLecturerId = button.getAttribute('data-lecturer-id');
+    
+    var studentIdInput = assignLecturerModal.querySelector('#student_id');
+    var studentNameSpan = assignLecturerModal.querySelector('#studentName');
+    var lecturerSelect = assignLecturerModal.querySelector('#lecturer_id');
+
+    studentIdInput.value = studentId;
+    studentNameSpan.textContent = studentName;
+
+    // Set the default option to the current lecturer
+    if (currentLecturerId) {
+      lecturerSelect.value = currentLecturerId;
+    } else {
+      lecturerSelect.selectedIndex = 0;
+    }
   });
 });
 
 function deleteStudent(sid) {
   if (confirm('Are you sure you want to delete this student?')) {
-    // Perform the delete action here
-    window.location.href = '/students/delete/' + sid;
+    window.location.href = '/admin/deleteStudent/' + sid;
   }
+}
+
+function confirmReset(studentId) {
+    if (confirm('Are you sure you want to reset this student? This will delete all active sessions and change the status to active.')) {
+        window.location.href = '/admin/reset/' + studentId;
+    }
 }
 </script>
 

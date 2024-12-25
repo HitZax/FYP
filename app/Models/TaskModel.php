@@ -12,21 +12,38 @@ class TaskModel extends Model
 
     public function counttask($lbid)
     {
-        $sql = "SELECT COUNT(*) AS `numrows` FROM `task` WHERE lbid = $lbid";
-        return $this->db->query($sql)->getRowArray();
+        return $this->where('lbid', $lbid)
+                    ->countAllResults();
     }
 
     public function recenttask($lbid)
     {
-        $sql = "SELECT * FROM `task` WHERE id=(SELECT MAX(3) FROM `task`);";
-        return $this->db->query($sql)->getRowArray();
+        return $this->where('lbid', $lbid)
+                    ->orderBy('tid', 'DESC')
+                    ->first();
     }
 
     public function gettask($lbid)
     {
-        $sql = "SELECT * FROM task  WHERE lbid = $lbid LIMIT 3";
-        return $this->db->query($sql)->getResultArray();
+        return $this->where('lbid', $lbid)
+                    ->orderBy('tdate', 'DESC') // Order by date in descending order
+                    ->findAll(3); // Limit to 3 results
     }
-    
-    
+
+    public function countRemarks($lbid)
+    {
+        return $this->where('lbid', $lbid)
+                    ->where('remark !=', '') // Ensure remark is not empty
+                    ->countAllResults();
+    }
+
+    public function getRecentRemarks($lbid)
+    {
+        return $this->select('task.*, student.sname')
+                    ->join('student', 'student.sid = task.lbid')
+                    ->where('task.lbid', $lbid)
+                    ->where('task.remark !=', '') // Ensure remark is not empty
+                    ->orderBy('task.tdate', 'DESC') // Order by date in descending order
+                    ->findAll(3); // Limit to 3 results
+    }
 }

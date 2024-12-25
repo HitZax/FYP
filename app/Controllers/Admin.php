@@ -134,46 +134,118 @@ class Admin extends Controller
 
     public function assignLecturer()
     {
-        $sid = $this->request->getPost('sid');
-        $lid = $this->request->getPost('lecturer');
-
+        $studentId = $this->request->getPost('student_id');
+        $lecturerId = $this->request->getPost('lecturer_id');
+    
+        $studentModel = new \App\Models\StudentModel();
         $logbookModel = new \App\Models\LogbookModel();
-        $logbook = $logbookModel->where('sid', $sid)->first();
+        $chatModel = new \App\Models\ChatModel();
+        $lecturerModel = new \App\Models\LecturerModel();
+    
+        // Update the lecturer ID in the student table
+        $studentModel->update($studentId, ['lid' => $lecturerId ? $lecturerId : null]);
+    
+        // Update the lecturer ID in the logbook table
+        $logbookModel->where('sid', $studentId)->set(['lid' => $lecturerId ? $lecturerId : null])->update();
+    
+        // Get the lecturer's user ID from the lecturer table
+        $lecturer = $lecturerModel->find($lecturerId);
+        $lecturerUserId = $lecturer ? $lecturer['id'] : null;
+    
+        // Update the user ID in the chat table
+        $chatModel->where('sid', $studentId)->set(['id' => $lecturerUserId])->update();
+    
+        return redirect()->to('/admin/student')->with('message', 'Lecturer assignment updated successfully');
+    }
 
-        if ($logbook) {
-            $logbookModel->update($logbook['lbid'], ['lid' => $lid]);
+    public function deleteStudent($sid)
+    {
+        $studentModel = new \App\Models\StudentModel();
+        $userModel = new \App\Models\UserModel();
+        $logbookModel = new \App\Models\LogbookModel();
+        $chatModel = new \App\Models\ChatModel();
+        $internModel = new \App\Models\InternModel();
+
+        // Get the student record
+        $student = $studentModel->where('sid', $sid)->first();
+
+        if ($student) {
+            // Delete the user record
+            $userModel->delete($student['id']);
+
+            // Delete the student record
+            $studentModel->where('sid', $sid)->delete();
+
+            // Delete the logbook records
+            $logbookModel->where('sid', $sid)->delete();
+
+            // Delete the chat records
+            $chatModel->where('sid', $sid)->delete();
+
+            // Delete the intern records
+            $internModel->where('sid', $sid)->delete();
+
+            return redirect()->to('/admin/student')->with('message', 'Student and related records deleted successfully');
         } else {
-            $logbookModel->insert(['sid' => $sid, 'lid' => $lid]);
+            return redirect()->to('/admin/student')->with('error', 'Student not found');
         }
-
-        return redirect()->back()->with('message', 'Lecturer assigned successfully');
     }
 
     public function lecturerlist()
     {
         $lecturerModel = new \App\Models\LecturerModel();
         $search = $this->request->getGet('search');
-
+    
         if ($search) {
             $lecturers = $lecturerModel->like('lname', $search)
                                        ->orLike('lemail', $search)
+                                       ->join('users', 'lecturer.id = users.id', 'left')
+                                       ->select('lecturer.*, users.status as user_status')
                                        ->findAll();
         } else {
-            $lecturers = $lecturerModel->findAll();
+            $lecturers = $lecturerModel->join('users', 'lecturer.id = users.id', 'left')
+                                       ->select('lecturer.*, users.status as user_status')
+                                       ->findAll();
         }
-
-        $logbookModel = new \App\Models\LogbookModel();
+    
+        $studentModel = new \App\Models\StudentModel();
         foreach ($lecturers as &$lecturer) {
-            $lecturer['total_students'] = $logbookModel->where('lid', $lecturer['lid'])->countAllResults();
+            $lecturer['total_students'] = $studentModel->where('lid', $lecturer['lid'])->countAllResults();
+            $lecturer['students'] = $studentModel->where('lid', $lecturer['lid'])->findAll();
         }
-
+    
         $data = [
             'title' => 'Lecturer List',
             'lecturers' => $lecturers,
             'search' => $search
         ];
-
+    
         return view('admin/lecturer_list', $data);
+    }
+
+    public function deleteLecturer($lid)
+    {
+        $lecturerModel = new \App\Models\LecturerModel();
+        $userModel = new \App\Models\UserModel();
+        $internModel = new \App\Models\InternModel();
+    
+        // Get the lecturer record
+        $lecturer = $lecturerModel->where('lid', $lid)->first();
+    
+        if ($lecturer) {
+            // Delete the user record
+            $userModel->delete($lecturer['id']);
+    
+            // Delete the lecturer record
+            $lecturerModel->where('lid', $lid)->delete();
+    
+            // Delete the intern records
+            $internModel->where('id', $lecturer['id'])->delete();
+    
+            return redirect()->to('/admin/lecturer')->with('message', 'Lecturer and related records deleted successfully');
+        } else {
+            return redirect()->to('/admin/lecturer')->with('error', 'Lecturer not found');
+        }
     }
 
     public function auditLog()
@@ -225,5 +297,13 @@ class Admin extends Controller
                                              ->findAll();
     
         return $this->response->setJSON($activeSessions);
+    }
+
+    public function deleteActiveSession($id)
+    {
+        $activeSessionModel = new ActiveSessionModel();
+        $activeSessionModel->delete($id);
+    
+        return redirect()->to('/admin/auditlog')->with('message', 'Session deleted successfully');
     }
 }

@@ -116,53 +116,53 @@
         </div>
     </div> -->
 
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between px-md-1">
-                            <div>
-                                <h5 class="card-title fw-bold"><?=$taskcount['numrows']?></h5>
-                                <p class="card-text"> Total Task Added </p>
-                            </div>
-                            <div class="align-self-center">
-                                <i class="bi bi-journal-plus fa-3x"></i>
-                            </div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h5 class="card-title fw-bold"><?=$taskcount?></h5>
+                            <p class="card-text"> Total Task Added </p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="bi bi-journal-plus fa-3x"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between px-md-1">
-                            <div>
-                                <h5 class="card-title fw-bold"> <?=$days?> Days </h5>
-                                <p class="card-text"> Internship Days Remaining </p>
-                            </div>
-                            <div class="align-self-center">
-                                <i class="bi bi-hourglass-split fa-3x"></i>
-                            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h5 class="card-title fw-bold"> <?=$days?> Days </h5>
+                            <p class="card-text"> Internship Days Remaining </p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="bi bi-hourglass-split fa-3x"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card ">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between px-md-1">
-                            <div>
-                                <h5 class="card-title fw-bold"> Currently On Week <?=$week?> </h5>
-                                <p class="card-text"> Internship Week </p>
-                            </div>
-                            <div class="align-self-center">
-                                <i class="bi bi-calendar-week fa-3x"></i>
-                            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h5 class="card-title fw-bold"> Currently On Week <?=$week?> </h5>
+                            <p class="card-text"> Internship Week </p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="bi bi-calendar-week fa-3x"></i>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
             <div class="container-fluid">
                 <div class="row">
@@ -181,7 +181,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Task Name</th>
-                                <th scope="col">Task Desc</th>
+                                <th scope="col">Task Description</th>
                                 <th scope="col">Lecturer's Remarks</th>
                             </tr>
                         </thead>
@@ -195,7 +195,7 @@
                             <?php foreach($task as $t):?>
                             <tr>
                                 <th scope="row"><?=$bil++;?></th>
-                                <td><?=date('d/m/Y',strtotime($t['tdate']));?></td>
+                                <td><?=date('d/m/y',strtotime($t['tdate']));?></td>
                                 <td><?=$t['tname'];?></td>
                                 <td><?=$t['tdesc'];?></td>
                                 <td><?=$t['remark'];?></td>

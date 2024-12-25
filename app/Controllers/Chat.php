@@ -27,104 +27,84 @@ class Chat extends BaseController
 
     public function index($id)
     {
-        // dd($id);
-            $chat = $this->chatModel->WHERE('sid', $id)->first();
-        // dd($id);
+        $chat = $this->chatModel->WHERE('sid', $id)->first();
         $chatid = $chat['chatid'];
         $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->OrderBy('messageid', 'ASC')->findAll();
-        // $now = time("Y-m-d",strtotime($intern->enddate));
-
-        $data=[
+    
+        // Determine the role of the user
+        $role = session()->get('role');
+        if ($role == 'Student') {
+            // Fetch the lecturer's name using the lecturer's ID
+            $lecturer = $this->lecturerModel->WHERE('id', $chat['id'])->first();
+            $personName = $lecturer ? $lecturer['lname'] : 'Unknown';
+        } else {
+            // Fetch the student's name using the student's SID
+            $student = $this->studentModel->WHERE('sid', $id)->first();
+            $personName = $student ? $student['sname'] : 'Unknown';
+        }
+    
+        $data = [
             'title' => 'Chat',
             'messages' => $messages,
+            'chatid' => $chatid,
+            'personName' => $personName, // Add personName to the data array
         ];
-        // dd($data);
+    
         return view('chat/chat', $data);
-        
-            // //find message by id
-            // $sid = session()->get('id');
-            // $chat = $this->chatModel->WHERE('sid', $sid)->first();
-            // //findchat id
-        
-            // if(empty($chat))
-            // {
-            //     // $chatid = $chat['chatid'];
-            //     // $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->findAll();
-            //     //get lid
-            //     $findstudent = $this->studentModel->WHERE('sid', $sid)->first();
-
-            //     $lid = $findstudent['lid'];
-            //     $data=[
-            //         'title' => 'Chat',
-            //         'messages' => [],
-            //         'lid' => $lid,
-            //     ];
-            //     // dd($data);
-            //     return view('chat/chat', $data);
-            // }
-            // else
-            // {
-              
-            // }
-            // dd($chatid);
-      
-            // $user = $this->userModel->WHERE('id', session()->get('id'))->first();
-            // $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
-            // $lid = $lecturer['lid'];
-            // $db = \Config\Database::connect();
-            // $student = $db->table('student')
-            //                 ->join('logbook', 'student.sid = logbook.sid')
-            //                 ->where('logbook.lid', $lid)
-            //                 ->get()->getResultArray();
-
-            // $data=[
-            //     'title' => 'Lecturer | Logbook',
-            //     'user' => $user,
-            //     'lecturer' => $lecturer,
-            //     'student' => $student,
-            //     'lid' => $lid
-                
-            // ];
-            // // d($data);
-            // return view('chat/chatview', $data);
-        
     }
 
     public function indexlect()
     {
         $sid = session()->get('id');
            
-            $findallstudent = $this->chatModel->join('student', 'student.sid = chat.sid')->WHERE('id', $sid)->findall();
+        $findallstudent = $this->chatModel
+            ->join('student', 'student.sid = chat.sid')
+            ->where('chat.id', $sid) // Specify the table name for the 'id' column
+            ->findAll();
             
-            // dd($findallstudent);
-            $data=[
-                'title' => 'Chat',
-                'student' => $findallstudent,
-
-            ];
-            d($data);
-            return view('chat/chatview', $data);
-            // $user = $this->userModel->WHERE('id', session()->get('id'))->first();
-            // $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
-            // $lid = $lecturer['lid'];
-            // $db = \Config\Database::connect();
-            // $student = $db->table('student')
-            //                 ->join('logbook', 'student.sid = logbook.sid')
-            //                 ->where('logbook.lid', $lid)
-            //                 ->get()->getResultArray();
-
-            // $data=[
-            //     'title' => 'Lecturer | Logbook',
-            //     'user' => $user,
-            //     'lecturer' => $lecturer,
-            //     'student' => $student,
-            //     'lid' => $lid
-                
-            // ];
-            // // d($data);
-            // return view('chat/chatview', $data);
+        $data = [
+            'title' => 'Chat',
+            'student' => $findallstudent,
+        ];
         
+        return view('chat/chatview', $data);
     }
+
+    // public function indexlect()
+    // {
+    //     $sid = session()->get('id');
+           
+    //         $findallstudent = $this->chatModel->join('student', 'student.sid = chat.sid')->WHERE('id', $sid)->findall();
+            
+    //         // dd($findallstudent);
+    //         $data=[
+    //             'title' => 'Chat',
+    //             'student' => $findallstudent,
+
+    //         ];
+    //         d($data);
+    //         return view('chat/chatview', $data);
+    //         // $user = $this->userModel->WHERE('id', session()->get('id'))->first();
+    //         // $lecturer = $this->lecturerModel->WHERE('id', $user['id'])->first();
+    //         // $lid = $lecturer['lid'];
+    //         // $db = \Config\Database::connect();
+    //         // $student = $db->table('student')
+    //         //                 ->join('logbook', 'student.sid = logbook.sid')
+    //         //                 ->where('logbook.lid', $lid)
+    //         //                 ->get()->getResultArray();
+
+    //         // $data=[
+    //         //     'title' => 'Lecturer | Logbook',
+    //         //     'user' => $user,
+    //         //     'lecturer' => $lecturer,
+    //         //     'student' => $student,
+    //         //     'lid' => $lid
+                
+    //         // ];
+    //         // // d($data);
+    //         // return view('chat/chatview', $data);
+        
+    // }
 
     public function new()
     {

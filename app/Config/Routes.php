@@ -132,13 +132,16 @@ $routes->post('/intern/update/report/(:num)', 'Student::updatereport/$1',['filte
 
 $routes->get('/admin/dashboard', 'Admin::dashboard', ['filter' => 'authGuard']);
 $routes->get('/admin/student', 'Admin::studentlist', ['filter' => 'authGuard']);
+$routes->get('/admin/deleteStudent/(:num)', 'Admin::deleteStudent/$1', ['filter' => 'authGuard']);
 $routes->get('/admin/lecturer', 'Admin::lecturerlist', ['filter' => 'authGuard']);
-$routes->post('/assignLecturer', 'Admin::assignLecturer');
+$routes->get('/admin/deleteLecturer/(:num)', 'Admin::deleteLecturer/$1', ['filter' => 'authGuard']);
+$routes->post('admin/assignLecturer', 'Admin::assignLecturer');
 $routes->post('admin/changeStartDate', 'Admin::changeStartDate');
 $routes->post('admin/changeEndDate', 'Admin::changeEndDate');
 $routes->get('/admin/reset/(:num)', 'Admin::reset/$1');
 
 $routes->get('/admin/auditlog', 'Admin::auditLog', ['filter' => 'authGuard']);
+$routes->post('/admin/deleteActiveSession/(:num)', 'Admin::deleteActiveSession/$1', ['filter' => 'authGuard']);
 
 
 /*

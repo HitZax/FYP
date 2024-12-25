@@ -65,15 +65,6 @@
         </div>
     </div>
     
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="my-2 py-2">Dashboard</h1>
-                <hr>
-            </div>
-        </div>
-    </div> -->
-
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-md-4">
@@ -81,7 +72,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
-                                <h5 class="card-title fw-bold">3</h5>
+                                <h5 class="card-title fw-bold"><?=$totalRemarks?></h5>
                                 <p class="card-text"> Total Remarks </p>
                             </div>
                             <div class="align-self-center">
@@ -122,10 +113,10 @@
                 </div>
             </div>
 
-            <!-- <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="my-2 py-2 fs-2">My Recent Tasks</h1>
+                        <h1 class="my-2 py-2 fs-2">My Recent Remarks</h1>
                     </div>
                 </div>
             </div>
@@ -133,27 +124,33 @@
             <div class="container-fluid mt-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col-md-1">#</th>
+                                <th scope="col-md-1">No.</th>
+                                <th scope="col-md-5">Student Name</th>
                                 <th scope="col-md-3">Task</th>
-                                <th scope="col-md-5">Description</th>
                                 <th scope="col-md-1">Date</th>
-                                <th scope="col-md-2">Lecturer Remark's</th>
+                                <th scope="col-md-2">My Remark</th>
                                 </tr>
                             </thead>
+                            <tbody class="table-group-divider">
+                                <?php foreach ($recentRemarks as $index => $remark): ?>
+                                <tr>
+                                    <td><?= $index + 1 ?></td>
+                                    <td><?= $remark['sname'] ?></td>
+                                    <td><?= $remark['tname'] ?></td>
+                                    <td><?= date('d/m/y', strtotime($remark['tdate'])) ?></td>
+                                    <td><?= $remark['remark'] ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
-
-
+    </div>
 </div>
-
-
-
 
 <?=$this->endsection()?>
