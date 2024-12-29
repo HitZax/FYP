@@ -35,6 +35,11 @@ class Chat extends BaseController
         $chatid = $chat['chatid'];
         $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->orderBy('messageid', 'ASC')->findAll();
 
+        // Decrypt messages
+        foreach ($messages as &$message) {
+            $message['message'] = $this->decryptMessage($message['message']);
+        }
+
         // Determine the role of the user
         $role = session()->get('role');
         if ($role == 'Student') {
@@ -116,6 +121,7 @@ class Chat extends BaseController
     {
         $role = session()->get('role');
         $message = filter_var($this->request->getVar('message'), FILTER_SANITIZE_STRING);
+        $encrypted_message = $this->encryptMessage($message);
 
         if ($role == 'Lecturer') {
             $chatid = filter_var($this->request->getVar('c'), FILTER_SANITIZE_NUMBER_INT);
@@ -131,7 +137,7 @@ class Chat extends BaseController
         }
 
         $data = [
-            'message' => $message,
+            'message' => $encrypted_message,
             'timestamp' => date('Y-m-d H:i:s'),
             'id' => session()->get('id'),
             'chatid' => $chatid,
@@ -147,6 +153,33 @@ class Chat extends BaseController
         $chatid = filter_var($this->request->getVar('chatid'), FILTER_SANITIZE_NUMBER_INT);
         $messages = $this->messageModel->where('chatid', $chatid)->join('users', 'message.id = users.id')->orderBy('messageid', 'ASC')->findAll();
 
+        foreach ($messages as &$message) {
+            $message['message'] = $this->decryptMessage($message['message']);
+        }
+
         return $this->response->setJSON(['messages' => $messages]);
+    }
+
+    private function encryptMessage($message)
+    {
+        $encryption_key = base64_decode('your-encryption-key-here');
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+        $encrypted = openssl_encrypt($message, 'aes-256-cbc', $encryption_key, 0, $iv);
+        return base64_encode($encrypted . '::' . $iv);
+    }
+
+    private function decryptMessage($encrypted_message)
+    {
+        $encryption_key = base64_decode('your-encryption-key-here');
+        $decoded_message = base64_decode($encrypted_message);
+        $parts = explode('::', $decoded_message, 2);
+
+        if (count($parts) !== 2) {
+            // Handle the error or return an empty string
+            return '';
+        }
+
+        list($encrypted_data, $iv) = $parts;
+        return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
     }
 }
