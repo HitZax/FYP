@@ -69,7 +69,7 @@ class Student extends BaseController
             
             // 'role' => $session->get('role')
             ];
-            d($data);
+            // d($data);
             return view('Student/show', $data);
         }
         else

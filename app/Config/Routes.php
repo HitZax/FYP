@@ -104,6 +104,7 @@ $routes->get('/chat/(:any)', 'Chat::index/$1');
 $routes->get('/chatlect/(:any)', 'Chat::indexlect/$1');
 $routes->post('/message', 'Chat::insert');
 $routes->get('/chat/fetchMessages/(:num)', 'Chat::fetchMessages/$1');
+$routes->get('/fetchMessages', 'Chat::fetchMessages');
 
 $routes->post('/newmessage', 'Chat::new');
 
