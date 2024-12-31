@@ -55,11 +55,16 @@ $routes->post('/register/lecturer', 'Auth::attemptRegisterlect');
 $routes->get('/register/lecturer/(:any)', 'Auth::registerlect/$1');
 $routes->post('/register/lecturer/(:any)', 'Auth::attemptRegisterlect');
 $routes->get('/logout', 'Auth::logout');
+
+
 $routes->get('/password', 'Auth::password');
+$routes->post('/auth/sendResetLink', 'Auth::sendResetLink');
+$routes->get('/auth/resetPassword/(:any)', 'Auth::resetPassword/$1');
 
 
-// $routes->get('/register/lecturer/', 'Auth::invitecode');
-// $routes->post('/register/lecturer/', 'Auth::receiveInvCode');
+$routes->get('/twofa', 'Auth::twoFA');
+$routes->post('/verify-2fa', 'Auth::verify2FA');
+$routes->get('/resend-2fa-code', 'Auth::resend2FACode');
 
 
 /*
