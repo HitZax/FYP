@@ -22,11 +22,11 @@
       <div class="col-md-12">
         <div class="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="my-2 py-2 mt-2">Audit Logs</h1>
-          <form class="d-flex my-2 my-lg-0" method="get" action="/admin/audit_log">
+          <form class="d-flex my-2 my-lg-0" method="get" action="/admin/auditlog">
             <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<?= isset($search) ? $search : '' ?>">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activeSessionsModal">Current Active Sessions: <?=$totalActiveSessions;?></button>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#activeSessionsModal">Current Active Sessions: <?=$totalActiveSessions;?></button>
         </div>
       </div>
     </div>

@@ -38,6 +38,10 @@ class Admin extends Controller
         $studentModel = new StudentModel();
         $totalStudents = $studentModel->countAllResults();
     
+        // Get top 5 latest audit logs
+        $auditLogModel = new AuditLogModel();
+        $latestAuditLogs = $auditLogModel->orderBy('timestamp', 'DESC')->findAll(5);
+    
         $data = [
             'title' => 'Dashboard Admin',
             'intern' => $intern,
@@ -47,6 +51,7 @@ class Admin extends Controller
             'currentWeek' => $currentWeek,
             'totalLecturers' => $totalLecturers,
             'totalStudents' => $totalStudents,
+            'latestAuditLogs' => $latestAuditLogs,
         ];
     
         return view('admin/dashboard', $data);
@@ -76,9 +81,9 @@ class Admin extends Controller
         $search = $this->request->getGet('search');
     
         if ($search) {
-            $students = $studentModel->like('sname', $search)
-                                    ->orLike('studentid', $search)
-                                    ->orLike('sprogram', $search)
+            $students = $studentModel->like('student.sname', $search)
+                                    ->orLike('student.studentid', $search)
+                                    ->orLike('student.sprogram', $search)
                                     ->join('lecturer', 'student.lid = lecturer.lid', 'left')
                                     ->join('users', 'student.id = users.id', 'left')
                                     ->select('student.*, lecturer.lname as lecturer_name, users.status as user_status')
@@ -265,10 +270,14 @@ class Admin extends Controller
         if ($search) {
             $logs = $auditLogModel->select('audit_log.*, users.fullname, users.email, users.role, users.status as user_status, users.last2FA')
                                   ->join('users', 'audit_log.user_id = users.id')
-                                  ->like('users.fullname', $search)
-                                  ->orLike('audit_log.action', $search)
-                                  ->orLike('audit_log.status', $search)
-                                  ->orLike('audit_log.timestamp', $search)
+                                  ->groupStart()
+                                      ->like('audit_log.id', $search)
+                                      ->orLike('audit_log.user_id', $search)
+                                      ->orLike('users.fullname', $search)
+                                      ->orLike('audit_log.action', $search)
+                                      ->orLike('audit_log.status', $search)
+                                      ->orLike('audit_log.timestamp', $search)
+                                  ->groupEnd()
                                   ->orderBy('audit_log.timestamp', 'DESC')
                                   ->findAll();
         } else {
@@ -288,7 +297,6 @@ class Admin extends Controller
     
         return view('admin/audit_log', $data);
     }
-
     public function getActiveSessions()
     {
         $activeSessionModel = new ActiveSessionModel();
@@ -305,5 +313,11 @@ class Admin extends Controller
         $activeSessionModel->delete($id);
     
         return redirect()->to('/admin/auditlog')->with('message', 'Session deleted successfully');
+    }
+
+    public function getAuditLogs()
+    {
+        $logs = $this->auditLogModel->findAll(); // Adjust this to your actual model and method
+        return $this->response->setJSON($logs);
     }
 }

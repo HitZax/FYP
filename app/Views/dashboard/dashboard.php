@@ -199,21 +199,14 @@
                                 <td><?=$t['tname'];?></td>
                                 <td><?=$t['tdesc'];?></td>
                                 <td><?=$t['remark'];?></td>
-
                             </tr>
                             <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 </div>
-
-
-
 
 <?=$this->endsection()?>

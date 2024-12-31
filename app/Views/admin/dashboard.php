@@ -118,8 +118,54 @@
             </div>
         </div>
     </div>
-
 </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="my-2 py-2 fs-2 mt-2">Recent Audit Logs</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">User ID</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Audit Status</th>
+                                    <th scope="col">Attempt No.</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <?php if(empty($latestAuditLogs)):?>
+                                <tr>
+                                    <td colspan="7" class="text-center">No logs found</td>
+                                </tr>
+                                <?php else: ?>
+                                    <?php foreach($latestAuditLogs as $log): ?>
+                                    <tr>
+                                        <td><?=$log['id'];?></td>
+                                        <td>(<?=$log['user_id'];?>)</td>
+                                        <td><?=$log['action'];?></td>
+                                        <td><?=$log['status'];?></td>
+                                        <td><?=$log['attempt_number'];?></td>
+                                        <td><?= date('h:i', strtotime($log['timestamp'])); ?></td>
+                                        <td><?= date('d M', strtotime($log['timestamp'])); ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                <?php endif;?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 <!-- Modal for changing end date -->
 <div class="modal fade" id="changeEndDateModal" tabindex="-1" aria-labelledby="changeEndDateModalLabel" aria-hidden="true">
