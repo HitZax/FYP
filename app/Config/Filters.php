@@ -26,6 +26,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'authGuard'     => AuthGuard::class,
+        'adminGuard' => \App\Filters\AdminGuard::class,
         'Lecturer'      => Lecturer::class
     ];
 
