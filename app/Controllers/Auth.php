@@ -32,9 +32,6 @@ class Auth extends Controller
     // Handle login attempt
     public function attemptLogin()
     {
-        // Clean up expired sessions
-        $this->cleanUpExpiredSessions();
-
         $session = session();
         $userModel = new UserModel();
         $activeSessionModel = new ActiveSessionModel();
@@ -202,7 +199,7 @@ class Auth extends Controller
         // Set email configuration
         $email->setFrom('MS_LEvWMW@trial-351ndgw0kox4zqx8.mlsender.net', 'Secured OLS');
         $email->setTo($userEmail);
-        $email->setSubject('2FA Code');
+        $email->setSubject('2FA Code for Online Logbook System');
         $email->setMailType('html');
         $email->setMessage("
             <p>Dear $userFullName,</p>
@@ -361,6 +358,30 @@ class Auth extends Controller
         return redirect()->to('/admin/dashboard');
     }
 
+    // Display invite code page
+    public function invitecode()
+    {
+        $data=['title'=>'Register Lecturer'];
+        return view('auth/invitecode', $data);
+    }
+
+    // Handle invite code submission
+    public function receiveInvCode()
+    {
+        $invitecode = $this->request->getVar('invcode');
+        $invcodemodel = new InviteCodeModel();
+        $checkcode = $invcodemodel->where('invcode',$invitecode)->first();
+
+        if($checkcode)
+        {
+            return redirect()->to('/register/lecturer/'.$invitecode);
+        }
+        else
+        {
+            return redirect()->to('/login');
+        }
+    }
+
     // Display lecturer registration page
     public function registerlect($invitecode = null)
     {
@@ -414,75 +435,75 @@ class Auth extends Controller
         return view('auth/password');
     }
 
-    public function sendResetLink()
-    {
-        $email = $this->request->getVar('email');
-        $user = $this->userModel->where('email', $email)->first();
+public function sendResetLink()
+{
+    $email = $this->request->getVar('email');
+    $user = $this->userModel->where('email', $email)->first();
 
-        if ($user) {
-            $token = bin2hex(random_bytes(50));
-            $expiresAt = date('Y-m-d H:i:s', time() + 900); // 15 Minutes
-            // Save the token and expiration time in the password_resets table
-            $db = \Config\Database::connect();
-            $db->table('password_resets')->insert([
-                'user_id' => $user['id'],
-                'token' => $token,
-                'expires_at' => $expiresAt
-            ]);
-        
-            // Send the reset link to the user's email
-            $resetLink = base_url("auth/resetPassword/$token");
-            $emailService = \Config\Services::email();
-            $emailService->setFrom('MS_LEvWMW@trial-351ndgw0kox4zqx8.mlsender.net', 'Secured OLS');
-            $emailService->setTo($email);
-            $emailService->setSubject('Password Reset Request');
-            $emailService->setMessage("
-                <html>
-                <head>
-                    <title>Password Reset Request</title>
-                </head>
-                <body>
-                    <p>Dear {$user['fullname']},</p>
-                    <p>We received a request to reset your password. Click the link below to reset your password:</p>
-                    <p><a href='$resetLink'>Click here to reset your password</a></p>
-                    <p>If you did not request a password reset, please ignore this email.</p>
-                    <p>Thank you,<br>Online Logbook System Team</p>
-                </body>
-                </html>
-            ");
-            $emailService->setMailType('html'); // Ensure the email is sent as HTML
-        
-            if ($emailService->send()) {
-                return redirect()->to('/password')->with('msg', 'Password reset link has been sent to your email.');
-            } else {
-                return redirect()->to('/password')->with('msg', 'Failed to send password reset link. Please try again.');
-            }
-        } else {
-            return redirect()->to('/password')->with('msg', 'Email address not found.');
-        }
-    }
-
-    public function resetPassword($token)
-    {
+    if ($user) {
+        $token = bin2hex(random_bytes(50));
+        $expiresAt = date('Y-m-d H:i:s', time() + 900); // 15 Minutes
+        // Save the token and expiration time in the password_resets table
         $db = \Config\Database::connect();
-        $resetData = $db->table('password_resets')
-                        ->where('token', $token)
-                        ->where('expires_at >=', date('Y-m-d H:i:s'))
-                        ->get()
-                        ->getRowArray();
-
-        if ($resetData) {
-            // Reset the user's password to '123'
-            $this->userModel->update($resetData['user_id'], [
-                'password' => password_hash('123', PASSWORD_DEFAULT)
-            ]);
-
-            // Delete the reset token
-            $db->table('password_resets')->where('id', $resetData['id'])->delete();
-
-            return redirect()->to('/login')->with('msg', 'Your password has been reset to "123". Please log in and change your password.');
+        $db->table('password_resets')->insert([
+            'user_id' => $user['id'],
+            'token' => $token,
+            'expires_at' => $expiresAt
+        ]);
+    
+        // Send the reset link to the user's email
+        $resetLink = base_url("auth/resetPassword/$token");
+        $emailService = \Config\Services::email();
+        $emailService->setFrom('MS_LEvWMW@trial-351ndgw0kox4zqx8.mlsender.net', 'Secured OLS');
+        $emailService->setTo($email);
+        $emailService->setSubject('Password Reset Request');
+        $emailService->setMessage("
+            <html>
+            <head>
+                <title>Password Reset Request</title>
+            </head>
+            <body>
+                <p>Dear {$user['fullname']},</p>
+                <p>We received a request to reset your password. Click the link below to reset your password:</p>
+                <p><a href='$resetLink'>Click here to reset your password</a></p>
+                <p>If you did not request a password reset, please ignore this email.</p>
+                <p>Thank you,<br>Online Logbook System Team</p>
+            </body>
+            </html>
+        ");
+        $emailService->setMailType('html'); // Ensure the email is sent as HTML
+    
+        if ($emailService->send()) {
+            return redirect()->to('/password')->with('msg', 'Password reset link has been sent to your email.');
         } else {
-            return redirect()->to('/password')->with('msg', 'Invalid or expired reset token.');
+            return redirect()->to('/password')->with('msg', 'Failed to send password reset link. Please try again.');
         }
+    } else {
+        return redirect()->to('/password')->with('msg', 'Email address not found.');
     }
+}
+
+public function resetPassword($token)
+{
+    $db = \Config\Database::connect();
+    $resetData = $db->table('password_resets')
+                    ->where('token', $token)
+                    ->where('expires_at >=', date('Y-m-d H:i:s'))
+                    ->get()
+                    ->getRowArray();
+
+    if ($resetData) {
+        // Reset the user's password to '123'
+        $this->userModel->update($resetData['user_id'], [
+            'password' => password_hash('123', PASSWORD_DEFAULT)
+        ]);
+
+        // Delete the reset token
+        $db->table('password_resets')->where('id', $resetData['id'])->delete();
+
+        return redirect()->to('/login')->with('msg', 'Your password has been reset to "123". Please log in and change your password.');
+    } else {
+        return redirect()->to('/password')->with('msg', 'Invalid or expired reset token.');
+    }
+}
 }
